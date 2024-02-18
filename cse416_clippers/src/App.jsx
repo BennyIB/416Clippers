@@ -1,35 +1,42 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from 'react-router-dom';
+import './App.css';
+import EthnicityBarChart from './EthnicityBarChart'; 
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function AppWrapper() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/ethnicity-chart" element={<EthnicityBarChart />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+function App() {
+  const navigate = useNavigate(); // Hook to navigate programmatically
+  const [selectedState, setSelectedState] = useState('');
+  const clippersImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/b/bb/Los_Angeles_Clippers_%282015%29.svg/1200px-Los_Angeles_Clippers_%282015%29.svg.png";
+
+  const handleSelectState = (state) => {
+    setSelectedState(state);
+    if (state === 'Arizona') {
+      navigate('/ethnicity-chart');
+    }
+  };
+
+  return (
+      <div className="clippers-container">
+        <img src={clippersImageURL} alt="Clippers" className="clippers-image" />
+        <h1 className="clippers-title">Clippers</h1>
+        <button className="clippers-button" onClick={() => handleSelectState('Arizona')}>Arizona</button>
+        <button className="clippers-button" onClick={() => handleSelectState('Illinois')}>Illinois</button>
+        {selectedState && <p className="clippers-selected">You have selected: {selectedState}</p>}
+        <Link to="/">Go Back to Main</Link>
+
+      </div>
+  );
+}
+
+export default AppWrapper;
