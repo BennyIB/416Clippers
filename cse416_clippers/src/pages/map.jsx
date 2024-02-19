@@ -2,45 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 //import geojsonData from '../assets/Arizona_Districts.geojson';
+import arizonaJsonData from '../assets/arizona.json'
+import illinoiJsonData from '../assets/illinois.json'
 const geojsonData = {
     type: 'FeatureCollection',
-    features: [{
-      type: 'Feature',
-      properties: {},
-      geometry: {
-        type: 'Polygon',
-        coordinates: [[
-          [-114.0437, 36.9991],
-          [-109.0452, 36.9989], 
-          [-109.0501, 31.3325],
-          [-111.1026, 31.3961], 
-          [-114.7996, 32.5183],
-          [-114.0437, 36.9991]
-        ]]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "name": "Illinois"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [-91.5120, 40.1998], 
-            [-87.4952, 42.4943], 
-            [-87.0199, 42.5083], 
-            [-87.0199, 39.9860], 
-            [-87.5304, 39.3210], 
-            [-89.1336, 37.8749],
-            [-91.1853, 37.2169],
-            [-91.5120, 40.1998]  
-          ]
-        ]
-      }
-    } 
-  ]
+    features: [
+      arizonaJsonData,
+      illinoiJsonData
+    ]
   };
   const layerStyle = {
     id: 'landuse_park',

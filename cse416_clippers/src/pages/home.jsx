@@ -9,18 +9,18 @@ function HomeWrapper() {
     const handleSelectState = (state) => {
       setSelectedState(state);
       if (state === 'Arizona') {
-        navigate('/ethnicity-chart');
+        navigate('/map');
       }
     };
   
     return (
         <div className="clippers-container">
           <img src={clippersImageURL} alt="Clippers" className="clippers-image" />
-          <h1 className="clippers-title">Clippers</h1>
+          <div></div>
           <button className="clippers-button" onClick={() => handleSelectState('Arizona')}>Arizona</button>
           <button className="clippers-button" onClick={() => handleSelectState('Illinois')}>Illinois</button>
           {selectedState && <p className="clippers-selected">You have selected: {selectedState}</p>}
-          <Link to="/">Go Back to Main</Link>
+          {/* <Link to="/">Go Back to Main</Link> */}
   
         </div>
     );
