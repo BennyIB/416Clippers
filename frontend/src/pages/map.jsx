@@ -3,11 +3,12 @@ import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useParams } from 'react-router-dom';
 import ArizonaAndIllinoisDistricts from '../assets/Arizona_Illinois_Districts.json';
-
 import ChartModal from '../components/modal'
+import MapControl from '../components/MapControl';
+
 const geojsonData = ArizonaAndIllinoisDistricts;
 const layerStyle = {
-  id: 'landuse_park',
+  id: 'map_layers',
   type: 'fill',
   paint: {
     'fill-color': ['get', 'color'],
@@ -78,30 +79,7 @@ const MapPage = () => {
 
   return (
     <div className="relative w-full h-screen">
-      <div className="absolute right-5 bottom-5 z-10 flex flex-col">
-
-        <button
-          className="mb-2 bg-blue-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
-          onClick={zoomIn}
-        >
-          +
-        </button>
-    
-        <button
-          className="mb-2 bg-blue-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
-          onClick={zoomOut}
-        >
-          -
-        </button>
-
-        <button
-          className="bg-blue-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
-          onClick={resetZoom}
-        >
-          🔙
-        </button>
-      </div>
-
+      <MapControl zoomIn={zoomIn} zoomOut={zoomOut} resetZoom={resetZoom}/>
       <Map
         ref={mapRef}
         mapboxAccessToken={accessToken}
@@ -110,7 +88,7 @@ const MapPage = () => {
         style={{ width: '100vw', height: '100vh' }}
         mapStyle="mapbox://styles/mapbox/streets-v12"
         onClick={handleClick}
-        interactiveLayerIds={['landuse_park']}
+        interactiveLayerIds={['map_layers']}
       >
     
         {showModal && <ChartModal state={state} setShowModal={setShowModal}/>}
