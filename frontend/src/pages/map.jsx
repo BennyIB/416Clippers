@@ -35,23 +35,19 @@ const MapPage = () => {
   let lat = 39.8283;
   let long = -98.5795;
   let zoom = 3;
-  if(state)
-  {
+  if (state) {
     long = ZOOMSTATE[state][0];
     lat = ZOOMSTATE[state][1];
     zoom = ZOOMSTATE[state][2];
   }
 
   function zoomTo() {
-    if(map.current)
-    {
-      if(zoomState)
-      {
-        map.current.flyTo({center: [ZOOMSTATE["USA"][0], ZOOMSTATE["USA"][1]], zoom: ZOOMSTATE["USA"][2]});
+    if (map.current) {
+      if (zoomState) {
+        map.current.flyTo({ center: [ZOOMSTATE["USA"][0], ZOOMSTATE["USA"][1]], zoom: ZOOMSTATE["USA"][2] });
       }
-      else
-      {
-        map.current.flyTo({center: [ZOOMSTATE[state][0], ZOOMSTATE[state][1]], zoom: ZOOMSTATE[state][2]});
+      else {
+        map.current.flyTo({ center: [ZOOMSTATE[state][0], ZOOMSTATE[state][1]], zoom: ZOOMSTATE[state][2] });
       }
       setZoomState(!zoomState);
     }
@@ -59,7 +55,7 @@ const MapPage = () => {
 
   const handleClick = (event) => {
     const { features } = event;
-  
+
     const clickedFeature = features && features.find(f => f.layer.id === layerStyle.id);
     if (clickedFeature) {
       setShowModal(true);
@@ -85,77 +81,94 @@ const MapPage = () => {
   return (
     <div className="relative w-full h-screen">
       <button
-        style={{ position: 'absolute', zIndex: 9999, top: '20px', left: '20px', backgroundColor: 'blue', color: 'white', padding: '8px', borderRadius: '5px' }} 
+        style={{
+          position: 'absolute',
+          zIndex: 9999,
+          top: '20px',
+          left: '20px',
+          backgroundColor: 'blue',
+          color: 'white',
+          padding: '0',
+          height: '40px',
+          width: '40px',
+          borderRadius: '50%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontSize: '20px',
+          cursor: 'pointer',
+          border: 'none',
+        }}
         onClick={zoomTo}>
-        Zoom
+        {zoomState ? '-' : '+'}
       </button>
-      <Map 
-          ref={map}
-          mapboxAccessToken={accessToken}
-          initialViewState={{
-              longitude: long,
-              latitude: lat,
-              zoom: zoom
-          }}
-          style={{width: '100vw', height: '100vh'}}
-          mapStyle="mapbox://styles/mapbox/streets-v12"
-          attributionControl={false}
-          onClick={handleClick}
-          interactiveLayerIds={['landuse_park']}
+      <Map
+        ref={map}
+        mapboxAccessToken={accessToken}
+        initialViewState={{
+          longitude: long,
+          latitude: lat,
+          zoom: zoom
+        }}
+        style={{ width: '100vw', height: '100vh' }}
+        mapStyle="mapbox://styles/mapbox/streets-v12"
+        attributionControl={false}
+        onClick={handleClick}
+        interactiveLayerIds={['landuse_park']}
       >
-      {showModal && (
-              <div className="fixed inset-0 bg-white-600 bg-opacity-50 flex justify-center items-center z-50">
-                  <div 
-                      className="bg-white p-5 rounded-lg shadow-lg" 
-                      style={{
-                          width: '600px',
-                          height: '500px',
-                          display: 'flex',
-                          flexDirection: 'column',
-                          justifyContent: 'space-between',
-                          overflow: 'auto'
-                      }}
-                  >
-                      <h2 className="text-lg text-black font-bold text-center">Arizona Data</h2>
-                    
-                      <select
-                          value={selectedChart}
-                          onChange={(e) => setSelectedChart(e.target.value)}
-                          className="mb-4"
-                          style={{ 
-                            backgroundColor: 'gray', 
-                            color: 'white',
-                            border: 'none', 
-                            padding: '5px',
-                            borderRadius: '5px', 
-                          }}
-                        >
+        {showModal && (
+          <div className="fixed inset-0 bg-white-600 bg-opacity-50 flex justify-center items-center z-50">
+            <div
+              className="bg-white p-5 rounded-lg shadow-lg"
+              style={{
+                width: '600px',
+                height: '500px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                overflow: 'auto'
+              }}
+            >
+              <h2 className="text-lg text-black font-bold text-center">{state} Data</h2>
 
-                        <option value="ethnicityBarChart">Ethnicity Bar Chart</option>
-                        <option value="ecologicalInferencePlot">Ecological Inference Plot</option>
-                        <option value="ethnicityBarChartPop">Ethnicity Bar Chart Pop</option>
-                        <option value="precinctAnalysisChart">Precinct Analysis Chart</option>
-                      </select>
+              <select
+                value={selectedChart}
+                onChange={(e) => setSelectedChart(e.target.value)}
+                className="mb-4"
+                style={{
+                  backgroundColor: 'gray',
+                  color: 'white',
+                  border: 'none',
+                  padding: '5px',
+                  borderRadius: '5px',
+                }}
+              >
 
-                  
-                      <div className="flex-grow">
-                        {renderChart()}
-                      </div>
+                <option value="ethnicityBarChart">Ethnicity Bar Chart</option>
+                <option value="ecologicalInferencePlot">Ecological Inference Plot</option>
+                <option value="ethnicityBarChartPop">Ethnicity Bar Chart Pop</option>
+                <option value="precinctAnalysisChart">Precinct Analysis Chart</option>
+              </select>
 
-                      <div className="flex justify-center" >
-                            <button 
-                                onClick={() => setShowModal(false)} 
-                                className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                            >
-                                Close
-                            </button>
-                        </div>
-                  </div>
+
+              <div className="flex-grow">
+                {renderChart()}
               </div>
-          )}
-      <Source id="my-data" type="geojson" data={geojsonData}>
-      <Layer {...layerStyle}/>
-      </Source>
+
+              <div className="flex justify-center" >
+                <button
+                  onClick={() => setShowModal(false)}
+                  className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+        <Source id="my-data" type="geojson" data={geojsonData}>
+          <Layer {...layerStyle} />
+        </Source>
       </Map>
     </div>
   );
