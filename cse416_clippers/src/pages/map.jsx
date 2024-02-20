@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useParams } from 'react-router-dom';
