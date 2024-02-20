@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useParams } from 'react-router-dom';
@@ -15,25 +15,24 @@ const geojsonData = ArizonaAndIllinoisDistricts;
     }
   };
     
-
+const ZOOMSTATE = {
+  Arizona: [-111.093735, 34.048927, 5.75],
+  Illinois: [-89, 39.75, 5.75],
+  USA: [-98.5795, 39.8283, 3]
+}
 const MapPage = () => {
     const map = useRef(null);
     const accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
     const { state } = useParams();
+    const [zoomState, setZoomState] = useState(state !== undefined);
     let lat = 39.8283;
     let long = -98.5795;
     let zoom = 3;
-    if(state === 'Arizona')
+    if(state)
     {
-      lat = 34.048927;
-      long = -111.093735;
-      zoom = 5.75;
-    }
-    else if(state === 'Illinois')
-    {
-      lat = 39.75
-      long = -89
-      zoom = 5.75;
+      long = ZOOMSTATE[state][0];
+      lat = ZOOMSTATE[state][1];
+      zoom = ZOOMSTATE[state][2];
     }
     console.log(state);
     // const handleLoad = (event) => {
@@ -55,15 +54,37 @@ const MapPage = () => {
     //     }
     //   }
     // }, [state]);
+
+    function zoomTo() {
+      if(map.current)
+      {
+        console.log()
+        if(zoomState)
+        {
+          map.current.flyTo({center: [ZOOMSTATE["USA"][0], ZOOMSTATE["USA"][1]], zoom: ZOOMSTATE["USA"][2]});
+        }
+        else
+        {
+          map.current.flyTo({center: [ZOOMSTATE[state][0], ZOOMSTATE[state][1]], zoom: ZOOMSTATE[state][2]});
+        }
+        setZoomState(!zoomState);
+      }
+    }
     const handleClick = (event) => {
       const { features } = event;
       const clickedFeature = features && features.find(f => f.layer.id === layerStyle.id);
-      console.log(event)
+      //console.log(event)
       if (clickedFeature) {
         console.log("Feature clicked:", clickedFeature);
       }
     };
     return (
+      <div className="relative w-full h-screen">
+        <button
+        style={{ position: 'absolute', zIndex: 9999, top: '20px', left: '20px', backgroundColor: 'blue', color: 'white', padding: '8px', borderRadius: '5px' }} 
+        onClick={zoomTo}>
+          Zoom
+        </button>
         <Map 
             ref={map}
             mapboxAccessToken={accessToken}
@@ -83,6 +104,7 @@ const MapPage = () => {
         <Layer {...layerStyle}/>
         </Source>
         </Map>
+      </div>
     );
 };
 
