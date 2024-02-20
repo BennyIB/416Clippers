@@ -11,13 +11,13 @@ ChartJS.register(
   Legend
 );
 
-const EthnicityBarChart = () => {
+const EthnicityBarChartPop = () => {
   const data = {
     labels: ['Black/African American', 'Hispanic/Latino', 'White/Caucasian', 'Asian'],
     datasets: [
       {
-        label: 'Number of Representatives',
-        data: [20, 5, 60, 2], 
+        label: 'Number of People in Arizona in millions',
+        data: [0.325, 2.261, 5.292, 0.239], 
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -51,4 +51,4 @@ const EthnicityBarChart = () => {
   return <Bar data={data} options={options} />;
 };
 
-export default EthnicityBarChart; 
+export default EthnicityBarChartPop; 
