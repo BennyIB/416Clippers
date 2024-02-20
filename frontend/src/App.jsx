@@ -7,10 +7,6 @@ import {
 } from "react-router-dom";
 import MapPage from './pages/map';
 import HomeWrapper from './pages/home';
-import EthnicityBarChart from './EthnicityBarChart';
-import PrecinctAnalysisChart from './PrecinctAnalysisChart';
-import EcologicalInferencePlot from './EcologicalInferencePlot';
-import EthnicityBarChartPop from './EthnicityBarChartPop';
 import SplashScreen from './pages/splashscreen';
 
 
@@ -35,34 +31,6 @@ const router = createBrowserRouter([
         element: <MapPage />,
       },
     ],
-  },
-  {
-    path: "/chart",
-    element:
-    <>
-      <EthnicityBarChart />
-    </>
-  },
-  {
-    path: "/precint-analysis-chart",
-    element:
-    <>
-      <PrecinctAnalysisChart />
-    </>
-  },
-  {
-    path: "/ecological-inference-plot",
-    element:
-    <>
-      <EcologicalInferencePlot />
-    </>
-  },
-  {
-    path: "/ethnicity-bar-chart-pop",
-    element:
-    <>
-      <EthnicityBarChartPop />
-    </>
   },
 
 ]);
