@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useParams } from 'react-router-dom';
@@ -130,6 +130,7 @@ const MapPage = () => {
                             borderRadius: '5px', 
                           }}
                         >
+
                         <option value="ethnicityBarChart">Ethnicity Bar Chart</option>
                         <option value="ecologicalInferencePlot">Ecological Inference Plot</option>
                         <option value="ethnicityBarChartPop">Ethnicity Bar Chart Pop</option>
