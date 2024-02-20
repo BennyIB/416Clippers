@@ -1,3 +1,10 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+
+}
 body {
   margin: 0;
   padding: 0;
@@ -5,17 +12,11 @@ body {
   /*background-color: #1D428A; */
 }
 
-html {
+/* html {
   box-sizing: border-box;
   border: 8px solid #C8102E; 
   height: 100%;
-}
-
-
-body {
-  padding: 20px; 
-}
-
+} */
 
 .clippers-container {
   font-family: Arial, sans-serif;
@@ -24,7 +25,6 @@ body {
   height: 100vh; 
   text-align: center;
   margin: 0; 
-  position: absolute;
   top:15%;
   left: 30%;
 }
