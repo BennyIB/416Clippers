@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useNavigate, Link } from 'react-router-dom';
 import './App.css';
-import EthnicityBarChart from './EthnicityBarChart'; 
+import EthnicityBarChart from './EthnicityBarChart';
+import PrecinctAnalysisChart from './PrecinctAnalysisChart';
+import EcologicalInferencePlot from './EcologicalInferencePlot';
+import EthnicityBarChartPop from './EthnicityBarChartPop';
+
+
 
 function AppWrapper() {
   return (
@@ -9,6 +14,10 @@ function AppWrapper() {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/ethnicity-chart" element={<EthnicityBarChart />} />
+        <Route path="/ethnicity-chart-pop" element={<EthnicityBarChartPop />} />
+        <Route path="/precinct-analysis" element={<PrecinctAnalysisChart />} />
+        <Route path="/ecological-inference" element={<EcologicalInferencePlot />} />
+
       </Routes>
     </Router>
   );
