@@ -1,64 +1,86 @@
 import React, { useEffect, useRef } from 'react';
 import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
-//import geojsonData from '../assets/Arizona_Districts.geojson';
-import arizonaJsonData from '../assets/arizona.json'
-import illinoiJsonData from '../assets/illinois.json'
-const geojsonData = {
-    type: 'FeatureCollection',
-    features: [
-      arizonaJsonData,
-      illinoiJsonData
-    ]
-  };
+import { useParams } from 'react-router-dom';
+import ArizonaAndIllinoisDistricts from '../assets/Arizona_Illinois_Districts.json';
+
+
+const geojsonData = ArizonaAndIllinoisDistricts;
   const layerStyle = {
     id: 'landuse_park',
     type: 'fill',
     paint: {
-      'fill-color': '#4E3FC8',
+      'fill-color': ['get', 'color'],
       'fill-opacity': 0.5
     }
   };
     
 
 const MapPage = () => {
-    // const mapContainerRef = useRef(null);
+    const map = useRef(null);
     const accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
+    const { state } = useParams();
+    let lat = 39.8283;
+    let long = -98.5795;
+    let zoom = 3;
+    if(state === 'Arizona')
+    {
+      lat = 34.048927;
+      long = -111.093735;
+      zoom = 5.75;
+    }
+    else if(state === 'Illinois')
+    {
+      lat = 39.75
+      long = -89
+      zoom = 5.75;
+    }
+    console.log(state);
+    // const handleLoad = (event) => {
+    //   console.log("loaded");
+    //   const instance = event.target;
+    //   map.current = instance;
+    // }
     // useEffect(() => {
-    //     mapboxgl.accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
-
-    //     const map = new mapboxgl.Map({
-    //         container: mapContainerRef.current,
-    //         style: 'mapbox://styles/mapbox/streets-v11',
-    //         center: [-98.5795, 39.8283],
-    //         zoom: 3, 
-    //     });
-
-    //     map.on('load', () => {
-    //         // Here you would add your GeoJSON data source for US states
-    //         // and any interactivity, such as click events to zoom into states
-    //     });
-
-    //     return () => map.remove();
-    // }, []);
-
+    //   console.log("map here")
+    //   if (map.current) {
+    //     console.log("map in")
+    //     switch (state) {
+    //       case 'Arizona':
+    //         map.current.flyTo({center: [-111.093735, 34.048927], zoom: 5.75});
+    //         break;
+    //       case 'Illinois':
+    //         map.current.flyTo({center: [-89, 39.75], zoom: 5.75});
+    //         break;
+    //     }
+    //   }
+    // }, [state]);
+    const handleClick = (event) => {
+      const { features } = event;
+      const clickedFeature = features && features.find(f => f.layer.id === layerStyle.id);
+      console.log(event)
+      if (clickedFeature) {
+        console.log("Feature clicked:", clickedFeature);
+      }
+    };
     return (
-        // <div>
-        //     <div ref={mapContainerRef} style={{ width: '100%', height: '400px' }} />
-        // </div>
         <Map 
+            ref={map}
             mapboxAccessToken={accessToken}
             initialViewState={{
-                longitude: -98.5795,
-                latitude: 39.8283,
-                zoom: 3
+                longitude: long,
+                latitude: lat,
+                zoom: zoom
             }}
             style={{width: '100vw', height: '100vh'}}
-            mapStyle="mapbox://styles/mapbox/streets-v11"
+            mapStyle="mapbox://styles/mapbox/streets-v12"
             attributionControl={false}
+            onClick={handleClick}
+            interactiveLayerIds={['landuse_park']}
+            // onLoad={handleLoad}
         >
         <Source id="my-data" type="geojson" data={geojsonData}>
-        <Layer {...layerStyle} />
+        <Layer {...layerStyle}/>
         </Source>
         </Map>
     );

@@ -1,15 +1,16 @@
 import './App.css';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Navigate
+} from "react-router-dom";
+import MapPage from './pages/map';
+import HomeWrapper from './pages/home';
 import EthnicityBarChart from './EthnicityBarChart';
 import PrecinctAnalysisChart from './PrecinctAnalysisChart';
 import EcologicalInferencePlot from './EcologicalInferencePlot';
 import EthnicityBarChartPop from './EthnicityBarChartPop';
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import MapPage from './pages/map';
-import HomeWrapper from './pages/home';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,10 +21,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/map",
-    element:
-    <>
-      <MapPage />
-    </>
+    element: <MapPage />,
+    children: [
+      {
+        index: true,
+        element: <Navigate replace to="/map/DefaultState" />,
+      },
+      {
+        path: ":state",
+        element: <MapPage />,
+      },
+    ],
   },
   {
     path: "/chart",
