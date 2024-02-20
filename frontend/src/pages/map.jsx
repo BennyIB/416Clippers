@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 import { useParams } from 'react-router-dom';
@@ -25,39 +25,56 @@ const ZOOMSTATE = {
 };
 
 const MapPage = () => {
-  const map = useRef(null);
+  const mapRef = useRef(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedChart, setSelectedChart] = useState('');
 
   const accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
   const { state } = useParams();
-  const [zoomState, setZoomState] = useState(state !== undefined);
-  let lat = 39.8283;
-  let long = -98.5795;
-  let zoom = 3;
-  if (state) {
-    long = ZOOMSTATE[state][0];
-    lat = ZOOMSTATE[state][1];
-    zoom = ZOOMSTATE[state][2];
-  }
+  const [viewport, setViewport] = useState({
+    longitude: -98.5795,
+    latitude: 39.8283,
+    zoom: 3,
+  });
 
-  function zoomTo() {
-    if (map.current) {
-      if (zoomState) {
-        map.current.flyTo({ center: [ZOOMSTATE["USA"][0], ZOOMSTATE["USA"][1]], zoom: ZOOMSTATE["USA"][2] });
-      }
-      else {
-        map.current.flyTo({ center: [ZOOMSTATE[state][0], ZOOMSTATE[state][1]], zoom: ZOOMSTATE[state][2] });
-      }
-      setZoomState(!zoomState);
+  useEffect(() => {
+    if (state && ZOOMSTATE[state]) {
+      setViewport({
+        longitude: ZOOMSTATE[state][0],
+        latitude: ZOOMSTATE[state][1],
+        zoom: ZOOMSTATE[state][2]
+      });
     }
-  }
+  }, [state]);
+
+  const zoomIn = () => {
+    setViewport((prevViewport) => ({
+      ...prevViewport,
+      zoom: prevViewport.zoom + 1
+    }));
+  };
+
+  const zoomOut = () => {
+    setViewport((prevViewport) => ({
+      ...prevViewport,
+      zoom: prevViewport.zoom - 1
+    }));
+  };
+
+  const resetZoom = useCallback(() => {
+    setViewport({
+      longitude: ZOOMSTATE[state][0],
+      latitude: ZOOMSTATE[state][1],
+      zoom: ZOOMSTATE[state][2]
+    });
+  }, [state]);
 
   const handleClick = (event) => {
     const { features } = event;
 
     const clickedFeature = features && features.find(f => f.layer.id === layerStyle.id);
     if (clickedFeature) {
+      console.log("hello")
       setShowModal(true);
     }
   };
@@ -73,6 +90,10 @@ const MapPage = () => {
         return <EthnicityBarChartPop />;
       case 'precinctAnalysisChart':
         return <PrecinctAnalysisChart />;
+      case 'minorityRepresentationAllDistricts':
+        return <img src="/all.png" alt="minority representation image" />;
+      case 'minorityRepresentation9Districts':
+        return <img src="/nine.png" alt="minority representation image" />;
       default:
         return <EthnicityBarChart />;
     }
@@ -80,42 +101,42 @@ const MapPage = () => {
 
   return (
     <div className="relative w-full h-screen">
-      <button
-        style={{
-          position: 'absolute',
-          zIndex: 9999,
-          top: '20px',
-          left: '20px',
-          backgroundColor: 'blue',
-          color: 'white',
-          padding: '0',
-          height: '40px',
-          width: '40px',
-          borderRadius: '50%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: '20px',
-          cursor: 'pointer',
-          border: 'none',
-        }}
-        onClick={zoomTo}>
-        {zoomState ? '-' : '+'}
-      </button>
+      <div className="absolute right-5 bottom-5 z-10 flex flex-col">
+
+        <button
+          className="mb-2 bg-blue-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
+          onClick={zoomIn}
+        >
+          +
+        </button>
+    
+        <button
+          className="mb-2 bg-blue-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
+          onClick={zoomOut}
+        >
+          -
+        </button>
+
+        <button
+          className="bg-blue-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
+          onClick={resetZoom}
+        >
+          🔙
+        </button>
+      </div>
+
       <Map
-        ref={map}
+        ref={mapRef}
         mapboxAccessToken={accessToken}
-        initialViewState={{
-          longitude: long,
-          latitude: lat,
-          zoom: zoom
-        }}
+        {...viewport}
+        onMove={evt => setViewport(evt.viewState)}
         style={{ width: '100vw', height: '100vh' }}
         mapStyle="mapbox://styles/mapbox/streets-v12"
-        attributionControl={false}
         onClick={handleClick}
         interactiveLayerIds={['landuse_park']}
+
       >
+    
         {showModal && (
           <div className="fixed inset-0 bg-white-600 bg-opacity-50 flex justify-center items-center z-50">
             <div
@@ -148,6 +169,10 @@ const MapPage = () => {
                 <option value="ecologicalInferencePlot">Ecological Inference Plot</option>
                 <option value="ethnicityBarChartPop">Ethnicity Bar Chart Pop</option>
                 <option value="precinctAnalysisChart">Precinct Analysis Chart</option>
+                <option value="minorityRepresentationAllDistricts">Minority Representation Across All Districts</option>
+                <option value="minorityRepresentation9Districts">Minority Representation Across 9 Congressional Districts</option>
+                
+                
               </select>
 
 

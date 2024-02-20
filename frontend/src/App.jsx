@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useState, useEffect } from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -10,6 +11,8 @@ import EthnicityBarChart from './EthnicityBarChart';
 import PrecinctAnalysisChart from './PrecinctAnalysisChart';
 import EcologicalInferencePlot from './EcologicalInferencePlot';
 import EthnicityBarChartPop from './EthnicityBarChartPop';
+import SplashScreen from './pages/splashscreen';
+
 
 const router = createBrowserRouter([
   {
@@ -65,6 +68,24 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [fadeEffect, setFadeEffect] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setFadeEffect(true);
+      const switchToMainContent = setTimeout(() => {
+        setIsLoading(false);
+      }, 1000); 
+      return () => clearTimeout(switchToMainContent);
+    }, 1000); 
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <SplashScreen fadeEffect={fadeEffect} />;
+  }
+
   return (
       <RouterProvider
           router={router}
