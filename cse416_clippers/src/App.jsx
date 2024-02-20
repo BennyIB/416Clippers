@@ -6,6 +6,7 @@ import {
 import MapPage from './pages/map';
 import HomeWrapper from './pages/home';
 import EthnicityBarChart from './EthnicityBarChart';
+import { Navigate } from 'react-router-dom';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -16,10 +17,17 @@ const router = createBrowserRouter([
   },
   {
     path: "/map",
-    element:
-    <>
-      <MapPage />
-    </>
+    element: <MapPage />,
+    children: [
+      {
+        index: true,
+        element: <Navigate replace to="/map/DefaultState" />,
+      },
+      {
+        path: ":state",
+        element: <MapPage />,
+      },
+    ],
   },
   {
     path: "/chart",

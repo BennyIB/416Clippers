@@ -9,7 +9,11 @@ function HomeWrapper() {
     const handleSelectState = (state) => {
       setSelectedState(state);
       if (state === 'Arizona') {
-        navigate('/map');
+        navigate('/map/Arizona');
+      }
+      else if(state === 'Illinois')
+      {
+        navigate('/map/Illinois');
       }
     };
   
