@@ -6,6 +6,7 @@ import ArizonaAndIllinoisDistricts from '../assets/Arizona_Illinois_Districts.js
 import ChartModal from '../components/modal'
 import MapControl from '../components/MapControl';
 
+
 const geojsonData = ArizonaAndIllinoisDistricts;
 const layerStyle = {
   id: 'map_layers',
@@ -25,6 +26,7 @@ const ZOOMSTATE = {
 const MapPage = () => {
   const mapRef = useRef(null);
   const [showModal, setShowModal] = useState(false);
+
 
   const accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
   const { state } = useParams();
