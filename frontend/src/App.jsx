@@ -8,15 +8,16 @@ import {
 import MapPage from './pages/map';
 import HomeWrapper from './pages/home';
 import SplashScreen from './pages/splashscreen';
+import { AppStateProvider } from './AppStateContext';
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element:
-    <>
-      <HomeWrapper />
-    </>
+      <>
+        <HomeWrapper />
+      </>
   },
   {
     path: "/map",
@@ -43,9 +44,9 @@ export default function App() {
       setFadeEffect(true);
       const switchToMainContent = setTimeout(() => {
         setIsLoading(false);
-      }, 1000); 
+      }, 1000);
       return () => clearTimeout(switchToMainContent);
-    }, 1000); 
+    }, 1000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -55,10 +56,10 @@ export default function App() {
   }
 
   return (
-      <RouterProvider
-          router={router}
-      />
-      
+    <AppStateProvider>
+      <RouterProvider router={router} />
+    </AppStateProvider>
+
   );
 }
 

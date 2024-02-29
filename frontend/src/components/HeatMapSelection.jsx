@@ -1,6 +1,3 @@
-import { useState } from "react";
-
-
 const HeatMapSelection = (props) => {
 
     return (
@@ -23,6 +20,7 @@ const HeatMapSelection = (props) => {
                 <option value="PoliticalPartyPreference" className="text-white">Political Party Preference</option>
                 <option value="HispanicOrLatino" className="text-white">Hispanic/Latino</option>
                 <option value="White" className="text-white">White</option>
+                <option value="Black" className="text-white">Black</option>
                 <option value="AsianOrPacificIslander" className="text-white">Asian/Pacific Islander</option>
                 <option value="NativeAmerican" className="text-white">Native American</option>
             </select>

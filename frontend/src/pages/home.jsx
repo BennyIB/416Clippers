@@ -1,21 +1,31 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useAppState } from '../AppStateContext';
 function HomeWrapper() {
-    const navigate = useNavigate(); // Hook to navigate programmatically
+    const { setAppState } = useAppState();
+    const navigate = useNavigate();
     const [selectedState, setSelectedState] = useState('');
     const clippersImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/b/bb/Los_Angeles_Clippers_%282015%29.svg/1200px-Los_Angeles_Clippers_%282015%29.svg.png";
+    const [isStateSelected, setIsStateSelected] = useState(false); 
+    
+    useEffect(() => {
+      if (selectedState) {
+        setAppState(selectedState);
+        setIsStateSelected(true);
+      }
+    }, [selectedState, setAppState]);
+
+    useEffect(() => {
+      if (isStateSelected) {
+        navigate("/map"); 
+        setIsStateSelected(false); 
+      }
+    }, [isStateSelected, selectedState, navigate]);
   
     const handleSelectState = (state) => {
       setSelectedState(state);
-      if (state === 'Arizona') {
-        navigate('/map/Arizona');
-      }
-      else if(state === 'Illinois')
-      {
-        navigate('/map/Illinois');
-      }
     };
+  
   
     return (
           <div className="flex flex-col items-center justify-center">
