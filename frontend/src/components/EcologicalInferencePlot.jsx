@@ -1,7 +1,11 @@
 import { Chart } from 'react-chartjs-2';
 import 'chart.js/auto';
+import React, { useState } from 'react';
+
 
 const EcologicalInferencePlot = () => {
+  const [selectedRace, setSelectedRace] = useState('Hispanic');
+
   const binCount = 30;
   const labels = Array.from({length: binCount}, (_, i) => -1 + (2 / binCount) * i);
 
@@ -40,7 +44,7 @@ const EcologicalInferencePlot = () => {
         max: 1.0,
         title: {
           display: true,
-          text: 'Hispanic - Nonhispanic support for Senator Mark Kelly',
+          text: `${selectedRace} - Non${selectedRace} support for Senator Mark Kelly`,
         },
         stacked: true, 
         ticks: {
@@ -65,7 +69,21 @@ const EcologicalInferencePlot = () => {
     },
   };
 
-  return <Chart type='bar' data={data} options={options} />;
+  const handleRaceChange = (event) => {
+    setSelectedRace(event.target.value);
+  };
+
+  return (
+    <div>
+      <select value={selectedRace} onChange={handleRaceChange}>
+        <option value="Hispanic">Hispanic</option>
+        <option value="White">White</option>
+        <option value="Asian">Asian</option>
+        <option value="African">African</option>
+      </select>
+      <Chart type='bar' data={data} options={options} />
+    </div>
+  );
 };
 
 export default EcologicalInferencePlot;

@@ -10,7 +10,6 @@ import MapControl from '../components/MapControl';
 import HeatMapSelection from '../components/HeatMapSelection';
 import HeatMapLegend from '../components/HeatMapLegend';
 
-
 const ZOOMSTATE = {
   Arizona: [-111.093735, 34.048927, 5.75],
   Illinois: [-89, 39.75, 5.75],
