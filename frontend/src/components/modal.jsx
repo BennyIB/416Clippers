@@ -16,8 +16,6 @@ const ChartModal = (props) => {
                 return <EthnicityBarChartPop />;
             case 'precinctAnalysisChart':
                 return <PrecinctAnalysisChart />;
-            case 'minorityRepresentationAllDistricts':
-                return <img src="/all.png" alt="minority representation image" />;
             case 'minorityRepresentation9Districts':
                 return <img src="/nine.png" alt="minority representation image" />;
             //temporary. scrap later. need revamp
@@ -32,9 +30,9 @@ const ChartModal = (props) => {
     };
 
     return (
-        <div className="fixed inset-0 bg-white-600 bg-opacity-50 flex justify-center items-center z-50">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
             <div
-                className="bg-white p-5 rounded-lg shadow-lg"
+                className="bg-white p-5 rounded-lg shadow-lg border border-black"
                 style={{
                     width: '850px',
                     height: '650px',
