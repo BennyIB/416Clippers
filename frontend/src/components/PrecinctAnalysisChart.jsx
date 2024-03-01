@@ -62,7 +62,7 @@ const PrecinctAnalysisChart = () => {
         backgroundColor: 'rgba(53, 162, 235, 0.5)', // Color for Mark Kelly
       },
       {
-        label: 'Democrat Vote Share',
+        label: 'Republican Vote Share',
         data: squareRootPointsMcSally,
         backgroundColor: 'rgba(255, 99, 132, 0.5)', // Color for Martha McSally
       },
