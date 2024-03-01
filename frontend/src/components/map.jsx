@@ -1,13 +1,9 @@
-import React, { useState, useRef, useMemo, useEffect } from 'react';
+import React, { useState, useRef, useMemo, useEffect, forwardRef, useImperativeHandle } from 'react';
 import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
-// import { useParams } from 'react-router-dom';
 import Arizona_Illinois_Legislative_Districts from '../assets/Arizona_Illinois_Legislative_Districts.json'
 import Arizona_Illinois_Boundary from '../assets/Arizona_Illinois_Boundary.json'
 import ChartModal from './modal';
-import MapControl from './MapControl';
-import HeatMapSelection from './HeatMapSelection';
-import HeatMapLegend from './HeatMapLegend';
 import Sidebar from './Sidebar';
 import { useAppState } from '../AppStateContext';
 
@@ -15,24 +11,11 @@ const ZOOMSTATE = {
   Arizona: [-113.8, 34.25, 5.75],
   Illinois: [-91.8, 39.75, 5.75],
   USA: [-98.5795, 38, 4],
-  ArizonaRight: [-111.8, 34.25, 5.75],
-  IllinoisRight: [-89.8, 39.75, 5.75],
-  ArizonaLeft: [-109.8, 34.25, 5.75],
-  IllinoisLeft: [-87.8, 39.75, 5.75]
+  ArizonaRight: [-111.8, 34.75, 5.75],
+  IllinoisRight: [-89.8, 40.25, 5.75],
+  ArizonaLeft: [-109.8, 34.75, 5.75],
+  IllinoisLeft: [-87.8, 40.25, 5.75]
 };
-
-const legendItems = [
-  { color: '#ffffad', number: 10, value: '10%', textColor: '#000' },
-  { color: '#f1e491', number: 20, value: '20%', textColor: '#000' },
-  { color: '#e3ca77', number: 30, value: '30%', textColor: '#000' },
-  { color: '#d5b05f', number: 40, value: '40%', textColor: '#000' },
-  { color: '#c79649', number: 50, value: '50%', textColor: '#000' },
-  { color: '#b97c35', number: 60, value: '60%', textColor: '#fff' },
-  { color: '#aa6224', number: 70, value: '70%', textColor: '#fff' },
-  { color: '#9a4716', number: 80, value: '80%', textColor: '#fff' },
-  { color: '#8a2b0a', number: 90, value: '90%', textColor: '#fff' },
-  { color: '#790000', number: 100, value: '100%', textColor: '#fff' },
-];
 
 const symbolStyle = {
   id: "my-layer-labels",
@@ -60,7 +43,14 @@ const CONVERT_RACE = {
   NativeAmerican: "OMB_NATIVE"
 }
 
-const MyMap = (props) => {
+const MyMap = forwardRef((props, ref) => {
+
+    useImperativeHandle(ref, () => ({
+      zoomIn,
+      zoomOut,
+      resetZoom
+    }));
+
   const { appState } = useAppState();
   const mapRef = useRef(null);
   const [showModal, setShowModal] = useState(false);
@@ -102,7 +92,7 @@ const MyMap = (props) => {
       setGeojsonData(Arizona_Illinois_Legislative_Districts);
     }
   }, [viewport.zoom, props.selectedHeatMap]);
-
+  //ffffe0
   const layerStyle = useMemo(() => {
     if (props.selectedHeatMap === "PoliticalPartyPreference") {
       return {
@@ -127,7 +117,7 @@ const MyMap = (props) => {
             "interpolate",
             ["linear"],
             ["get", CONVERT_RACE[props.selectedHeatMap] || 'COLOR'],
-            0, "#ffffad",
+            0, "#ffffff",
             10, "#ffffad",
             20, "#f1e491",
             30, "#e3ca77",
@@ -224,9 +214,7 @@ const MyMap = (props) => {
     const { features } = event;
 
     const clickedFeature = features && features.find(f => f.layer.id === layerStyle.id);
-    if (clickedFeature) {
-      //console.log("hello")
-      // setShowModal(true);
+    if (clickedFeature && appState === state) {
       setShowSidebar(true);
     }
   };
@@ -243,13 +231,6 @@ const MyMap = (props) => {
         setShowModal(true); 
       }} handleCloseSideBar={handleCloseSideBar}/>
     )}
-      {props.left &&
-        <>
-          {(props.selectedHeatMap !== "None" && props.selectedHeatMap !== "PoliticalPartyPreference") && <HeatMapLegend legendItems={legendItems} />}
-          <HeatMapSelection selectedHeatMap={props.selectedHeatMap} setHeatMap={props.setHeatMap} />
-          <MapControl zoomIn={zoomIn} zoomOut={zoomOut} resetZoom={resetZoom} setCompareView={props.setCompareView} compareView={props.compareView} />
-        </>
-      }
       <div className="flex w-full h-full">
         <div className="flex-grow border-r border-gray-500">
           <Map
@@ -275,6 +256,6 @@ const MyMap = (props) => {
       </div>
     </div>
   );
-};
+});
 
 export default MyMap;
