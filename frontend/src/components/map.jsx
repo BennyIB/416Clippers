@@ -2,9 +2,8 @@ import React, { useState, useRef, useMemo, useEffect } from 'react';
 import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 // import { useParams } from 'react-router-dom';
-import Arizona_Illinois from '../assets/Arizona_Illinois_Boundaries.json'
-import ApprovedLegislativeDistricts from '../assets/Approved_Official_Legislative_Map.json';
-import ArizonaBoundary from '../assets/arizona.json'
+import Arizona_Illinois_Legislative_Districts from '../assets/Arizona_Illinois_Legislative_Districts.json'
+import Arizona_Illinois_Boundary from '../assets/Arizona_Illinois_Boundary.json'
 import ChartModal from './modal';
 import MapControl from './MapControl';
 import HeatMapSelection from './HeatMapSelection';
@@ -19,7 +18,6 @@ const ZOOMSTATE = {
   IllinoisRight: [-89.8, 39.75, 5.75],
   ArizonaLeft: [-109.8, 34.25, 5.75],
   IllinoisLeft: [-87.8, 39.75, 5.75]
-  
 };
 
 const legendItems = [
@@ -65,7 +63,6 @@ const MyMap = (props) => {
   const { appState } = useAppState();
   const mapRef = useRef(null);
   const [showModal, setShowModal] = useState(false);
-  const [selectedHeatMap, setHeatMap] = useState("None");
   const accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
   let state; 
 
@@ -93,18 +90,18 @@ const MyMap = (props) => {
     zoom: ZOOMSTATE[defaultState][2],
   });
   //console.log(viewport.zoom, appState);
-  const [geojsonData, setGeojsonData] = useState(defaultState !== "USA" ? ApprovedLegislativeDistricts : ArizonaBoundary);
+  const [geojsonData, setGeojsonData] = useState(defaultState !== "USA" ? Arizona_Illinois_Legislative_Districts : Arizona_Illinois_Boundary);
   useEffect(() => {
-    //console.log("Viewport is", viewport.zoom, selectedHeatMap);
-    if (viewport.zoom < 5 && selectedHeatMap === "None") {
-      setGeojsonData(ArizonaBoundary);
+    //console.log("Viewport is", viewport.zoom, props.selectedHeatMap);
+    if (viewport.zoom < 5 && props.selectedHeatMap === "None") {
+      setGeojsonData(Arizona_Illinois_Boundary);
     } else {
-      setGeojsonData(ApprovedLegislativeDistricts);
+      setGeojsonData(Arizona_Illinois_Legislative_Districts);
     }
-  }, [viewport.zoom, selectedHeatMap]);
+  }, [viewport.zoom, props.selectedHeatMap]);
 
   const layerStyle = useMemo(() => {
-    if (selectedHeatMap === "PoliticalPartyPreference") {
+    if (props.selectedHeatMap === "PoliticalPartyPreference") {
       return {
         id: 'map_layers',
         type: 'fill',
@@ -126,7 +123,7 @@ const MyMap = (props) => {
           "fill-color": [
             "interpolate",
             ["linear"],
-            ["get", CONVERT_RACE[selectedHeatMap] || 'COLOR'],
+            ["get", CONVERT_RACE[props.selectedHeatMap] || 'COLOR'],
             0, "#ffffad",
             10, "#ffffad",
             20, "#f1e491",
@@ -143,13 +140,13 @@ const MyMap = (props) => {
         }
       };
     }
-  }, [selectedHeatMap]);
+  }, [props.selectedHeatMap]);
 
 
 
   useEffect(() => {
-    console.log("Heat map is", selectedHeatMap);
-  }, [selectedHeatMap])
+    console.log("Heat map is", props.selectedHeatMap);
+  }, [props.selectedHeatMap])
   const onStyleLoad = () => {
     console.log("Loaded");
     const map = mapRef.current.getMap();
@@ -234,8 +231,8 @@ const MyMap = (props) => {
     <div className="relative w-full h-screen">
       {props.left &&
         <>
-          {(selectedHeatMap !== "None" && selectedHeatMap !== "PoliticalPartyPreference") && <HeatMapLegend legendItems={legendItems} />}
-          <HeatMapSelection selectedHeatMap={selectedHeatMap} setHeatMap={setHeatMap} />
+          {(props.selectedHeatMap !== "None" && props.selectedHeatMap !== "PoliticalPartyPreference") && <HeatMapLegend legendItems={legendItems} />}
+          <HeatMapSelection selectedHeatMap={props.selectedHeatMap} setHeatMap={props.setHeatMap} />
           <MapControl zoomIn={zoomIn} zoomOut={zoomOut} resetZoom={resetZoom} setCompareView={props.setCompareView} compareView={props.compareView} />
         </>
       }
