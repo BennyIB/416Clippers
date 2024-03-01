@@ -36,9 +36,16 @@ const MapControl = (props) => {
             </div>
             {/* Container for vertical buttons growing upwards */}
             <div className="flex flex-col items-center ml-2 space-y-2">
-                {appState !== "USA" && 
+                {!props.compareView && appState !== "USA" && 
                 (<button
                     className="bg-blue-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
+                    onClick={() => props.setCompareView(!props.compareView)}
+                >
+                    <img src="/compare.svg"/>
+                </button>)}
+                {props.compareView && appState !== "USA" && 
+                (<button
+                    className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
                     onClick={() => props.setCompareView(!props.compareView)}
                 >
                     <img src="/compare.svg"/>
