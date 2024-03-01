@@ -27,7 +27,7 @@ const EcologicalInferencePlot = () => {
     labels,
     datasets: [
       {
-        label: 'Support for Senator Mark Kelly',
+        label: 'Support for Senator Democrats',
         data: randomData,
         backgroundColor: 'rgba(54, 162, 235, 0.5)',
         barPercentage: 1.0,
@@ -44,7 +44,7 @@ const EcologicalInferencePlot = () => {
         max: 1.0,
         title: {
           display: true,
-          text: `${selectedRace} - Non${selectedRace} support for Senator Mark Kelly`,
+          text: `${selectedRace} - Non${selectedRace} support for Senator Democrats`,
         },
         stacked: true, 
         ticks: {
@@ -75,7 +75,7 @@ const EcologicalInferencePlot = () => {
 
   return (
     <div>
-      <select value={selectedRace} onChange={handleRaceChange}>
+      <select value={selectedRace} onChange={handleRaceChange} className="text-lg bg-blue-100 text-blue-800 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
         <option value="Hispanic">Hispanic</option>
         <option value="White">White</option>
         <option value="Asian">Asian</option>

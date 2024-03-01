@@ -34,7 +34,6 @@ function HomeWrapper() {
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg m-2 text-lg"  onClick={() => handleSelectState('Arizona')}>Arizona</button>
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg m-2 text-lg"  onClick={() => handleSelectState('Illinois')}>Illinois</button>
           </div>
-          {selectedState && <p className="text-center mt-4">You have selected: {selectedState}</p>}
         </div>
     );
   }
