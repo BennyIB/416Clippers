@@ -8,6 +8,7 @@ import ChartModal from './modal';
 import MapControl from './MapControl';
 import HeatMapSelection from './HeatMapSelection';
 import HeatMapLegend from './HeatMapLegend';
+import Sidebar from './Sidebar';
 import { useAppState } from '../AppStateContext';
 
 const ZOOMSTATE = {
@@ -63,6 +64,8 @@ const MyMap = (props) => {
   const { appState } = useAppState();
   const mapRef = useRef(null);
   const [showModal, setShowModal] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [chartSelection, setChartSelection] = useState('');
   const accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
   let state; 
 
@@ -223,12 +226,23 @@ const MyMap = (props) => {
     const clickedFeature = features && features.find(f => f.layer.id === layerStyle.id);
     if (clickedFeature) {
       //console.log("hello")
-      setShowModal(true);
+      // setShowModal(true);
+      setShowSidebar(true);
     }
   };
 
+  const handleCloseSideBar = () => {
+    setShowSidebar(false)
+  }
+
   return (
     <div className="relative w-full h-screen">
+      {showSidebar && (
+      <Sidebar setChartSelection={(chartId) => {
+        setChartSelection(chartId);
+        setShowModal(true); 
+      }} handleCloseSideBar={handleCloseSideBar}/>
+    )}
       {props.left &&
         <>
           {(props.selectedHeatMap !== "None" && props.selectedHeatMap !== "PoliticalPartyPreference") && <HeatMapLegend legendItems={legendItems} />}
@@ -249,7 +263,8 @@ const MyMap = (props) => {
             onLoad={onStyleLoad}
             attributionControl={false}
           >
-            {showModal && <ChartModal state={state} setShowModal={setShowModal} />}
+            {showModal && <ChartModal state={state} setShowModal={setShowModal} selectedChart={chartSelection} />}
+
             <Source id="my-data" type="geojson" data={geojsonData}>
               <Layer {...layerStyle} />
               <Layer {...outLineStyle} />

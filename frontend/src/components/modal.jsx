@@ -4,8 +4,8 @@ import EthnicityBarChartPop from '../components/EthnicityBarChartPop';
 import PrecinctAnalysisChart from '../components/PrecinctAnalysisChart';
 import { useState } from 'react';
 const ChartModal = (props) => {
-    const [selectedChart, setSelectedChart] = useState('');
-    // Function to render the selected chart
+    const [selectedChart, setSelectedChart] = useState(props.selectedChart);
+    
     const renderChart = () => {
         switch (selectedChart) {
             case 'ethnicityBarChart':
@@ -36,8 +36,8 @@ const ChartModal = (props) => {
             <div
                 className="bg-white p-5 rounded-lg shadow-lg"
                 style={{
-                    width: '600px',
-                    height: '500px',
+                    width: '850px',
+                    height: '650px',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
@@ -46,29 +46,7 @@ const ChartModal = (props) => {
             >
                 <h2 className="text-lg text-black font-bold text-center">{props.state} Data</h2>
 
-                <select
-                    value={selectedChart}
-                    onChange={(e) => setSelectedChart(e.target.value)}
-                    className="mb-4"
-                    style={{
-                        backgroundColor: 'gray',
-                        color: 'white',
-                        border: 'none',
-                        padding: '5px',
-                        borderRadius: '5px',
-                    }}
-                >
-
-                    <option value="ethnicityBarChart">Ethnicity Bar Chart</option>
-                    <option value="ecologicalInferencePlot">Ecological Inference Plot</option>
-                    <option value="ethnicityBarChartPop">Ethnicity Bar Chart Pop</option>
-                    <option value="precinctAnalysisChart">Precinct Analysis Chart</option>
-                    <option value="minorityRepresentationAllDistricts">Minority Representation Across All Districts</option>
-                    <option value="minorityRepresentation9Districts">Minority Representation Across 9 Congressional Districts</option>
-                    <option value="ethnicityBarChartPopANDethnicityBarChart">Ethnicity Bart Chart vs Enthincity Bart Chart Pop</option>
-
-                </select>
-
+                
 
                 <div className="flex-grow">
                     {renderChart()}
