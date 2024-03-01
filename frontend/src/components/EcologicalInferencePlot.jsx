@@ -27,7 +27,7 @@ const EcologicalInferencePlot = () => {
     labels,
     datasets: [
       {
-        label: 'Support for Senator Mark Kelly',
+        label: 'Support for Senator Democrats',
         data: randomData,
         backgroundColor: 'rgba(54, 162, 235, 0.5)',
         barPercentage: 1.0,
@@ -44,7 +44,7 @@ const EcologicalInferencePlot = () => {
         max: 1.0,
         title: {
           display: true,
-          text: `${selectedRace} - Non${selectedRace} support for Senator Mark Kelly`,
+          text: `${selectedRace} - Non${selectedRace} support for Senator Democrats`,
         },
         stacked: true, 
         ticks: {
