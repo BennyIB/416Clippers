@@ -20,6 +20,12 @@ const ChartModal = (props) => {
                 return <img src="/all.png" alt="minority representation image" />;
             case 'minorityRepresentation9Districts':
                 return <img src="/nine.png" alt="minority representation image" />;
+            //temporary. scrap later. need revamp
+            case 'ethnicityBarChartPopANDethnicityBarChart':
+                return <>
+                    <EthnicityBarChart />;
+                    <EthnicityBarChartPop />;
+                </>
             default:
                 return <EthnicityBarChart />;
         }
@@ -59,7 +65,7 @@ const ChartModal = (props) => {
                     <option value="precinctAnalysisChart">Precinct Analysis Chart</option>
                     <option value="minorityRepresentationAllDistricts">Minority Representation Across All Districts</option>
                     <option value="minorityRepresentation9Districts">Minority Representation Across 9 Congressional Districts</option>
-
+                    <option value="ethnicityBarChartPopANDethnicityBarChart">Ethnicity Bart Chart vs Enthincity Bart Chart Pop</option>
 
                 </select>
 

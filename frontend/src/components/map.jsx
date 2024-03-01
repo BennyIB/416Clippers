@@ -5,16 +5,21 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import Arizona_Illinois from '../assets/Arizona_Illinois_Boundaries.json'
 import ApprovedLegislativeDistricts from '../assets/Approved_Official_Legislative_Map.json';
 import ArizonaBoundary from '../assets/arizona.json'
-import ChartModal from '../components/modal';
-import MapControl from '../components/MapControl';
-import HeatMapSelection from '../components/HeatMapSelection';
-import HeatMapLegend from '../components/HeatMapLegend';
+import ChartModal from './modal';
+import MapControl from './MapControl';
+import HeatMapSelection from './HeatMapSelection';
+import HeatMapLegend from './HeatMapLegend';
 import { useAppState } from '../AppStateContext';
 
 const ZOOMSTATE = {
   Arizona: [-113.8, 34.25, 5.75],
   Illinois: [-91.8, 39.75, 5.75],
-  USA: [-98.5795, 39.8283, 3.5]
+  USA: [-98.5795, 38, 4],
+  ArizonaRight: [-111.8, 34.25, 5.75],
+  IllinoisRight: [-89.8, 39.75, 5.75],
+  ArizonaLeft: [-109.8, 34.25, 5.75],
+  IllinoisLeft: [-87.8, 39.75, 5.75]
+  
 };
 
 const legendItems = [
@@ -56,20 +61,38 @@ const CONVERT_RACE = {
   NativeAmerican: "OMB_NATIVE"
 }
 
-const MapPage = () => {
+const MyMap = (props) => {
   const { appState } = useAppState();
   const mapRef = useRef(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedHeatMap, setHeatMap] = useState("None");
   const accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
-  // const state = appState;
-  const defaultState = appState && ZOOMSTATE[appState] ? appState : "USA";
+  let state; 
+
+  if (props.compared) {
+    switch (appState) {
+      case "Arizona":
+        state = "Illinois";
+        break;
+      case "Illinois":
+        state = "Arizona";
+        break;
+      default:
+        state = appState;
+        break;
+    }
+  } else {
+    state = appState;
+  }
+  console.log("Compared ",props.compared, state);
+  let modifiedState = props.compared ? (state === appState ? `${state}Left` : `${state}Right`) : state;
+  const defaultState = state && ZOOMSTATE[modifiedState] ? modifiedState : "USA";
   const [viewport, setViewport] = useState({
     longitude: ZOOMSTATE[defaultState][0],
     latitude: ZOOMSTATE[defaultState][1],
     zoom: ZOOMSTATE[defaultState][2],
   });
-  console.log(viewport.zoom, appState);
+  //console.log(viewport.zoom, appState);
   const [geojsonData, setGeojsonData] = useState(defaultState !== "USA" ? ApprovedLegislativeDistricts : ArizonaBoundary);
   useEffect(() => {
     //console.log("Viewport is", viewport.zoom, selectedHeatMap);
@@ -89,10 +112,10 @@ const MapPage = () => {
           "fill-color": [
             "case",
             [">=", ["get", "CompRepVot"], 50], "#FF0000",
-            [">=", ["get", "CompDemVot"], 50], "#0000FF", 
-            "#AAAAAA" 
+            [">=", ["get", "CompDemVot"], 50], "#0000FF",
+            "#AAAAAA"
           ],
-          "fill-opacity": 1
+          "fill-opacity": 0.5
         }
       };
     } else {
@@ -103,26 +126,26 @@ const MapPage = () => {
           "fill-color": [
             "interpolate",
             ["linear"],
-            ["get", CONVERT_RACE[selectedHeatMap] || 'COLOR'], 
-              0, "#ffffad",
-              10, "#ffffad",
-              20, "#f1e491",
-              30, "#e3ca77",
-              40, "#d5b05f",
-              50, "#c79649",
-              60, "#b97c35",
-              70, "#aa6224",
-              80, "#9a4716",
-              90, "#8a2b0a",
-              100, "#790000",
+            ["get", CONVERT_RACE[selectedHeatMap] || 'COLOR'],
+            0, "#ffffad",
+            10, "#ffffad",
+            20, "#f1e491",
+            30, "#e3ca77",
+            40, "#d5b05f",
+            50, "#c79649",
+            60, "#b97c35",
+            70, "#aa6224",
+            80, "#9a4716",
+            90, "#8a2b0a",
+            100, "#790000",
           ],
           "fill-opacity": 1
         }
       };
     }
-  }, [selectedHeatMap]); // Dependency on selectedHeatMap to trigger recalculation when it changes
-  
-  
+  }, [selectedHeatMap]);
+
+
 
   useEffect(() => {
     console.log("Heat map is", selectedHeatMap);
@@ -145,6 +168,19 @@ const MapPage = () => {
     map.setPaintProperty('state-label', 'text-color', '#000000');
     //map.setPaintProperty('state-label', 'text-halo-width', 2);
   };
+
+  useEffect(() => {
+    console.log("Compare view is now", props.compareView);
+    if(props.compareView && props.left)
+    {
+      setViewport({
+        longitude: ZOOMSTATE[`${state}Left`][0],
+        latitude: ZOOMSTATE[`${state}Left`][1],
+        zoom: ZOOMSTATE[`${state}Left`][2]
+      });
+    }
+
+  }, [props.compareView])
 
   // useEffect(() => {
   //   if (state && ZOOMSTATE[state]) {
@@ -172,7 +208,15 @@ const MapPage = () => {
 
   const resetZoom = () => {
     if (mapRef.current) {
-      mapRef.current.flyTo({ center: [ZOOMSTATE[appState][0], ZOOMSTATE[appState][1]], zoom: ZOOMSTATE[appState][2] })
+        if(props.compareView && appState !== "USA")
+        {
+          let newState = `${state}Left`;
+          mapRef.current.flyTo({ center: [ZOOMSTATE[newState][0], ZOOMSTATE[newState][1]], zoom: ZOOMSTATE[newState][2] })
+        }
+        else
+        {
+          mapRef.current.flyTo({ center: [ZOOMSTATE[state][0], ZOOMSTATE[state][1]], zoom: ZOOMSTATE[state][2]})
+        }
     }
   }
 
@@ -188,31 +232,37 @@ const MapPage = () => {
 
   return (
     <div className="relative w-full h-screen">
-      {(selectedHeatMap !== "None" && selectedHeatMap !== "PoliticalPartyPreference") && <HeatMapLegend legendItems={legendItems} />}
-      <HeatMapSelection selectedHeatMap={selectedHeatMap} setHeatMap={setHeatMap} />
-      <MapControl zoomIn={zoomIn} zoomOut={zoomOut} resetZoom={resetZoom} />
-      <Map
-        ref={mapRef}
-        mapboxAccessToken={accessToken}
-        {...viewport}
-        onMove={evt => setViewport(evt.viewState)}
-        style={{ width: '100vw', height: '100vh' }}
-        mapStyle="mapbox://styles/mapbox/light-v11"
-        onClick={handleClick}
-        interactiveLayerIds={['map_layers']}
-        onLoad={onStyleLoad}
-        attributionControl={false}
-      >
-
-        {showModal && <ChartModal state={appState} setShowModal={setShowModal} />}
-        <Source id="my-data" type="geojson" data={geojsonData}>
-          <Layer {...layerStyle} />
-          <Layer {...outLineStyle} />
-          <Layer {...symbolStyle} />
-        </Source>
-      </Map>
+      {props.left &&
+        <>
+          {(selectedHeatMap !== "None" && selectedHeatMap !== "PoliticalPartyPreference") && <HeatMapLegend legendItems={legendItems} />}
+          <HeatMapSelection selectedHeatMap={selectedHeatMap} setHeatMap={setHeatMap} />
+          <MapControl zoomIn={zoomIn} zoomOut={zoomOut} resetZoom={resetZoom} setCompareView={props.setCompareView} compareView={props.compareView} />
+        </>
+      }
+      <div className="flex w-full h-full">
+        <div className="flex-grow border-r border-gray-500">
+          <Map
+            ref={mapRef}
+            mapboxAccessToken={accessToken}
+            {...viewport}
+            onMove={evt => setViewport(evt.viewState)}
+            mapStyle="mapbox://styles/mapbox/light-v11"
+            onClick={handleClick}
+            interactiveLayerIds={['map_layers']}
+            onLoad={onStyleLoad}
+            attributionControl={false}
+          >
+            {showModal && <ChartModal state={state} setShowModal={setShowModal} />}
+            <Source id="my-data" type="geojson" data={geojsonData}>
+              <Layer {...layerStyle} />
+              <Layer {...outLineStyle} />
+              <Layer {...symbolStyle} />
+            </Source>
+          </Map>
+        </div>
+      </div>
     </div>
   );
 };
 
-export default MapPage;
+export default MyMap;

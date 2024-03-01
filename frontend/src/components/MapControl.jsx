@@ -27,15 +27,22 @@ const MapControl = (props) => {
         <div className="absolute right-5 bottom-5 z-10 flex">
             {/* Container for buttons growing towards the left */}
             <div className="flex items-end">
-                <button
+                {!props.compareView && (<button
                     className="bg-blue-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
                     onClick={() => setAppState(states[getNextState(currentStateAbbreviation)])}
                 >
                     {currentStateAbbreviation}
-                </button>
+                </button>)}
             </div>
             {/* Container for vertical buttons growing upwards */}
             <div className="flex flex-col items-center ml-2 space-y-2">
+                {appState !== "USA" && 
+                (<button
+                    className="bg-blue-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
+                    onClick={() => props.setCompareView(!props.compareView)}
+                >
+                    <img src="/compare.svg"/>
+                </button>)}
                 <button
                     className="bg-blue-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
                     onClick={props.zoomIn}
