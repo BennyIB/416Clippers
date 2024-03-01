@@ -16,8 +16,6 @@ const ChartModal = (props) => {
                 return <EthnicityBarChartPop />;
             case 'precinctAnalysisChart':
                 return <PrecinctAnalysisChart />;
-            case 'minorityRepresentationAllDistricts':
-                return <img src="/all.png" alt="minority representation image" />;
             case 'minorityRepresentation9Districts':
                 return <img src="/nine.png" alt="minority representation image" />;
             //temporary. scrap later. need revamp
