@@ -1,89 +1,81 @@
-import { Chart } from 'react-chartjs-2';
+import React, {useState, useEffect} from 'react';
+import { Chart, Line } from 'react-chartjs-2';
 import 'chart.js/auto';
-import React, { useState } from 'react';
-
 
 const EcologicalInferencePlot = () => {
-  const [selectedRace, setSelectedRace] = useState('Hispanic');
+    const [selectedRace, setSelectedRace] = useState('Latino');
 
-  const binCount = 30;
-  const labels = Array.from({length: binCount}, (_, i) => -1 + (2 / binCount) * i);
+    // Example left-skewed data
+    const getDataPoints = (race) => {
+        switch (race) {
+            case 'Latino':
+                // Example left-skewed data for Hispanic
+                return [1, 2, 4, 6, 8, 10, 12, 14, 16, 17, 18, 18, 17, 16, 15, 13, 1];
+            case 'Black':
+                // Example right-skewed data for Black
+                return [10, 9, 8, 7, 6, 5, 4, 3, 3, 3, 4, 5, 6, 8, 10, 13, 15];
+            case 'White':
+                // Example normal distribution data for White
+                return [2, 3, 5, 7, 10, 12, 15, 15, 15, 14, 13, 11, 9, 7, 5, 3, 2];
+            case 'Asian':
+                // Example uniformly distributed data for Asian
+                return [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+            default:
+                return [1, 1, 1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 17, 18, 17, 15, 1];
+        }
+    };
 
-  // Step 2: Generate random data for each bin
-  const randomData = labels.map(label => {
-    if (label >= 0.5 && label <= 0.6) {
-      // Values closer to 3.5 for labels between 0.5 and 1
-      return 3.5 - Math.abs(Math.random() * 0.5);
-    }else if (label < 0) {
-      return Math.random(); 
-    }
-    else {
-      return Math.random() * 3.5;
-    }
-  });
-  console.log('Labels:', labels);
-  console.log('Random Data:', randomData);
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: 'Support for Senator Democrats',
-        data: randomData,
-        backgroundColor: 'rgba(54, 162, 235, 0.5)',
-        barPercentage: 1.0,
-        categoryPercentage: 1.0,
-        barThickness: 'flex', 
-      },
-    ],
-  };
-  const options = {
-    responsive: true,
-    scales: {
-      x: {
-        min: -1.0,
-        max: 1.0,
-        title: {
-          display: true,
-          text: `${selectedRace} - Non${selectedRace} support for Senator Democrats`,
-        },
-        stacked: true, 
-        ticks: {
-          stepSize: 0.2 
-        },
-        type: 'linear',
-        position: 'bottom',
-      },
-      y: {
-        title: {
-          display: true,
-          text: 'Frequency',
-        },
-        beginAtZero: true,
-      },
-    },
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-      },
-    },
-  };
+    const dataPoints = getDataPoints(selectedRace);
 
-  const handleRaceChange = (event) => {
-    setSelectedRace(event.target.value);
-  };
 
-  return (
-    <div>
-      <select value={selectedRace} onChange={handleRaceChange} className="text-lg bg-blue-100 text-blue-800 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
-        <option value="Hispanic">Hispanic</option>
-        <option value="White">White</option>
-        <option value="Asian">Asian</option>
-        <option value="African">African</option>
-      </select>
-      <Chart type='bar' data={data} options={options} />
-    </div>
-  );
+    const labels = dataPoints.map((_, index) => {
+        const normalizedIndex = index / (dataPoints.length - 1);
+        const scaledValue = normalizedIndex * 2 - 1;
+        return `${scaledValue.toFixed(2)}`;
+      });
+    const chartData = {
+        labels: labels,
+        datasets: [
+            {
+                label: 'Probability Distribution',
+                data: dataPoints,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            },
+        ],
+    };
+
+    const options = {
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: `${selectedRace} - Non${selectedRace} support for Senator Democrats`,
+                },
+            },
+            y: {
+                beginAtZero: true
+            }
+        }
+    };
+
+    const handleRaceChange = (event) => {
+        setSelectedRace(event.target.value);
+    };
+
+    return (
+        <div>
+            <select value={selectedRace} onChange={handleRaceChange} className="text-lg bg-blue-100 text-blue-800 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+                <option value="Latino">Latino</option>
+                <option value="White">White</option>
+                <option value="Asian">Asian</option>
+                <option value="African">African</option>
+            </select>
+            <Line data={chartData} options={options} />
+        </div>
+    );
+
 };
 
 export default EcologicalInferencePlot;

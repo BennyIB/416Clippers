@@ -2,9 +2,13 @@ import EthnicityBarChart from '../components/EthnicityBarChart';
 import EcologicalInferencePlot from '../components/EcologicalInferencePlot';
 import EthnicityBarChartPop from '../components/EthnicityBarChartPop';
 import PrecinctAnalysisChart from '../components/PrecinctAnalysisChart';
+import ProportionalDifferenceTable from './ProportionalDifferenceTable';
+
 import { useState } from 'react';
 const ChartModal = (props) => {
     const [selectedChart, setSelectedChart] = useState(props.selectedChart);
+    const [localChartSelection, setLocalChartSelection] = useState('ethnicityBarChartPop');
+
     
     const renderChart = () => {
         switch (selectedChart) {
@@ -22,12 +26,22 @@ const ChartModal = (props) => {
                 return <img src="/nine.png" alt="minority representation image" />;
             //temporary. scrap later. need revamp
             case 'ethnicityBarChartPopANDethnicityBarChart':
-                return <>
-                    <EthnicityBarChart />;
-                    <EthnicityBarChartPop />;
-                </>
-            default:
-                return <EthnicityBarChart />;
+                return (
+                    <>
+                        <select 
+                            value={localChartSelection} 
+                            className="text-lg bg-blue-100 text-blue-800 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
+                            onChange={(e) => setLocalChartSelection(e.target.value) }
+                        >
+                            <option value="ethnicityBarChartPop">Ethnicity Bar Chart Pop</option>
+                            <option value="ethnicityBarChart">Ethnicity Bar Chart</option>
+                        </select>
+                        {localChartSelection === 'ethnicityBarChartPop' ? 
+                            <EthnicityBarChartPop /> : <EthnicityBarChart />}
+                        <ProportionalDifferenceTable/>
+
+                    </>
+                );
         }
     };
 

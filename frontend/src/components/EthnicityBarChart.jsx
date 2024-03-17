@@ -19,10 +19,10 @@ const EthnicityBarChart = () => {
         label: 'Number of Representatives',
         data: [20, 5, 60, 2], 
         backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)'
+          'rgba(204, 51, 102, 0.7)', 
+          'rgba(43, 130, 188, 0.7)', 
+          'rgba(204, 165, 69, 0.7)', 
+          'rgba(60, 154, 154, 0.7)'  
         ],
         borderColor: [
           'rgba(255, 99, 132, 1)',
