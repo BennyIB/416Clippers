@@ -10,13 +10,13 @@ const HeatMapSelection = (props) => {
                 onChange={(e) => props.setHeatMap(e.target.value)}
                 className="mb-5 bg-gray-700 text-white rounded-md cursor-pointer"
             >
-                <option value="None" className="text-white"> None </option>
-                <option value="PoliticalPartyPreference" className="text-white">Political Party Preference</option>
-                <option value="HispanicOrLatino" className="text-white">Hispanic/Latino</option>
-                <option value="White" className="text-white">White</option>
-                <option value="Black" className="text-white">Black</option>
-                <option value="AsianOrPacificIslander" className="text-white">Asian/Pacific Islander</option>
-                <option value="NativeAmerican" className="text-white">Native American</option>
+                <option value="None"> None </option>
+                <option value="PoliticalPartyPreference">Political Party Preference</option>
+                <option value="HispanicOrLatino">Hispanic/Latino</option>
+                <option value="White">White</option>
+                <option value="Black">Black</option>
+                <option value="AsianOrPacificIslander" >Asian/Pacific Islander</option>
+                <option value="NativeAmerican">Native American</option>
             </select>
         </div>
     );
