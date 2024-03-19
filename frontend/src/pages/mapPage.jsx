@@ -1,8 +1,9 @@
-import MyMap from "../components/map";
+import MyMap from "../components/Map";
 import { useState, useRef } from "react";
 import HeatMapSelection from "../components/HeatMapSelection";
 import HeatMapLegend from "../components/HeatMapLegend";
 import MapControl from "../components/MapControl";
+import MasterSidebar from "../components/MasterSidebar";
 
 const legendItems = [
     { color: '#ffffe0', number: 0, value: '0%', textColor: '#000' },
@@ -47,6 +48,7 @@ const MapPage = () => {
                         <MyMap compared={compareView} selectedHeatMap={selectedHeatMap} setHeatMap={setHeatMap} />
                     </div>)}
             </div>
+            <MasterSidebar/>
         </div>
     );
 }

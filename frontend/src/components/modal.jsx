@@ -1,7 +1,7 @@
-import EthnicityBarChart from '../components/EthnicityBarChart';
-import EcologicalInferencePlot from '../components/EcologicalInferencePlot';
-import EthnicityBarChartPop from '../components/EthnicityBarChartPop';
-import PrecinctAnalysisChart from '../components/PrecinctAnalysisChart';
+import EthnicityBarChart from './EthnicityBarChart';
+import EcologicalInferencePlot from './EcologicalInferencePlot';
+import EthnicityBarChartPop from './EthnicityBarChartPop';
+import PrecinctAnalysisChart from './PrecinctAnalysisChart';
 import { useState } from 'react';
 const ChartModal = (props) => {
     const [selectedChart, setSelectedChart] = useState(props.selectedChart);

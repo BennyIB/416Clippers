@@ -3,10 +3,11 @@ import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 import Arizona_Illinois_Legislative_Districts from '../assets/Arizona_Illinois_Legislative_Districts.json'
 import Arizona_Illinois_Boundary from '../assets/Arizona_Illinois_Boundary.json'
-import ChartModal from './modal';
+import ChartModal from './Modal';
 import Sidebar from './Sidebar';
 import { useAppState } from '../AppStateContext';
 
+// Default zoom and coordinates
 const ZOOMSTATE = {
   Arizona: [-113.8, 34.25, 5.75],
   Illinois: [-91.8, 39.75, 5.75],
@@ -17,6 +18,7 @@ const ZOOMSTATE = {
   IllinoisLeft: [-87.8, 40.25, 5.75]
 };
 
+// style for labeling districts in states
 const symbolStyle = {
   id: "my-layer-labels",
   type: "symbol",
@@ -30,11 +32,13 @@ const symbolStyle = {
   }
 };
 
+// style for outlining the states
 const outLineStyle = {
   id: 'outline_style',
   type: 'line'
 }
 
+// key-value pair to convert a selection to the data retrieval key
 const CONVERT_RACE = {
   HispanicOrLatino: "OMB_LATINO",
   White: "OMB_NH_WHT",
@@ -42,6 +46,7 @@ const CONVERT_RACE = {
   AsianOrPacificIslander: "OMB_ASNPI_",
   NativeAmerican: "OMB_NATIVE"
 }
+
 
 const MyMap = forwardRef((props, ref) => {
 
@@ -58,7 +63,7 @@ const MyMap = forwardRef((props, ref) => {
   const [chartSelection, setChartSelection] = useState('');
   const accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
   let state; 
-
+  
   if (props.compared) {
     switch (appState) {
       case "Arizona":
@@ -77,6 +82,8 @@ const MyMap = forwardRef((props, ref) => {
   console.log("Compared ",props.compared, state);
   let modifiedState = props.compared ? (state === appState ? `${state}Left` : `${state}Right`) : state;
   const defaultState = state && ZOOMSTATE[modifiedState] ? modifiedState : "USA";
+
+  // set view based on default
   const [viewport, setViewport] = useState({
     longitude: ZOOMSTATE[defaultState][0],
     latitude: ZOOMSTATE[defaultState][1],
@@ -92,7 +99,8 @@ const MyMap = forwardRef((props, ref) => {
       setGeojsonData(Arizona_Illinois_Legislative_Districts);
     }
   }, [viewport.zoom, props.selectedHeatMap]);
-  //ffffe0
+
+  // control for heatmap
   const layerStyle = useMemo(() => {
     if (props.selectedHeatMap === "PoliticalPartyPreference") {
       return {
@@ -136,10 +144,12 @@ const MyMap = forwardRef((props, ref) => {
   }, [props.selectedHeatMap]);
 
 
-
+  // debug statement
   useEffect(() => {
     console.log("Heat map is", props.selectedHeatMap);
   }, [props.selectedHeatMap])
+
+  // modify state names to be more legible and readable
   const onStyleLoad = () => {
     console.log("Loaded");
     const map = mapRef.current.getMap();
@@ -156,9 +166,9 @@ const MyMap = forwardRef((props, ref) => {
     ]);
 
     map.setPaintProperty('state-label', 'text-color', '#000000');
-    //map.setPaintProperty('state-label', 'text-halo-width', 2);
   };
 
+  // modify view if compare mode is active
   useEffect(() => {
     console.log("Compare view is now", props.compareView);
     if(props.compareView && props.left)
@@ -182,6 +192,7 @@ const MyMap = forwardRef((props, ref) => {
   //   }
   // }, [state]);
 
+  // handle for zoom in
   const zoomIn = () => {
     setViewport((prevViewport) => ({
       ...prevViewport,
@@ -189,6 +200,7 @@ const MyMap = forwardRef((props, ref) => {
     }));
   };
 
+  // handle for zoom out
   const zoomOut = () => {
     setViewport((prevViewport) => ({
       ...prevViewport,
@@ -196,6 +208,7 @@ const MyMap = forwardRef((props, ref) => {
     }));
   };
 
+  // resets zoom based on current state
   const resetZoom = () => {
     if (mapRef.current) {
         if(props.compareView && appState !== "USA")
@@ -210,6 +223,7 @@ const MyMap = forwardRef((props, ref) => {
     }
   }
 
+  // handle for on click events
   const handleClick = (event) => {
     const { features } = event;
 
@@ -225,12 +239,12 @@ const MyMap = forwardRef((props, ref) => {
 
   return (
     <div className="relative w-full h-screen">
-      {showSidebar && (
+      {/* {showSidebar && (
       <Sidebar setChartSelection={(chartId) => {
         setChartSelection(chartId);
         setShowModal(true); 
       }} handleCloseSideBar={handleCloseSideBar}/>
-    )}
+    )} */}
       <div className="flex w-full h-full">
         <div className="flex-grow border-r border-gray-500">
           <Map
