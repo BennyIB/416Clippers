@@ -10,18 +10,23 @@ const EcologicalInferencePlot = () => {
         switch (race) {
             case 'Latino':
                 // Example left-skewed data for Hispanic
-                return [1, 2, 4, 6, 8, 10, 12, 14, 16, 17, 18, 18, 17, 16, 15, 13, 1];
+                return [0.0,0.21,0.62,1.03,1.44,1.85,2.26,2.68,3.09,3.29,3.5,3.5,3.29,3.09,2.88,2.47,0.0
+                ];
             case 'Black':
                 // Example right-skewed data for Black
-                return [10, 9, 8, 7, 6, 5, 4, 3, 3, 3, 4, 5, 6, 8, 10, 13, 15];
+                return [2.04,1.75,1.46,1.17,0.88,0.58,0.29,0.0,0.0,0.0,0.29,0.58,0.88,1.46,2.04,2.92,3.5
+                ];
             case 'White':
                 // Example normal distribution data for White
-                return [2, 3, 5, 7, 10, 12, 15, 15, 15, 14, 13, 11, 9, 7, 5, 3, 2];
+                return [0.0,0.27,0.81,1.35,2.15,2.69,3.5,3.5,3.5,3.23,2.96,2.42,1.88,1.35,0.81,0.27,0.0
+                ];
             case 'Asian':
                 // Example uniformly distributed data for Asian
-                return [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10];
+                return [0.47,0.76,1.14,1.60,2.12,2.64,3.09,3.39,3.5,3.39,3.09,2.64,2.12,1.60,1.14,0.76,0.47
+                ];
             default:
-                return [1, 1, 1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 17, 18, 17, 15, 1];
+                return [0.0,0.0,0.0,0.21,0.41,0.62,0.82,1.03,1.44,1.85,2.26,2.88,3.29,3.5,3.29,2.88,0.0
+                ];
         }
     };
 
@@ -55,8 +60,12 @@ const EcologicalInferencePlot = () => {
                 },
             },
             y: {
-                beginAtZero: true
+            beginAtZero: true,
+            title: {
+                display: true,
+                text: 'Density', // Label for the Y-axis
             }
+        }
         }
     };
 
