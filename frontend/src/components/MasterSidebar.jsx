@@ -27,7 +27,10 @@ const MasterSidebar = (props) => {
   const renderChart = () => {
     switch (selectedTab) {
       case 'State':
-        return <ChartModal charts={charts} chartSelection={props.chartSelection}/>;
+        return (<>
+                <ChartSelection setChartSelection={props.setChartSelection} chartSelection={props.chartSelection} charts={charts}/>
+                <ChartModal charts={charts} chartSelection={props.chartSelection}/>
+              </>);
       case 'District':
         return <PrecinctAnalysisChart />;
       default:
@@ -80,7 +83,6 @@ const MasterSidebar = (props) => {
         </div>
       </div>
       <div className="collapse-content bg-white text-primary-content peer-checked:text-secondary-content">
-        <ChartSelection setChartSelection={props.setChartSelection} chartSelection={props.chartSelection} charts={charts}/>
         {renderChart()}
       </div>
     </div>
