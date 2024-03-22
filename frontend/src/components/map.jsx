@@ -88,16 +88,20 @@ const MyMap = forwardRef((props, ref) => {
     latitude: ZOOMSTATE[defaultState][1],
     zoom: ZOOMSTATE[defaultState][2],
   });
-  let boundaryData = " "
-  let LegislativeDistrictData = ""
-  const [geojsonData, setGeojsonData] = useState(defaultState !== "USA" ? LegislativeDistrictData : boundaryData);
+
+  const [boundaryData, setBoundaryData] = useState('');
+  const [legislativeDistrictData, setLegislativeDistrictData] = useState('');
+  // let boundaryData = " "
+  // let legislativeDistrictData = ""
+  const [geojsonData, setGeojsonData] = useState(defaultState !== "USA" ? legislativeDistrictData : boundaryData);
   //console.log(viewport.zoom, appState);
   
   //Making a GET request to get the boundary data
   const fetchBoundaryData = async () => {
     try {
       const response = await axios.get('http://localhost:8080/Arizona_Illinois_Boundaries');
-      boundaryData = response.data;
+      setBoundaryData(response.data);
+      
     } catch (error) {
       console.error("There was an error fetching the geojson data:", error);
     }
@@ -107,7 +111,7 @@ const MyMap = forwardRef((props, ref) => {
   const fetchLegislativeDistrictData = async () => {
     try {
       const response = await axios.get('http://localhost:8080/Arizona_Illinois_Legislative_Districts');
-      LegislativeDistrictData = response.data;
+      setLegislativeDistrictData(response.data);
     } catch (error) {
       console.error("There was an error fetching the geojson data:", error);
     }
@@ -121,9 +125,9 @@ const MyMap = forwardRef((props, ref) => {
   useEffect(() => {
     //console.log("Viewport is", viewport.zoom, props.selectedHeatMap);
     if (viewport.zoom < 5 && props.selectedHeatMap === "None") {
-      setGeojsonData(Arizona_Illinois_Boundary);
+      setGeojsonData(boundaryData);
     } else {
-      setGeojsonData(Arizona_Illinois_Legislative_Districts);
+      setGeojsonData(legislativeDistrictData);
     }
   }, [viewport.zoom, props.selectedHeatMap]);
 
