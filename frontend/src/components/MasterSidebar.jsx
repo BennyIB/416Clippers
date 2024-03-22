@@ -54,7 +54,7 @@ const MasterSidebar = (props) => {
   ];
 
   return (
-    <div className="absolute bg-white border-solid border-2 collapse-arrow rounded-tr-none rounded-l-none left-0 top-0 w-2/5 z-50 collapse bg-base-200">
+    <div className="absolute bg-white border-solid border-2 collapse-arrow rounded-tr-none rounded-l-none left-0 top-0 w-2/5 z-40 collapse bg-base-200">
       <input type="checkbox" className="peer" />
       <div className="collapse-title text-primary-content my-1.5 bg-white peer-checked:text-secondary-content">
         <div className="flex justify-center relative z-50">
