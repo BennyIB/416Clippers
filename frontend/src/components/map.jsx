@@ -5,7 +5,7 @@ import ChartModal from './Modal';
 import Sidebar from './Sidebar';
 import axios from 'axios';
 import { useAppState } from '../AppStateContext';
-
+import Arizona_Illinois_Boundary from '../assets/Arizona_Illinois_Boundary.json'
 // Default zoom and coordinates
 const ZOOMSTATE = {
   Arizona: [-115.5, 34.25, 5.75],
@@ -117,7 +117,7 @@ const MyMap = forwardRef((props, ref) => {
   useEffect(() => {
     fetchBoundaryData();
     fetchLegislativeDistrictData();
-  },[]);
+  }, []);
 
   useEffect(() => {
     //console.log("Viewport is", viewport.zoom, props.selectedHeatMap);
@@ -126,7 +126,7 @@ const MyMap = forwardRef((props, ref) => {
     } else {
       setGeojsonData(legislativeDistrictData);
     }
-  }, [viewport.zoom, props.selectedHeatMap]);
+  }, [viewport.zoom, props.selectedHeatMap, boundaryData, legislativeDistrictData]);
 
   // control for heatmap
   const layerStyle = useMemo(() => {

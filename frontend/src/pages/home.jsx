@@ -25,10 +25,9 @@ function HomeWrapper() {
     const handleSelectState = (state) => {
       setSelectedState(state);
     };
-  
-  
+
     return (
-          <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center">
           <img src={clippersImageURL} alt="Clippers Logo" className="w-48 h-auto my-8" />
           <div className="flex">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg m-2 text-lg"  onClick={() => handleSelectState('Arizona')}>Arizona</button>
