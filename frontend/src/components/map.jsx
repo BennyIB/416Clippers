@@ -1,10 +1,9 @@
 import React, { useState, useRef, useMemo, useEffect, forwardRef, useImperativeHandle } from 'react';
 import Map, { Source, Layer } from 'react-map-gl';
-import "mapbox-gl/dist/mapbox-gl.css";
-import Arizona_Illinois_Legislative_Districts from '../assets/Arizona_Illinois_Legislative_Districts.json'
-import Arizona_Illinois_Boundary from '../assets/Arizona_Illinois_Boundary.json'
+import "mapbox-gl/dist/mapbox-gl.css"
 import ChartModal from './Modal';
 import Sidebar from './Sidebar';
+import axios from 'axios';
 import { useAppState } from '../AppStateContext';
 
 // Default zoom and coordinates
@@ -89,8 +88,36 @@ const MyMap = forwardRef((props, ref) => {
     latitude: ZOOMSTATE[defaultState][1],
     zoom: ZOOMSTATE[defaultState][2],
   });
+  let boundaryData = " "
+  let LegislativeDistrictData = ""
+  const [geojsonData, setGeojsonData] = useState(defaultState !== "USA" ? LegislativeDistrictData : boundaryData);
   //console.log(viewport.zoom, appState);
-  const [geojsonData, setGeojsonData] = useState(defaultState !== "USA" ? Arizona_Illinois_Legislative_Districts : Arizona_Illinois_Boundary);
+  
+  //Making a GET request to get the boundary data
+  const fetchBoundaryData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/Arizona_Illinois_Boundaries');
+      boundaryData = response.data;
+    } catch (error) {
+      console.error("There was an error fetching the geojson data:", error);
+    }
+  };
+
+  //Making a GET request to get the Legislative District Data
+  const fetchLegislativeDistrictData = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/Arizona_Illinois_Legislative_Districts');
+      LegislativeDistrictData = response.data;
+    } catch (error) {
+      console.error("There was an error fetching the geojson data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchBoundaryData();
+    fetchLegislativeDistrictData();
+  },[]);
+
   useEffect(() => {
     //console.log("Viewport is", viewport.zoom, props.selectedHeatMap);
     if (viewport.zoom < 5 && props.selectedHeatMap === "None") {
