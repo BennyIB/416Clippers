@@ -1,17 +1,27 @@
-import EthnicityBarChart from '../components/EthnicityBarChart';
-import EcologicalInferencePlot from '../components/EcologicalInferencePlot';
-import EthnicityBarChartPop from '../components/EthnicityBarChartPop';
-import PrecinctAnalysisChart from '../components/PrecinctAnalysisChart';
+import EthnicityBarChart from './EthnicityBarChart';
+import EcologicalInferencePlot from './EcologicalInferencePlot';
+import EthnicityBarChartPop from './EthnicityBarChartPop';
+import PrecinctAnalysisChart from './PrecinctAnalysisChart';
 import ProportionalDifferenceTable from './ProportionalDifferenceTable';
+import { useState, useEffect } from 'react';
 
-import { useState } from 'react';
 const ChartModal = (props) => {
-    const [selectedChart, setSelectedChart] = useState(props.selectedChart);
+    const [selectedChart, setSelectedChart] = useState(props.chartSelection);
     const [localChartSelection, setLocalChartSelection] = useState('ethnicityBarChartPop');
 
+    function getIdByName(chartName) {
+        const chart = props.charts.find(chart => chart.name === chartName);
+        return chart ? chart.id : 'Chart name not found';
+      }
+
+    // useEffect( () => {
+    //     console.log("In chart modal", props.chartSelection);
+    //     console.log("In chart modal", selectedChart);
+    // }, [props.chartSelection]);
     
     const renderChart = () => {
-        switch (selectedChart) {
+        console.log("The current chart is", props.chartSelection)
+        switch (getIdByName(props.chartSelection)) {
             case 'ethnicityBarChart':
                 return <EthnicityBarChart />;
             case 'ecologicalInferencePlot':
@@ -40,41 +50,17 @@ const ChartModal = (props) => {
 
                     </>
                 );
+            default:
+                console.log("Chart was not found");
+                return;
         }
     };
-
     return (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-            <div
-                className="bg-white p-5 rounded-lg shadow-lg border border-black"
-                style={{
-                    width: '850px',
-                    height: '650px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    overflow: 'auto'
-                }}
-            >
-                <h2 className="text-lg text-black font-bold text-center">{props.state} Data</h2>
-
-                
-
+            <div>
                 <div className="flex-grow">
                     {renderChart()}
                 </div>
-
-                <div className="flex justify-center" >
-                    <button
-                        onClick={() => props.setShowModal(false)}
-                        className="mt-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                    >
-                        Close
-                    </button>
-                </div>
             </div>
-        </div>
-
     );
 }
 export default ChartModal;

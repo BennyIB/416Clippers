@@ -1,0 +1,7 @@
+.tab::after {
+    content: none;
+}
+
+.peer:checked~.collapse-content {
+    height: 24rem;
+}

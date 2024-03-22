@@ -3,19 +3,19 @@ import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css";
 import Arizona_Illinois_Legislative_Districts from '../assets/Arizona_Illinois_Legislative_Districts.json'
 import Arizona_Illinois_Boundary from '../assets/Arizona_Illinois_Boundary.json'
-import ChartModal from './Modal';
-import Sidebar from './Sidebar';
+// import ChartModal from './Modal';
+// import Sidebar from './Sidebar';
 import { useAppState } from '../AppStateContext';
 
 // Default zoom and coordinates
 const ZOOMSTATE = {
-  Arizona: [-113.8, 34.25, 5.75],
-  Illinois: [-91.8, 39.75, 5.75],
+  Arizona: [-115.5, 34.25, 5.75],
+  Illinois: [-93.8, 39.75, 5.75],
   USA: [-98.5795, 38, 4],
-  ArizonaRight: [-111.8, 34.75, 5.75],
-  IllinoisRight: [-89.8, 40.25, 5.75],
-  ArizonaLeft: [-109.8, 34.75, 5.75],
-  IllinoisLeft: [-87.8, 40.25, 5.75]
+  ArizonaRight: [-111.8, 34.75, 5.5],
+  IllinoisRight: [-89.8, 40.25, 5.5],
+  ArizonaLeft: [-112.5, 34.75, 5.5],
+  IllinoisLeft: [-90.25, 40.25, 5.75]
 };
 
 // style for labeling districts in states
@@ -58,9 +58,6 @@ const MyMap = forwardRef((props, ref) => {
 
   const { appState } = useAppState();
   const mapRef = useRef(null);
-  const [showModal, setShowModal] = useState(false);
-  const [showSidebar, setShowSidebar] = useState(false);
-  const [chartSelection, setChartSelection] = useState('');
   const accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
   let state; 
   
@@ -239,12 +236,7 @@ const MyMap = forwardRef((props, ref) => {
 
   return (
     <div className="relative w-full h-screen">
-      {/* {showSidebar && (
-      <Sidebar setChartSelection={(chartId) => {
-        setChartSelection(chartId);
-        setShowModal(true); 
-      }} handleCloseSideBar={handleCloseSideBar}/>
-    )} */}
+
       <div className="flex w-full h-full">
         <div className="flex-grow border-r border-gray-500">
           <Map
@@ -258,7 +250,6 @@ const MyMap = forwardRef((props, ref) => {
             onLoad={onStyleLoad}
             attributionControl={false}
           >
-            {showModal && <ChartModal state={state} setShowModal={setShowModal} selectedChart={chartSelection} />}
 
             <Source id="my-data" type="geojson" data={geojsonData}>
               <Layer {...layerStyle} />
