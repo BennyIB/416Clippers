@@ -1,11 +1,9 @@
 import React, { useState, useRef, useMemo, useEffect, forwardRef, useImperativeHandle } from 'react';
 import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css"
-import ChartModal from './Modal';
-import Sidebar from './Sidebar';
 import axios from 'axios';
 import { useAppState } from '../AppStateContext';
-import Arizona_Illinois_Boundary from '../assets/Arizona_Illinois_Boundary.json'
+
 // Default zoom and coordinates
 const ZOOMSTATE = {
   Arizona: [-115.5, 34.25, 5.75],
@@ -256,14 +254,14 @@ const MyMap = forwardRef((props, ref) => {
     const { features } = event;
 
     const clickedFeature = features && features.find(f => f.layer.id === layerStyle.id);
-    if (clickedFeature && appState === state) {
-      setShowSidebar(true);
-    }
+    // if (clickedFeature && appState === state) {
+    //   setShowSidebar(true);
+    // }
   };
 
-  const handleCloseSideBar = () => {
-    setShowSidebar(false)
-  }
+  // const handleCloseSideBar = () => {
+  //   setShowSidebar(false)
+  // }
 
   return (
     <div className="relative w-full h-screen">
