@@ -1,4 +1,4 @@
-package main.java.com.clippers.backend;
+package com.clippers.backend.controller;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.StreamUtils;
@@ -9,12 +9,22 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 @RestController
-public class MyController {
+public class Controller {
 
     @GetMapping("/Arizona_Illinois_Legislative_Districts")
-    public String getJson() throws IOException {
-        // Load the JSON file from the resources directory
-        ClassPathResource resource = new ClassPathResource("Arizona_Illinois_Boundary.json");
+    public String getLegislativeJson() throws IOException {
+        // Load the JSON file from the static directory
+        ClassPathResource resource = new ClassPathResource("static/Arizona_Illinois_Legislative_Districts.json");
+        // Read the content of the JSON file
+        String jsonContent = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+        // Return the content as the response
+        return jsonContent;
+    }
+
+    @GetMapping("/Arizona_Illinois_Boundaries")
+    public String getBoundariesJson() throws IOException {
+        // Load the JSON file from the static directory
+        ClassPathResource resource = new ClassPathResource("static/Arizona_Illinois_Boundary.json");
         // Read the content of the JSON file
         String jsonContent = StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
         // Return the content as the response
