@@ -6,7 +6,7 @@ const Sidebar = ({ setChartSelection, handleCloseSideBar }) => {
     { id: 'ecologicalInferencePlot', name: 'Ecological Inference Plot' },
     { id: 'ethnicityBarChartPop', name: 'Ethnicity Bar Chart Pop' },
     { id: 'precinctAnalysisChart', name: 'Precinct Analysis Chart' },
-    { id: 'minorityRepresentationAllDistricts', name: 'Minority Representation Across All Districts' },
+    // { id: 'minorityRepresentationAllDistricts', name: 'Minority Representation Across All Districts' },
     { id: 'minorityRepresentation9Districts', name: 'ReCom Ensemble Plot' },
     { id: 'ethnicityBarChartPopANDethnicityBarChart', name: 'Ethnicity Bar Chart vs Ethnicity Bar Chart Pop' },
   ];

@@ -1,8 +1,9 @@
-import MyMap from "../components/map";
-import { useState, useRef } from "react";
+import MyMap from "../components/Map";
+import { useState, useRef, useEffect } from "react";
 import HeatMapSelection from "../components/HeatMapSelection";
 import HeatMapLegend from "../components/HeatMapLegend";
 import MapControl from "../components/MapControl";
+import MasterSidebar from "../components/MasterSidebar";
 
 const legendItems = [
     { color: '#ffffe0', number: 0, value: '0%', textColor: '#000' },
@@ -22,6 +23,7 @@ const MapPage = () => {
     const mapRef = useRef(null);
     const [compareView, setCompareView] = useState(false);
     const [selectedHeatMap, setHeatMap] = useState("None");
+    const [chartSelection, setChartSelection] = useState("Ethnicity Bar Chart");
     const handleZoomIn = () => {
         mapRef.current.zoomIn();
     };
@@ -33,6 +35,11 @@ const MapPage = () => {
     const handleResetZoom = () => {
         mapRef.current.resetZoom();
     };
+
+    useEffect( () => {
+        console.log("state is", chartSelection);
+    }, [chartSelection])
+
     return (
         <div className="relative w-full h-screen">
             {(selectedHeatMap !== "None" && selectedHeatMap !== "PoliticalPartyPreference") && <HeatMapLegend legendItems={legendItems} />}
@@ -43,10 +50,11 @@ const MapPage = () => {
                     <MyMap ref={mapRef} setCompareView={setCompareView} selectedHeatMap={selectedHeatMap} setHeatMap={setHeatMap} compareView={compareView} left={true} />
                 </div>
                 {compareView &&
-                    (<div className="w-2/5">
+                    (<div className="w-1/3">
                         <MyMap compared={compareView} selectedHeatMap={selectedHeatMap} setHeatMap={setHeatMap} />
                     </div>)}
             </div>
+            <MasterSidebar setChartSelection={setChartSelection} chartSelection={chartSelection}/>
         </div>
     );
 }

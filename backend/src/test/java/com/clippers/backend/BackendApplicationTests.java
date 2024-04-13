@@ -1,10 +1,10 @@
-package clippers.clippers;
+package com.clippers.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ClippersApplicationTests {
+class BackendApplicationTests {
 
 	@Test
 	void contextLoads() {

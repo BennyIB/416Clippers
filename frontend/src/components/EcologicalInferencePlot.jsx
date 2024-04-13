@@ -75,7 +75,7 @@ const EcologicalInferencePlot = () => {
 
     return (
         <div>
-            <select value={selectedRace} onChange={handleRaceChange} className="text-lg bg-blue-100 text-blue-800 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <select value={selectedRace} onChange={handleRaceChange} className="text-lg bg-white border-solid border-2 text-black rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
                 <option value="Latino">Latino</option>
                 <option value="White">White</option>
                 <option value="Asian">Asian</option>
