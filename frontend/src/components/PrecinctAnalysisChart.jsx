@@ -2,33 +2,41 @@ import { Scatter } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from 'chart.js';
 import regression from 'regression';
 import React, {useState, useEffect} from 'react';
+import axios from 'axios';
 import annotationPlugin from 'chartjs-plugin-annotation';
 
 ChartJS.register(annotationPlugin);
 const PrecinctAnalysisChart = () => {
   const [selectedRace, setSelectedRace] = useState('Latino');
+  const [dataPoints, setDataPoints] = useState({
+    democratPoints: [],
+    republicanPoints: []
+  });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Update the URL to the endpoint where your Spring Boot app serves the data
+        const response = await axios.get('http://localhost:8080/api/arizona/vote-shares/precinct-analysis');
+        if (response.data) {
+          setDataPoints({
+            democratPoints: response.data.democratPoints,
+            republicanPoints: response.data.republicanPoints
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array means this effect runs once on mount
   ChartJS.register(...registerables);
 
-  function quadraticGrowth(x, a, b, c) {
-      return a * Math.pow(x, 2) + b * x + c;
-    }
+  
     
-    function squareRootGrowth(x, a, b) {
-      return -a * Math.sqrt(x) + b;
-    }
-    
-    const quadraticPointsKelly = Array.from({ length: 100 }, (_, index) => ({
-      x: index,
-      y: quadraticGrowth(index, 1, 0, 0) * (0.5 + Math.random() * 0.5)
-    }));
-    
-    const squareRootPointsMcSally = Array.from({ length: 100 }, (_, index) => ({
-      x: index,
-      y: squareRootGrowth(index, 500, 8000) * (0.5 + Math.random() * 0.5)
-    }));
 
-    const result = regression.polynomial(quadraticPointsKelly.map(point => [point.x, point.y]), { order: 2 });
-    const result2 = regression.polynomial(squareRootPointsMcSally.map(point => [point.x, point.y]), { order: 2 });
+    const result = regression.polynomial(dataPoints.democratPoints.map(point => [point.x, point.y]), { order: 2 });
+    const result2 = regression.polynomial(dataPoints.republicanPoints.map(point => [point.x, point.y]), { order: 2 });
 
     const regressionCurveKelly = Array.from({ length: 100 }, (_, index) => ({
       x: index,
@@ -58,12 +66,12 @@ const PrecinctAnalysisChart = () => {
     datasets: [
       {
         label: 'Democrat Vote Share',
-        data: quadraticPointsKelly,
+        data: dataPoints.democratPoints,
         backgroundColor: 'rgba(53, 162, 235, 0.5)', // Color for Mark Kelly
       },
       {
         label: 'Republican Vote Share',
-        data: squareRootPointsMcSally,
+        data: dataPoints.republicanPoints,
         backgroundColor: 'rgba(255, 99, 132, 0.5)', // Color for Martha McSally
       },
       {

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './MasterSidebar.css';
 import EthnicityBarChart from './EthnicityBarChart';
 import PrecinctAnalysisChart from './PrecinctAnalysisChart';
-import ChartModal from './Modal';
+import ChartModal from './modal';
 import ChartSelection from './ChartSelection';
 
 const charts = [
