@@ -15,25 +15,23 @@ const PrecinctAnalysisChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Update the URL to the endpoint where your Spring Boot app serves the data
         const response = await axios.get('http://localhost:8080/api/arizona/vote-shares/precinct-analysis');
-        if (response.data) {
+        if (response.data && response.data.democratPoints && response.data.republicanPoints) {
           setDataPoints({
             democratPoints: response.data.democratPoints,
             republicanPoints: response.data.republicanPoints
           });
+        } else {
+          // If the expected properties aren't in the response, log the entire response for debugging
+          console.error("Unexpected response data:", response.data);
         }
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
     };
-
-    fetchData();
-  }, []); // Empty dependency array means this effect runs once on mount
-  ChartJS.register(...registerables);
-
   
-    
+    fetchData();
+  }, []); 
 
     const result = regression.polynomial(dataPoints.democratPoints.map(point => [point.x, point.y]), { order: 2 });
     const result2 = regression.polynomial(dataPoints.republicanPoints.map(point => [point.x, point.y]), { order: 2 });

@@ -1,9 +1,9 @@
 package com.clippers.backend.model;
 
-
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 
 import java.util.List;
 
@@ -12,10 +12,23 @@ public class VoteShareData {
     @Id
     private String id;
     private String type;
-    private List<Point> democratPoints;
-    private List<Point> republicanPoints;
+    @Field("democrat_points")
+    private List<Object[]> democratPoints;
 
-    // Getters
+    @Field("republican_points")
+    private List<Object[]> republicanPoints;
+
+    public VoteShareData() {}
+
+    public VoteShareData(String id, String type, List<Object[]> democratPoints, List<Object[]> republicanPoints) {
+        this.id = id;
+        this.type = type;
+        this.democratPoints = democratPoints;
+        this.republicanPoints = republicanPoints;
+    }
+
+    // Getters and setters
+
     public String getId() {
         return id;
     }
@@ -24,26 +37,16 @@ public class VoteShareData {
         return type;
     }
 
-    public List<Point> getDemocratPoints() {
+    public List<Object[]> getDemocratPoints() {
         return democratPoints;
     }
 
-    public List<Point> getRepublicanPoints() {
+
+    public List<Object[]> getRepublicanPoints() {
         return republicanPoints;
     }
+    
 
-    // Inner class to represent a Point
-    public static class Point {
-        private int index;
-        private double voteShare;
 
-        // Getters
-        public int getIndex() {
-            return index;
-        }
 
-        public double getVoteShare() {
-            return voteShare;
-        }
-    }
 }

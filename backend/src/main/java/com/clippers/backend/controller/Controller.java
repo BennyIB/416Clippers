@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 
 @RestController
 public class Controller {
@@ -42,8 +43,16 @@ public class Controller {
     
     @GetMapping("/api/arizona/vote-shares/precinct-analysis")
     public ResponseEntity<VoteShareData> getVoteShareDataByType() {
-        return voteShareService.getVoteShareDataByType("precinct analysis")
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        Optional<VoteShareData> voteShareDataOptional = voteShareService.getVoteShareDataByType("precinct analysis");
+
+        if (voteShareDataOptional.isPresent()) {
+            VoteShareData voteShareData = voteShareDataOptional.get();
+            System.out.println("Retrieved vote share data: " + voteShareData);
+            return ResponseEntity.ok(voteShareData);
+        } else {
+            System.out.println("No vote share data found for type 'precinct analysis'");
+            return ResponseEntity.notFound().build();
+        }
+    
     }
 }
