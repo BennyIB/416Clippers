@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.Optional;
+import java.util.List;
+
 
 
 @Service
@@ -21,7 +23,21 @@ public class VoteShareService {
     }
 
     public Optional<VoteShareData> getVoteShareDataByType(String type) {
+        //System.out.println("Searching for type: " + type);
         Optional<VoteShareData> result = repository.findByType(type);
+        if (result.isPresent()) {
+            VoteShareData voteShareData = result.get();
+            System.out.println("VoteShareData: " + voteShareData.getId());
+            System.out.println("type:" + voteShareData.getType());
+            System.out.println("Democrat points: " + voteShareData.getDemocratPoints());
+            System.out.println("Republican points: " + voteShareData.getRepublicanPoints());
+            System.out.println("Democrat equation: " + voteShareData.getEquationDemocrat());
+            System.out.println("Republican equation: " + voteShareData.getEquationRepublican());
+
+        } else {
+            System.out.println("No vote share data found for type: " + type);
+        }
+        
         return result;
     }
 }
