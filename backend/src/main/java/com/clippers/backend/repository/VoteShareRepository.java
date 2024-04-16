@@ -1,10 +1,9 @@
 package com.clippers.backend.repository;
 
 import com.clippers.backend.model.VoteShareData;
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.Optional;
-
-public interface VoteShareRepository extends MongoRepository<VoteShareData, String> {
-    Optional<VoteShareData> findByType(String type);
+@Repository
+public interface VoteShareRepository extends MongoDocumentRepository<VoteShareData, String> {
+    // add specific methods to this repo here
 }
