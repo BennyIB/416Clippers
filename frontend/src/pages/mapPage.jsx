@@ -1,4 +1,4 @@
-import MyMap from "../components/map";
+import MyMap from "../components/Map";
 import { useState, useRef, useEffect } from "react";
 import HeatMapSelection from "../components/HeatMapSelection";
 import HeatMapLegend from "../components/HeatMapLegend";

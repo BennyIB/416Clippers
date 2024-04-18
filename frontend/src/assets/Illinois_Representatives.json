@@ -1,0 +1,1064 @@
+[
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/AOD1.png",
+        "party": "D",
+        "district": 1,
+        "name": "Aaron Ortiz",
+        "percentage": "100.0",
+        "votes": "11,611",
+        "race": "middle eastern"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Elizabeth_Hernandez.PNG",
+        "party": "D",
+        "district": 2,
+        "name": "Elizabeth Hernandez",
+        "percentage": "100.0",
+        "votes": "16,412",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://www.ilga.gov/images/members/%7BD02A93E7-7D84-4429-92AB-60B61084EBA1%7D.jpg",
+        "party": "D",
+        "district": 3,
+        "name": "Eva Dina Delgado",
+        "percentage": "82.0",
+        "votes": "19,056",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Lilian-Jimenez.PNG",
+        "party": "D",
+        "district": 4,
+        "name": "Lilian Jimenez",
+        "percentage": "88.2",
+        "votes": "19,111",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/LR5.jpg",
+        "party": "D",
+        "district": 5,
+        "name": "Lamont Robinson Jr.",
+        "percentage": "100.0",
+        "votes": "23,847",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Sonya_Harper.PNG",
+        "party": "D",
+        "district": 6,
+        "name": "Sonya Harper",
+        "percentage": "86.6",
+        "votes": "16,019",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Emanuel_Welch.jpg",
+        "party": "D",
+        "district": 7,
+        "name": "Emanuel Welch",
+        "percentage": "77.7",
+        "votes": "25,112",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/LaShawn-Ford.jpg",
+        "party": "D",
+        "district": 8,
+        "name": "La Shawn Ford",
+        "percentage": "75.5",
+        "votes": "22,187",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Lakesia_Collins_20230521_074937.jpeg",
+        "party": "D",
+        "district": 9,
+        "name": "Lakesia Collins",
+        "percentage": "100.0",
+        "votes": "20,413",
+        "race": "black"
+    },
+    {
+        "url": "https://www.ilga.gov/images/members/%7B32750D93-496F-42CA-9CCE-93C3451713A1%7D.jpg",
+        "party": "D",
+        "district": 10,
+        "name": "Jawaharial Williams",
+        "percentage": "100.0",
+        "votes": "24,344",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Ann_Williams.jpg",
+        "party": "D",
+        "district": 11,
+        "name": "Ann M. Williams",
+        "percentage": "85.5",
+        "votes": "36,894",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/_Margaret-Croke_.jpg",
+        "party": "D",
+        "district": 12,
+        "name": "Margaret Croke",
+        "percentage": "80.2",
+        "votes": "31,332",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Hoan_Huynh2.jpeg",
+        "party": "D",
+        "district": 13,
+        "name": "Hoan Huynh",
+        "percentage": "90.5",
+        "votes": "36,347",
+        "race": "asian"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Kelly_Cassidy.jpg",
+        "party": "D",
+        "district": 14,
+        "name": "Kelly Cassidy",
+        "percentage": "100.0",
+        "votes": "29,635",
+        "race": "white"
+    },
+    {
+        "url": "https://www.ilga.gov/images/members/%7B90B28E06-84A0-47EB-A80B-403DF4CDA607%7D.jpg",
+        "party": "D",
+        "district": 15,
+        "name": "Michael Kelly",
+        "percentage": "65.6",
+        "votes": "20,984",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/kevinolickal.JPG",
+        "party": "D",
+        "district": 16,
+        "name": "Kevin Olickal",
+        "percentage": "70.9",
+        "votes": "17,648",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Jennifer_GongGershowitz_20230531_084603.jpg",
+        "party": "D",
+        "district": 17,
+        "name": "Jennifer Gong-Gershowitz",
+        "percentage": "71.4",
+        "votes": "29,057",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Robyn-Gabel.jpg",
+        "party": "D",
+        "district": 18,
+        "name": "Robyn Gabel",
+        "percentage": "81.3",
+        "votes": "32,808",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Lindsey-Lapointe-blog-post.jpg",
+        "party": "D",
+        "district": 19,
+        "name": "Lindsey LaPointe",
+        "percentage": "69.8",
+        "votes": "22,458",
+        "race": "asian"
+    },
+    {
+        "url": "https://www.ilga.gov/images/members/%7BBD3836AC-CD0C-4E20-AD4C-1F2AEA56A8A2%7D.jpg",
+        "party": "R",
+        "district": 20,
+        "name": "Brad Stephens",
+        "percentage": "100.0",
+        "votes": "24,146",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/MZJ_86321.jpg",
+        "party": "D",
+        "district": 21,
+        "name": "Abdelnasser Rashid",
+        "percentage": "66.0",
+        "votes": "14,904",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Angelica-GuerreroCuellar.jpg",
+        "party": "D",
+        "district": 22,
+        "name": "Angelica Guerrero-Cuellar",
+        "percentage": "65.2",
+        "votes": "14,362",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/EdgarGonzalez.jpeg",
+        "party": "D",
+        "district": 23,
+        "name": "Edgar Gonzalez Jr.",
+        "percentage": "82.0",
+        "votes": "7,832",
+        "race": "asian"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Theresa_Mah_portrait.jpg",
+        "party": "D",
+        "district": 24,
+        "name": "Theresa Mah",
+        "percentage": "100.0",
+        "votes": "14,532",
+        "race": "asian"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Curtis_J_Tarver.png",
+        "party": "D",
+        "district": 25,
+        "name": "Curtis Tarver II",
+        "percentage": "100.0",
+        "votes": "23,792",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Kam_Buckner2023.jpg",
+        "party": "D",
+        "district": 26,
+        "name": "Kambium Buckner",
+        "percentage": "100.0",
+        "votes": "24,017",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Justin_Slaughter.jpg",
+        "party": "D",
+        "district": 27,
+        "name": "Justin Slaughter",
+        "percentage": "71.0",
+        "votes": "25,003",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Robert_Rita.jpg",
+        "party": "D",
+        "district": 28,
+        "name": "Robert Rita",
+        "percentage": "99.8",
+        "votes": "22,195",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Thaddeus_Jones.jpg",
+        "party": "D",
+        "district": 29,
+        "name": "Thaddeus Jones",
+        "percentage": "69.5",
+        "votes": "23,198",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/William_Davis.jpg",
+        "party": "D",
+        "district": 30,
+        "name": "William Davis",
+        "percentage": "80.1",
+        "votes": "23,127",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Mary_Flowers.jpg",
+        "party": "D",
+        "district": 31,
+        "name": "Mary E. Flowers",
+        "percentage": "77.4",
+        "votes": "20,868",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Cyril-Nichols.jpg",
+        "party": "D",
+        "district": 32,
+        "name": "Cyril Nichols",
+        "percentage": "82.3",
+        "votes": "15,603",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Marcus_Evans.jpg",
+        "party": "D",
+        "district": 33,
+        "name": "Marcus Evans",
+        "percentage": "87.6",
+        "votes": "23,564",
+        "race": "black"
+    },
+    {
+        "url": "https://www.ilga.gov/images/members/%7B4D7D283C-73C8-40F8-A3F0-7FA9301456F5%7D.jpg",
+        "party": "D",
+        "district": 34,
+        "name": "Nicholas Smith",
+        "percentage": "78.2",
+        "votes": "24,854",
+        "race": "asian"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/FrancesAnnHurley.jpg",
+        "party": "D",
+        "district": 35,
+        "name": "Frances Ann Hurley",
+        "percentage": "62.0",
+        "votes": "26,112",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Kelly_Burke.jpg",
+        "party": "D",
+        "district": 36,
+        "name": "Kelly M. Burke",
+        "percentage": "61.8",
+        "votes": "21,209",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Tim-Ozinga.jpg",
+        "party": "R",
+        "district": 37,
+        "name": "Tim Ozinga",
+        "percentage": "100.0",
+        "votes": "35,890",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Debbie_Meyers-Martin.png",
+        "party": "D",
+        "district": 38,
+        "name": "Debbie Meyers-Martin",
+        "percentage": "70.7",
+        "votes": "27,135",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/WillGuzzardi.jpg",
+        "party": "D",
+        "district": 39,
+        "name": "Will Guzzardi",
+        "percentage": "85.8",
+        "votes": "21,918",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Jaime_Andrade_20230521_075039.jpeg",
+        "party": "D",
+        "district": 40,
+        "name": "Jaime Andrade",
+        "percentage": "100.0",
+        "votes": "23,552",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/jyrohr.png",
+        "party": "D",
+        "district": 41,
+        "name": "Janet Yang Rohr",
+        "percentage": "60.4",
+        "votes": "25,960",
+        "race": "asian"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Terra_Costa_Howard_headshot_web-2.jpg",
+        "party": "D",
+        "district": 42,
+        "name": "Terra Costa Howard",
+        "percentage": "58.3",
+        "votes": "25,822",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Anna-Moeller.jpg",
+        "party": "D",
+        "district": 43,
+        "name": "Anna Moeller",
+        "percentage": "63.9",
+        "votes": "11,274",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Fred_Crespo.jpg",
+        "party": "D",
+        "district": 44,
+        "name": "Fred Crespo",
+        "percentage": "63.6",
+        "votes": "14,192",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Jenn_Douglass.jpg",
+        "party": "D",
+        "district": 45,
+        "name": "Jenn Ladisch Douglass",
+        "percentage": "50.4",
+        "votes": "21,960",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/DianeBlairSherlockIL.jpg",
+        "party": "D",
+        "district": 46,
+        "name": "Diane Blair-Sherlock",
+        "percentage": "56.5",
+        "votes": "16,054",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/AmyGrant.jpg",
+        "party": "R",
+        "district": 47,
+        "name": "Amy Grant",
+        "percentage": "53.1",
+        "votes": "24,471",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/JenniferSanalitro.jfif",
+        "party": "R",
+        "district": 48,
+        "name": "Jennifer Sanalitro",
+        "percentage": "55.0",
+        "votes": "20,655",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Maura_Hirschauer_20230521_075020.jpg",
+        "party": "D",
+        "district": 49,
+        "name": "Maura Hirschauer",
+        "percentage": "54.1",
+        "votes": "16,859",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Barbara_Hernandez.jpg",
+        "party": "D",
+        "district": 50,
+        "name": "Barbara Hernandez",
+        "percentage": "62.8",
+        "votes": "14,251",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Nabeela_Syed.jpeg",
+        "party": "D",
+        "district": 51,
+        "name": "Nabeela Syed",
+        "percentage": "53.3",
+        "votes": "23,775",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Martin_McLaughlin_20230601_085508.jpeg",
+        "party": "R",
+        "district": 52,
+        "name": "Martin McLaughlin",
+        "percentage": "52.3",
+        "votes": "23,088",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Mark_Walker.jpg",
+        "party": "D",
+        "district": 53,
+        "name": "Mark Walker",
+        "percentage": "57.0",
+        "votes": "18,449",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/MaryBethCanty2022.jpg",
+        "party": "D",
+        "district": 54,
+        "name": "Mary Beth Canty",
+        "percentage": "59.5",
+        "votes": "21,750",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Martin_Moylan.jpg",
+        "party": "D",
+        "district": 55,
+        "name": "Martin J. Moylan",
+        "percentage": "54.4",
+        "votes": "16,195",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/MichelleMussman.jpg",
+        "party": "D",
+        "district": 56,
+        "name": "Michelle Mussman",
+        "percentage": "60.2",
+        "votes": "16,504",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Jonathan_Carroll_20230523_085857.jpeg",
+        "party": "D",
+        "district": 57,
+        "name": "Jonathan Carroll",
+        "percentage": "63.6",
+        "votes": "22,553",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Bob_Morgan_20230531_084529.jpg",
+        "party": "D",
+        "district": 58,
+        "name": "Bob Morgan",
+        "percentage": "70.2",
+        "votes": "31,269",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Daniel_Didech.jpg",
+        "party": "D",
+        "district": 59,
+        "name": "Daniel Didech",
+        "percentage": "66.5",
+        "votes": "20,619",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Rita_Mayfield.jpg",
+        "party": "D",
+        "district": 60,
+        "name": "Rita Mayfield",
+        "percentage": "100.0",
+        "votes": "14,104",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Joyce_Mason_20230521_075034.jpg",
+        "party": "D",
+        "district": 61,
+        "name": "Joyce Mason",
+        "percentage": "56.3",
+        "votes": "18,383",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/LauraDias.jpg",
+        "party": "D",
+        "district": 62,
+        "name": "Laura Dias",
+        "percentage": "58.1",
+        "votes": "18,528",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Steven_Reick_portrait.jpg",
+        "party": "R",
+        "district": 63,
+        "name": "Steven Reick",
+        "percentage": "52.9",
+        "votes": "21,620",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/TomWeber_Illinois__fixed.jpg",
+        "party": "R",
+        "district": 64,
+        "name": "Tom Weber",
+        "percentage": "60.5",
+        "votes": "24,458",
+        "race": "white"
+    },
+    {
+        "url": "https://www.ilga.gov/images/members/%7B2552FBE4-D977-4283-B00C-78FC085BD955%7D.jpg",
+        "party": "R",
+        "district": 65,
+        "name": "Dan Ugaste",
+        "percentage": "54.2",
+        "votes": "23,927",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Suzanne-Ness.jpg",
+        "party": "D",
+        "district": 66,
+        "name": "Suzanne Ness",
+        "percentage": "53.2",
+        "votes": "19,645",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Headshot.jpg",
+        "party": "D",
+        "district": 67,
+        "name": "Maurice West II",
+        "percentage": "55.6",
+        "votes": "13,880",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Dave-Vella.jpg",
+        "party": "D",
+        "district": 68,
+        "name": "Dave Vella",
+        "percentage": "54.7",
+        "votes": "17,563",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Joe_Sosnowski.jpg",
+        "party": "R",
+        "district": 69,
+        "name": "Joe Sosnowski",
+        "percentage": "61.4",
+        "votes": "24,663",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Jeff_Keicher2.jpeg",
+        "party": "R",
+        "district": 70,
+        "name": "Jeff Keicher",
+        "percentage": "100.0",
+        "votes": "33,748",
+        "race": "asian"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Daniel_Swanson_portrait.jpg",
+        "party": "R",
+        "district": 71,
+        "name": "Daniel Swanson",
+        "percentage": "62.1",
+        "votes": "23,070",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/GreggJohnsonIL.jpg",
+        "party": "D",
+        "district": 72,
+        "name": "Gregg Johnson",
+        "percentage": "60.2",
+        "votes": "19,784",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Ryan_Spain.jpg",
+        "party": "R",
+        "district": 73,
+        "name": "Ryan Spain",
+        "percentage": "100.0",
+        "votes": "36,800",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/BradFritts.jpg",
+        "party": "R",
+        "district": 74,
+        "name": "Brad Fritts",
+        "percentage": "100.0",
+        "votes": "29,932",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Jed-Davis.PNG",
+        "party": "R",
+        "district": 75,
+        "name": "Jed Davis",
+        "percentage": "61.0",
+        "votes": "24,296",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/26994098_1660962537329815_1248816867437139972_n.jpg",
+        "party": "D",
+        "district": 76,
+        "name": "Lance Yednock",
+        "percentage": "57.5",
+        "votes": "20,156",
+        "race": "middle eastern"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/NormaHernandez.jpg",
+        "party": "D",
+        "district": 77,
+        "name": "Norma Hernandez",
+        "percentage": "57.5",
+        "votes": "10,588",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Camille_Lilly.jpg",
+        "party": "D",
+        "district": 78,
+        "name": "Camille Y. Lilly",
+        "percentage": "100.0",
+        "votes": "33,801",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Jackie-Haas.jpg",
+        "party": "R",
+        "district": 79,
+        "name": "Jackie Haas",
+        "percentage": "58.3",
+        "votes": "19,652",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Anthony_DeLuca_20230524_083217.jpeg",
+        "party": "D",
+        "district": 80,
+        "name": "Anthony DeLuca",
+        "percentage": "57.1",
+        "votes": "18,749",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/AnneStavaMurray.jpg",
+        "party": "D",
+        "district": 81,
+        "name": "Anne Stava-Murray",
+        "percentage": "58.2",
+        "votes": "27,060",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Jim-Durkin.jpg",
+        "party": "R",
+        "district": 82,
+        "name": "Jim Durkin",
+        "percentage": "100.0",
+        "votes": "33,625",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Matt_Hanson.jpeg",
+        "party": "D",
+        "district": 83,
+        "name": "Matt Hanson",
+        "percentage": "53.7",
+        "votes": "20,732",
+        "race": "middle eastern"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Stephanie_Kifowit.jpg",
+        "party": "D",
+        "district": 84,
+        "name": "Stephanie Kifowit",
+        "percentage": "65.7",
+        "votes": "19,219",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Dagmara_Avelar1.jpg",
+        "party": "D",
+        "district": 85,
+        "name": "Dagmara Avelar",
+        "percentage": "57.6",
+        "votes": "17,644",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Lawrence_Walsh.jpg",
+        "party": "D",
+        "district": 86,
+        "name": "Lawrence Walsh, Jr.",
+        "percentage": "57.3",
+        "votes": "16,777",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/BillHauter.jpg",
+        "party": "R",
+        "district": 87,
+        "name": "Bill Hauter",
+        "percentage": "100.0",
+        "votes": "37,568",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Caulkins-Headshot-2-731x1024.jpg",
+        "party": "R",
+        "district": 88,
+        "name": "Dan Caulkins",
+        "percentage": "100.0",
+        "votes": "37,580",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Tony_McCombie_portrait.jpg",
+        "party": "R",
+        "district": 89,
+        "name": "Tony McCombie",
+        "percentage": "100.0",
+        "votes": "37,363",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/JohnCabello.jpg",
+        "party": "R",
+        "district": 90,
+        "name": "John M. Cabello",
+        "percentage": "100.0",
+        "votes": "32,352",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Chung.jpg",
+        "party": "D",
+        "district": 91,
+        "name": "Sharon Chung",
+        "percentage": "52.3",
+        "votes": "19,032",
+        "race": "asian"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Jehan_Gordon.jpg",
+        "party": "D",
+        "district": 92,
+        "name": "Jehan Gordon-Booth",
+        "percentage": "62.5",
+        "votes": "18,725",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/TravisWeaver.jpg",
+        "party": "R",
+        "district": 93,
+        "name": "Travis Weaver",
+        "percentage": "100.0",
+        "votes": "33,189",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Norine_Hammond.jpg",
+        "party": "R",
+        "district": 94,
+        "name": "Norine Hammond",
+        "percentage": "100.0",
+        "votes": "37,566",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Tim-Butler.jpg",
+        "party": "R",
+        "district": 95,
+        "name": "Tim Butler",
+        "percentage": "100.0",
+        "votes": "36,173",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Sue-Scherer.jpg",
+        "party": "D",
+        "district": 96,
+        "name": "Sue Scherer",
+        "percentage": "58.1",
+        "votes": "17,916",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/HarryBenton.jpg",
+        "party": "D",
+        "district": 97,
+        "name": "Harry Benton",
+        "percentage": "51.7",
+        "votes": "18,095",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/NatalieManley.jpg",
+        "party": "D",
+        "district": 98,
+        "name": "Natalie Manley",
+        "percentage": "59.8",
+        "votes": "19,268",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Randy_Frese.jpg",
+        "party": "R",
+        "district": 99,
+        "name": "Randy Frese",
+        "percentage": "100.0",
+        "votes": "33,192",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/C-D-Davidsmeyer.jpg",
+        "party": "R",
+        "district": 100,
+        "name": "C.D. Davidsmeyer",
+        "percentage": "100.0",
+        "votes": "40,156",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/ChrisMiller1.jpg",
+        "party": "R",
+        "district": 101,
+        "name": "Chris Miller",
+        "percentage": "100.0",
+        "votes": "33,251",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Adam-Niemerg.jpg",
+        "party": "R",
+        "district": 102,
+        "name": "Adam Niemerg",
+        "percentage": "100.0",
+        "votes": "37,753",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/CarolAmmons.jpg",
+        "party": "D",
+        "district": 103,
+        "name": "Carol Ammons",
+        "percentage": "100.0",
+        "votes": "22,695",
+        "race": "black"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/91916D44-7189-48AA-88FD-E4EE10A87A86.jpeg",
+        "party": "R",
+        "district": 104,
+        "name": "Mike Marron",
+        "percentage": "54.0",
+        "votes": "19,613",
+        "race": "middle eastern"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/DennisTipswordJr.jpg",
+        "party": "R",
+        "district": 105,
+        "name": "Dennis Tipsword Jr.",
+        "percentage": "100.0",
+        "votes": "36,731",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Thomas_Bennett.jpg",
+        "party": "R",
+        "district": 106,
+        "name": "Thomas Bennett",
+        "percentage": "100.0",
+        "votes": "34,652",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Brad_Halbrook_portrait.jpg",
+        "party": "R",
+        "district": 107,
+        "name": "Brad Halbrook",
+        "percentage": "100.0",
+        "votes": "38,294",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Wayne-Arthur-Rosenthal.PNG",
+        "party": "R",
+        "district": 108,
+        "name": "Wayne Arthur Rosenthal",
+        "percentage": "100.0",
+        "votes": "37,521",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Charles-Meier.PNG",
+        "party": "R",
+        "district": 109,
+        "name": "Charles E. Meier",
+        "percentage": "100.0",
+        "votes": "39,792",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/BlaineWilhourIL.jpg",
+        "party": "R",
+        "district": 110,
+        "name": "Blaine Wilhour",
+        "percentage": "100.0",
+        "votes": "35,882",
+        "race": "middle eastern"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Elik3.jpg",
+        "party": "R",
+        "district": 111,
+        "name": "Amy Elik",
+        "percentage": "56.5",
+        "votes": "19,933",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Katie_Stuart.jpg",
+        "party": "D",
+        "district": 112,
+        "name": "Katie Stuart",
+        "percentage": "54.2",
+        "votes": "20,666",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/JayHoffman.jpg",
+        "party": "D",
+        "district": 113,
+        "name": "Jay C. Hoffman",
+        "percentage": "59.5",
+        "votes": "21,764",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/KevinSchmidt.jpg",
+        "party": "R",
+        "district": 114,
+        "name": "Kevin Schmidt",
+        "percentage": "52.8",
+        "votes": "19,233",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Jul720201118AM_80182230_davidheadshot.jpg",
+        "party": "R",
+        "district": 115,
+        "name": "David Friess",
+        "percentage": "100.0",
+        "votes": "36,834",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/Dave_Severin_portrait.jpg",
+        "party": "R",
+        "district": 116,
+        "name": "Dave Severin",
+        "percentage": "100.0",
+        "votes": "36,393",
+        "race": "latino hispanic"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/PatrickWindsorst.jpg",
+        "party": "R",
+        "district": 117,
+        "name": "Patrick Windhorst",
+        "percentage": "100.0",
+        "votes": "35,964",
+        "race": "white"
+    },
+    {
+        "url": "https://s3.amazonaws.com/ballotpedia-api4/files/thumbs/200/300/pj_22405478_349257005533699_219207797879698608_n.jpg",
+        "party": "R",
+        "district": 118,
+        "name": "Paul Jacobs",
+        "percentage": "61.3",
+        "votes": "22,613",
+        "race": "white"
+    }
+]

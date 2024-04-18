@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './MasterSidebar.css';
 import EthnicityBarChart from './EthnicityBarChart';
-import PrecinctAnalysisChart from './PrecinctAnalysisChart';
-import ChartModal from './modal';
+import ChartModal from './Modal';
 import ChartSelection from './ChartSelection';
+import StateAssemblyTable from './StateAssemblyTable';
 
 const charts = [
   { id: 'ethnicityBarChart', name: 'Ethnicity Bar Chart' },
@@ -32,7 +32,7 @@ const MasterSidebar = (props) => {
                 <ChartModal charts={charts} chartSelection={props.chartSelection}/>
               </>);
       case 'District':
-        return <PrecinctAnalysisChart />;
+        return <div className='h-full'> <StateAssemblyTable /> </div>;
       default:
         return <EthnicityBarChart />; 
     }

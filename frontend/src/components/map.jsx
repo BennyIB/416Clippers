@@ -73,7 +73,7 @@ const MyMap = forwardRef((props, ref) => {
   } else {
     state = appState;
   }
-  console.log("Compared ",props.compared, state);
+  //console.log("Compared ",props.compared, state);
   let modifiedState = props.compared ? (state === appState ? `${state}Left` : `${state}Right`) : state;
   const defaultState = state && ZOOMSTATE[modifiedState] ? modifiedState : "USA";
 
