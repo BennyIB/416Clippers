@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Illinois_Representatives from '../assets/Illinois_Representatives.json'
 import Arizona_Representatives from '../assets/Arizona_Representatives.json'
 import { useAppState } from '../AppStateContext';
 
-const StateAssemblyTable = ({ data = Illinois_Representatives }) => {
+const StateAssemblyTable = () => {
     const { appState } = useAppState();
-    console.log(data);
+    const [table, setSelectedTable] = useState(null);
+    useEffect(() => {
+        switch (appState) {
+            case 'Illinois':
+                setSelectedTable(Illinois_Representatives);
+                break;
+            case 'Arizona':
+                setSelectedTable(Arizona_Representatives);
+                break;
+            default:
+                setSelectedTable(null);
+                break;
+        }
+    }, [appState]);
     return (
         <div className="border-solid border-2 h-full overflow-auto">
             <table className="divide-y divide-gray-200 w-full">
@@ -20,7 +33,7 @@ const StateAssemblyTable = ({ data = Illinois_Representatives }) => {
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                    {data.map((item, index) => (
+                {table && table.map((item, index) => (
                         <tr key={index}>
                             <td className="text-black px-1 py-4 whitespace-nowrap border">{item.district}</td>
                             <td className="text-black px-1 py-4 whitespace-nowrap border">
