@@ -1,4 +1,6 @@
+import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
+import axios from 'axios';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
 // Register the necessary Chart.js components
@@ -12,12 +14,32 @@ ChartJS.register(
 );
 
 const EthnicityBarChartPop = () => {
+  const [populationData, setPopulationData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+
+        const response = await axios.get('http://localhost:8080/api/arizona/ethnicity-population');
+        if (response.data && response.data.populations) {
+          setPopulationData(response.data.populations);
+        } else {
+          console.error("Unexpected response data:", response.data);
+        }
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   const data = {
     labels: ['Black/African American', 'Hispanic/Latino', 'White/Caucasian', 'Asian'],
     datasets: [
       {
         label: 'Number of People in Arizona in millions',
-        data: [0.325, 2.261, 5.292, 0.239], 
+        data: populationData,
         backgroundColor: [
           'rgba(204, 51, 102, 0.7)', 
           'rgba(43, 130, 188, 0.7)', 
@@ -34,6 +56,7 @@ const EthnicityBarChartPop = () => {
       }
     ]
   };
+  
 
   const options = {
     scales: {

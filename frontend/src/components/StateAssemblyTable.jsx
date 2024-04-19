@@ -5,7 +5,7 @@ import { useAppState } from '../AppStateContext';
 
 const StateAssemblyTable = ({ data = Illinois_Representatives }) => {
     const { appState } = useAppState();
-
+    console.log("Data is",data);
     return (
         <div className="border-solid border-2 h-full overflow-auto">
             <table className="divide-y divide-gray-200 w-full">
