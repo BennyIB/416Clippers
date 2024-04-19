@@ -5,7 +5,7 @@ import { useAppState } from '../AppStateContext';
 
 const StateAssemblyTable = ({ data = Illinois_Representatives }) => {
     const { appState } = useAppState();
-
+    console.log(data);
     return (
         <div className="border-solid border-2 h-full overflow-auto">
             <table className="divide-y divide-gray-200 w-full">
@@ -22,18 +22,18 @@ const StateAssemblyTable = ({ data = Illinois_Representatives }) => {
                 <tbody className="divide-y divide-gray-200">
                     {data.map((item, index) => (
                         <tr key={index}>
-                            <td className="px-1 py-4 whitespace-nowrap border">{item.district}</td>
-                            <td className="px-1 py-4 whitespace-nowrap border">
+                            <td className="text-black px-1 py-4 whitespace-nowrap border">{item.district}</td>
+                            <td className="text-black px-1 py-4 whitespace-nowrap border">
                                 <img width={40} height={40} src={item.url}></img>
                             </td>
-                            <td className="px-1 py-4 border overflow-x-auto">
+                            <td className="text-black px-1 py-4 border overflow-x-auto">
                                 <div className="whitespace-nowrap max-w-xs" style={{ maxWidth: '100px' }}>
                                     {item.name}
                                 </div>
                             </td>
-                            <td className="px-1 py-4 whitespace-nowrap border">{item.party}</td>
-                            <td className="px-1 py-4 whitespace-nowrap border">{item.race}</td>
-                            <td className="px-1 py-4 whitespace-nowrap border">{item.percentage}</td>
+                            <td className="text-black px-1 py-4 whitespace-nowrap border">{item.party}</td>
+                            <td className="text-black px-1 py-4 whitespace-nowrap border">{item.race}</td>
+                            <td className="text-black px-1 py-4 whitespace-nowrap border">{item.percentage}</td>
                         </tr>
                     ))}
                 </tbody>
