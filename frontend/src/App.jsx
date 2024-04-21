@@ -5,10 +5,10 @@ import {
   RouterProvider,
   Navigate
 } from "react-router-dom";
-import HomeWrapper from './pages/home';
-import SplashScreen from './pages/splashscreen';
+import HomeWrapper from './pages/HomePage';
+import SplashScreen from './pages/SplashScreenPage';
 import { AppStateProvider } from './AppStateContext';
-import MapPage from './pages/mapPage';
+import MapPage from './pages/MapPage';
 
 
 const router = createBrowserRouter([

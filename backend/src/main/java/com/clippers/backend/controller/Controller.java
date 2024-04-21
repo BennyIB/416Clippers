@@ -18,18 +18,27 @@ import java.util.Optional;
 
 @RestController
 public class Controller {
-    private final VoteShareService voteShareService;
-    private final EthnicityPopulationService ethnicityPopulationService;
-    private final EthnicityRepsService ethnicityRepsService;
-
+    // private final VoteShareService voteShareService;
+    // private final EthnicityPopulationService ethnicityPopulationService;
+    // private final EthnicityRepsService ethnicityRepsService;
 
     @Autowired
-    public Controller(VoteShareService voteShareService, EthnicityPopulationService ethnicityPopulationService, EthnicityRepsService ethnicityRepsService) { 
-        this.voteShareService = voteShareService;
-        this.ethnicityPopulationService = ethnicityPopulationService;
-        this.ethnicityRepsService = ethnicityRepsService;
+    private VoteShareService voteShareService;
 
-    }
+    @Autowired
+    private EthnicityPopulationService ethnicityPopulationService;
+
+    @Autowired
+    private EthnicityRepsService ethnicityRepsService;
+
+
+    // @Autowired
+    // public Controller(VoteShareService voteShareService, EthnicityPopulationService ethnicityPopulationService, EthnicityRepsService ethnicityRepsService) { 
+    //     this.voteShareService = voteShareService;
+    //     this.ethnicityPopulationService = ethnicityPopulationService;
+    //     this.ethnicityRepsService = ethnicityRepsService;
+
+    // }
 
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/Arizona_Illinois_Legislative_Districts")

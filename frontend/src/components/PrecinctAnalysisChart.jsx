@@ -27,7 +27,6 @@ const PrecinctAnalysisChart = () => {
           });
           console.log('Fetched equations:', response.data.equationDemocrat, response.data.equationRepublican);
         } else {
-          // If the expected properties aren't in the response, log the entire response for debugging
           console.error("Unexpected response data:", response.data);
         }
       } catch (error) {

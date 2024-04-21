@@ -32,9 +32,9 @@ const MasterSidebar = (props) => {
                 <ChartModal charts={charts} chartSelection={props.chartSelection}/>
               </>);
       case 'District':
-        return <div className='h-full'> <StateAssemblyTable /> </div>;
+        return <StateAssemblyTable />;
       default:
-        return <EthnicityBarChart />; 
+        return <EthnicityBarChart/>; 
     }
   };
 
