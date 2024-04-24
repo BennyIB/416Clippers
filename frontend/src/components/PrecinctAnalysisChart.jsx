@@ -69,18 +69,18 @@ const PrecinctAnalysisChart = () => {
       {
         label: 'Democrat Vote Share',
         data: dataPoints.democratPoints,
-        backgroundColor: 'rgba(53, 162, 235, 0.5)', 
+        backgroundColor: 'rgba(53, 162, 235, 0.5)', //blue
       },
       {
         label: 'Republican Vote Share',
         data: dataPoints.republicanPoints,
-        backgroundColor: 'rgba(255, 99, 132, 0.5)', 
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',  //red
       },
       {
         label: 'Democrat',
         data: democratRegressionCurve,
         type: 'line',
-        borderColor: 'rgba(53, 162, 235, 1)', 
+        borderColor: 'rgba(53, 162, 235, 1)', //blue
         borderWidth: 2,
         fill: false,
         showLine: true,
@@ -88,9 +88,9 @@ const PrecinctAnalysisChart = () => {
       },
       {
         label: 'Republican Regression Line',
-        data: republicanRegressionCurve,
+        data: republicanRegressionCurve, //red
         type: 'line',
-        borderColor: 'rgba(255, 99, 132, 1)', // Line color for Martha McSally
+        borderColor: 'rgba(255, 99, 132, 1)', 
         borderWidth: 2,
         fill: false,
         showLine: true,
