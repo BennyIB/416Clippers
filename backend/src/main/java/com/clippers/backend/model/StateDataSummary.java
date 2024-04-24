@@ -22,7 +22,6 @@ public class StateDataSummary extends MongoDocument {
     private int racialSummaryBlack;
     private int racialSummaryAsian;
 
-    // Constructor with parameters
     public StateDataSummary(String id, String type, String stateName, String voterDistributionPercentage, String totalPopulation, String racialGroupLatinoPopulation, String racialGroupWhitePopulation, String racialGroupBlackPopulation, String racialGroupAsianPopulation, String redistrictingControl, int partySummaryDemocrat, int partySummaryRepublican, int racialSummaryWhite, int racialSummaryLatino, int racialSummaryBlack, int racialSummaryAsian) {
         super(id, type);
         this.stateName = stateName;
@@ -41,7 +40,6 @@ public class StateDataSummary extends MongoDocument {
         this.racialSummaryAsian = racialSummaryAsian;
     }
 
-    // Getters only
 
     public String getStateName() {
         return stateName;

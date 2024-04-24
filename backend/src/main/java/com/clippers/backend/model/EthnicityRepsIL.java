@@ -10,7 +10,6 @@ public class EthnicityRepsIL extends MongoDocument {
     private List<String> ethnicities;
     private List<Float> populations; 
 
-    // Constructor with parameters
     public EthnicityRepsIL(String id, String type, List<String> ethnicities, List<Float> populations) {
         super(id, type);
         this.ethnicities = ethnicities;
