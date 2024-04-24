@@ -1,6 +1,5 @@
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-
 // Register the necessary Chart.js components
 ChartJS.register(
   CategoryScale,
@@ -10,7 +9,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
 const EthnicityBarChartPop = () => {
   const data = {
     labels: ['Black/African American', 'Hispanic/Latino', 'White/Caucasian', 'Asian'],
@@ -34,7 +32,6 @@ const EthnicityBarChartPop = () => {
       }
     ]
   };
-
   const options = {
     scales: {
       y: {
@@ -47,8 +44,6 @@ const EthnicityBarChartPop = () => {
       }
     }
   };
-
   return <Bar data={data} options={options} />;
 };
-
 export default EthnicityBarChartPop; 

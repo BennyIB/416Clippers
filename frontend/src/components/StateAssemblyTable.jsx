@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Illinois_Representatives from '../assets/Illinois_Representatives.json'
 import Arizona_Representatives from '../assets/Arizona_Representatives.json'
 import { useAppState } from '../AppStateContext';
-
 const StateAssemblyTable = () => {
     const { appState } = useAppState();
     const [table, setSelectedTable] = useState(null);
@@ -54,5 +53,4 @@ const StateAssemblyTable = () => {
         </div>
     );
 };
-
 export default StateAssemblyTable;

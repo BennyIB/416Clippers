@@ -1,5 +1,4 @@
 const HeatMapSelection = (props) => {
-
     return (
         <div className="absolute right-5 top-5 z-10 bg-white border-solid border-2 p-4 rounded-md">
             <div className="text-black my-4">
@@ -21,5 +20,4 @@ const HeatMapSelection = (props) => {
         </div>
     );
 }
-
 export default HeatMapSelection;

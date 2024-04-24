@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import { Chart, Line } from 'react-chartjs-2';
 import 'chart.js/auto';
-
 const EcologicalInferencePlot = () => {
     const [selectedRace, setSelectedRace] = useState('Latino');
-
     // Example left-skewed data
     const getDataPoints = (race) => {
         switch (race) {
@@ -29,10 +27,7 @@ const EcologicalInferencePlot = () => {
                 ];
         }
     };
-
     const dataPoints = getDataPoints(selectedRace);
-
-
     const labels = dataPoints.map((_, index) => {
         const normalizedIndex = index / (dataPoints.length - 1);
         const scaledValue = normalizedIndex * 2 - 1;
@@ -68,11 +63,9 @@ const EcologicalInferencePlot = () => {
         }
         }
     };
-
     const handleRaceChange = (event) => {
         setSelectedRace(event.target.value);
     };
-
     return (
         <div>
             <select value={selectedRace} onChange={handleRaceChange} className="text-lg bg-white border-solid border-2 text-black rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
@@ -84,7 +77,5 @@ const EcologicalInferencePlot = () => {
             <Line data={chartData} options={options} />
         </div>
     );
-
 };
-
 export default EcologicalInferencePlot;

@@ -4,7 +4,6 @@ import HeatMapSelection from "../components/HeatMapSelection";
 import HeatMapLegend from "../components/HeatMapLegend";
 import MapControl from "../components/MapControl";
 import MasterSidebar from "../components/MasterSidebar";
-
 const legendItems = [
     { color: '#ffffe0', number: 0, value: '0%', textColor: '#000' },
     { color: '#ffffad', number: 10, value: '10%', textColor: '#000' },
@@ -18,7 +17,6 @@ const legendItems = [
     { color: '#8a2b0a', number: 90, value: '90%', textColor: '#fff' },
     { color: '#790000', number: 100, value: '100%', textColor: '#fff' },
 ];
-
 const MapPage = () => {
     const mapRef = useRef(null);
     const [compareView, setCompareView] = useState(false);
@@ -27,19 +25,15 @@ const MapPage = () => {
     const handleZoomIn = () => {
         mapRef.current.zoomIn();
     };
-
     const handleZoomOut = () => {
         mapRef.current.zoomOut();
     };
-
     const handleResetZoom = () => {
         mapRef.current.resetZoom();
     };
-
     useEffect( () => {
         console.log("state is", chartSelection);
     }, [chartSelection])
-
     return (
         <div className="relative w-full h-screen">
             {(selectedHeatMap !== "None" && selectedHeatMap !== "PoliticalPartyPreference") && <HeatMapLegend legendItems={legendItems} />}

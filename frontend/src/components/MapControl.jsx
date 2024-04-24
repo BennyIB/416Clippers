@@ -1,12 +1,10 @@
 import { useAppState } from '../AppStateContext';
 import React, { useState, useEffect } from 'react';
-
 const states = {
     AZ: "Arizona",
     IL: "Illinois",
     USA: "USA"
 };
-
 const MapControl = (props) => {
     const { appState, setAppState } = useAppState();
     // cycle through states
@@ -22,7 +20,6 @@ const MapControl = (props) => {
         const currentStateAbbreviation = Object.keys(states).find(key => states[key] === appState) || "USA";
         setCurrentStateAbbreviation(currentStateAbbreviation);
     }, [appState]);
-
     return (
         <div className="absolute right-5 bottom-5 z-10 flex">
             {/* Container for buttons growing towards the left */}
@@ -70,8 +67,6 @@ const MapControl = (props) => {
                 </button>
             </div>
         </div>
-
     );
 };
-
 export default MapControl;

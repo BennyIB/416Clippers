@@ -1,6 +1,5 @@
 import React from 'react';
 import '../App.css'; 
-
 const SplashScreen = ({ fadeEffect }) => {
     return (
       <div className={`splash-container flex items-center justify-center h-screen ${fadeEffect ? 'fade-out' : ''}`}>
@@ -12,6 +11,4 @@ const SplashScreen = ({ fadeEffect }) => {
       </div>
     );
   };
-
 export default SplashScreen;
-

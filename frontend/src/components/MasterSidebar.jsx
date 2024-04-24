@@ -4,26 +4,11 @@ import EthnicityBarChart from './EthnicityBarChart';
 import ChartModal from './Modal';
 import ChartSelection from './ChartSelection';
 import StateAssemblyTable from './StateAssemblyTable';
-
-const charts = [
-  { id: 'ethnicityBarChart', name: 'Ethnicity Bar Chart' },
-  { id: 'ecologicalInferencePlot', name: 'Ecological Inference Plot' },
-  { id: 'ethnicityBarChartPop', name: 'Ethnicity Bar Chart Pop' },
-  { id: 'precinctAnalysisChart', name: 'Precinct Analysis Chart' },
-  // { id: 'minorityRepresentationAllDistricts', name: 'Minority Representation Across All Districts' },
-  { id: 'minorityRepresentation9Districts', name: 'ReCom Ensemble Plot' },
-  { id: 'ethnicityBarChartPopANDethnicityBarChart', name: 'Ethnicity Bar Chart vs Ethnicity Bar Chart Pop' },
-];
-
-
 const MasterSidebar = (props) => {
   const [selectedTab, setSelectedTab] = useState('State');
-
-  // Handle changing the selected tab
   const handleChange = (event) => {
     setSelectedTab(event.target.value);
   };
-
   const renderChart = () => {
     switch (selectedTab) {
       case 'State':
@@ -37,22 +22,16 @@ const MasterSidebar = (props) => {
         return <EthnicityBarChart/>; 
     }
   };
-
-  // debug print statement
   useEffect(() => {
-    console.log("The selected tab is", selectedTab);
+    console.log("Checking selected tab:", selectedTab);
   }, [selectedTab])
-
   const charts = [
     { id: 'ethnicityBarChart', name: 'Ethnicity Bar Chart' },
     { id: 'ecologicalInferencePlot', name: 'Ecological Inference Plot' },
     { id: 'ethnicityBarChartPop', name: 'Ethnicity Bar Chart Pop' },
     { id: 'precinctAnalysisChart', name: 'Precinct Analysis Chart' },
-    // { id: 'minorityRepresentationAllDistricts', name: 'Minority Representation Across All Districts' },
-    { id: 'minorityRepresentation9Districts', name: 'ReCom Ensemble Plot' },
-    // { id: 'ethnicityBarChartPopANDethnicityBarChart', name: 'Ethnicity Bar Chart vs Ethnicity Bar Chart Pop' },
+    { id: 'minorityRepresentation9Districts', name: 'ReCom Ensemble Plot' }
   ];
-
   return (
     <div className="absolute bg-white border-solid border-2 collapse-arrow rounded-tr-none rounded-l-none left-0 top-0 w-2/5 z-40 collapse bg-base-200">
       <input type="checkbox" className="peer" />
@@ -88,5 +67,4 @@ const MasterSidebar = (props) => {
     </div>
   );
 };
-
 export default MasterSidebar;
