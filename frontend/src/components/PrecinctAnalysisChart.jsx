@@ -4,6 +4,8 @@ import regression from 'regression';
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import annotationPlugin from 'chartjs-plugin-annotation';
+import { useAppState } from '../AppStateContext';
+
 ChartJS.register(annotationPlugin);
 const PrecinctAnalysisChart = () => {
   const [selectedRace, setSelectedRace] = useState('Latino');
@@ -15,11 +17,13 @@ const PrecinctAnalysisChart = () => {
     democratForm: '',
     republicanForm: '',
   });
+  const { appState } = useAppState();
   
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/arizona/vote-shares/precinct-analysis?race=${selectedRace}`);
+        const stateParam = appState.charAt(0).toLowerCase() + appState.slice(1);
+        const response = await axios.get(`http://localhost:8080/api/${stateParam}/vote-shares/precinct-analysis?race=${selectedRace}`);
 
         setDataPoints({
           democratPoints: response.data.democratPoints,
