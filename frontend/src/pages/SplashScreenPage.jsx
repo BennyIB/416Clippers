@@ -1,7 +1,23 @@
 import React from 'react';
 import '../App.css'; 
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 const SplashScreen = ({ fadeEffect }) => {
+  const [configData, setConfigData] = useState({});
+
+  useEffect(() => {
+    const getConfigData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/config_data');
+        setConfigData(response.data);
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+    getConfigData();
+  }, []); 
+
     return (
       <div className={`splash-container flex items-center justify-center h-screen ${fadeEffect ? 'fade-out' : ''}`}>
         <img
