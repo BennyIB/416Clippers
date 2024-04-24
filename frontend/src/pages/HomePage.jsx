@@ -1,12 +1,27 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useAppState } from '../AppStateContext';
+import axios from 'axios';
+
 function HomeWrapper() {
     const { setAppState } = useAppState();
     const navigate = useNavigate();
     const [selectedState, setSelectedState] = useState('');
     const clippersImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/b/bb/Los_Angeles_Clippers_%282015%29.svg/1200px-Los_Angeles_Clippers_%282015%29.svg.png";
     const [isStateSelected, setIsStateSelected] = useState(false); 
+
+    const { config, setConfig } = useAppState();
+    useEffect(() => {
+      const getConfigData = async () => {
+        try {
+          const response = await axios.get('http://localhost:8080/config_data');
+          setConfig(response.data);
+        } catch (error) {
+          console.error("Error fetching data: ", error);
+        }
+      };
+      getConfigData();
+    }, []); 
     useEffect(() => {
       if (selectedState) {
         setAppState(selectedState);
