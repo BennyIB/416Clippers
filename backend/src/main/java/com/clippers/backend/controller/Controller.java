@@ -59,10 +59,30 @@ public class Controller {
             .map(ResponseEntity::ok)
             .orElseGet(() -> {
                 System.out.println("No vote share data found for type 'precinct analysis'");
-                System.out.println(mongoService.toString());
                 return ResponseEntity.notFound().build();
             });
     }
+
+    @GetMapping("/api/arizona/ethnicity-population")
+    public ResponseEntity<EthnicityPopulation> getEthnicityPopulationByType() {
+        System.out.println("Endpoint /api/arizona/ethnicity-population was hit");
+
+        return ethnicityPopulationService.getDataByType("ethnicity_population")
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> {
+                System.out.println("No ethnicity population found'");
+                return ResponseEntity.notFound().build();
+            });
+    }
+    @GetMapping("/api/arizona/ethnicity-representatives")
+    public ResponseEntity<EthnicityReps> getEthnicityRepresentativesByType() {
+        return ethnicityRepsService.getDataByType("ethnicity_population_reps")
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> {
+                System.out.println("No ethnicity representatives data found");
+                return ResponseEntity.notFound().build();
+            });
+}
 
     @GetMapping("/config_data")
     public String getConfigData() throws IOException {
