@@ -139,4 +139,11 @@ public class Controller {
         ClassPathResource resource = new ClassPathResource("static/config_data.json");
         return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
     }
+
+
+    @GetMapping("/box-whisker-data")
+    public String getBoxWhiskerData() throws IOException {
+        ClassPathResource resource = new ClassPathResource("static/250_plans.json");
+        return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+    }
 }
