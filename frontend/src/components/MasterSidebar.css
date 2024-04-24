@@ -1,4 +1,4 @@
-.tab::after {
+/* .tab::after {
     content: none;
 }
 .peer:checked~.collapse-content {
@@ -12,4 +12,4 @@
 .peer-checked .collapse-content {
     max-height: 0;
 }
-  
+   */
