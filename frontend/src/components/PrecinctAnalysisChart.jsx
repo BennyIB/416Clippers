@@ -6,7 +6,7 @@ import axios from 'axios';
 import annotationPlugin from 'chartjs-plugin-annotation';
 ChartJS.register(annotationPlugin);
 const PrecinctAnalysisChart = () => {
-  const [selectedRace, setSelectedRace] = useState('Hispanic');
+  const [selectedRace, setSelectedRace] = useState('Latino');
   const [dataPoints, setDataPoints] = useState({
     democratPoints: [],
     republicanPoints: [],
