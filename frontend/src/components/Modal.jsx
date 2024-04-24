@@ -7,9 +7,11 @@ import StateDataSummary from './StateDataSummary';
 import FeasibleOpportunityDistrictsTable from './FeasibleOpportunityDistrictsTable'; 
 import OpportunityDistrictsBarChart from './OpportunityDistrictsBarChart';
 import PrecinctAnalysisTable from './PrecinctAnalysisTable';
+import BoxAndWhisker from './BoxAndWhisker';
 
 
 import { useState, useEffect } from 'react';
+import BoxAndWhiskerChart from './BoxAndWhisker';
 
 const ChartModal = (props) => {
     const [localChartSelection, setLocalChartSelection] = useState('ethnicityBarChartPop');
@@ -28,7 +30,7 @@ const ChartModal = (props) => {
             case 'precinctAnalysisChart':
                 return <PrecinctAnalysisChart />;
             case 'minorityRepresentation9Districts':
-                return <img src="/nine.png" alt="minority representation image" />;
+                return <BoxAndWhisker />;
             case 'stateDataSummary':  
                 return <StateDataSummary/>;
             case 'feasibleOpportunityDistrictsTable':

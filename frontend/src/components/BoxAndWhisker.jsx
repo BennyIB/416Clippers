@@ -1,83 +1,69 @@
-import { Box } from 'react-chartjs-2';
-import { Chart as ChartJS, registerables } from 'chart.js';
-import boxplotPlugin from 'chartjs-chart-box-and-violin-plot';
-import { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import CanvasJSReact from '@canvasjs/react-charts';
 import axios from 'axios';
 
-// Register the boxplot plugin and the rest of the chart.js features
-ChartJS.register(...registerables, boxplotPlugin);
+const CanvasJS = CanvasJSReact.CanvasJS;
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const BoxAndWhiskerChart = () => {
-  const [dataPoints, setDataPoints] = useState({
-    boxPlotData: [],
-  });
+  const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-
-        const response = await axios.get('http://localhost:8080/api/your-endpoint');
-        if (response.data) {
-          
-          setDataPoints({
-            boxPlotData: response.data,
-          });
-        } else {
-          console.error("Unexpected response data:", response.data);
-        }
+        const response = await axios.get('http://localhost:8080/box-whisker-data');
+        console.log("THE DATA", response.data);
+        const data = response.data.map(item => ({
+          label: item.rank-1,
+          actual: item.actual,
+          y: [item.min, item.q1, item.q3, item.max, item.median]
+        }));
+        setChartData(data);
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
     };
-  
-    fetchData();
-  }, []); 
 
-  const data = {
-    datasets: dataPoints.boxPlotData.map((districtData, index) => ({
-      label: `District ${index + 1}`,
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-      borderColor: 'rgba(53, 162, 235, 1)',
-      borderWidth: 1,
-      outlierColor: '#999999',
-      padding: 10,
-      itemRadius: 0,
-      data: [districtData]
-    })),
-  };
+    fetchData();
+  }, []);
 
   const options = {
-    responsive: true,
-    scales: {
-      x: {
-        // Configure your scales as needed
-        title: {
-          display: true,
-          text: 'Districts'
-        }
-      },
-      y: {
-        title: {
-          display: true,
-          text: 'Percentage of Hispanic Population'
-        }
-      }
+    theme: "light2",
+    animationEnabled: true,
+    title: {
+      text: "Arizona ReCom (Minority Group: Hispanic)"
     },
-    plugins: {
-      legend: {
-        display: false
-      },
-      title: {
-        display: true,
-        text: 'Box and Whisker Chart of Hispanic Population by District'
-      }
-    }
+    axisY: {
+      title: "Hispanic Population Percentage"
+    },
+    axisX: {
+      title: "Districts"
+    },
+    data: [{
+      type: "boxAndWhisker",
+      showInLegend: true,
+      legendText: "ReCom Ensemble",
+      yValueFormatString: "#,##0.# \"%\"",
+      dataPoints: chartData.map(item => ({
+        label: item.label,
+        y: item.y,
+      }))}, {
+      type: "scatter",
+      color: "red",
+      showInLegend: true,
+      legendText: "Enacted",
+      markerSize: 10,
+      toolTipContent: "Actual Hispanic Population Percentage: {y}%",
+      dataPoints: chartData.map(item => ({
+        x: item.label,
+        y: item.actual,
+      })) }]
+      
   };
 
   return (
     <div>
-      {/* Render your chart here */}
-      <Box data={data} options={options} />
+      <CanvasJSChart options={options} />
     </div>
   );
 };
