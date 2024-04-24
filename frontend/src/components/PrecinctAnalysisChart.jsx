@@ -113,7 +113,7 @@ const PrecinctAnalysisChart = () => {
         ticks: {
           min: 0, 
           stepSize: 20,
-          max: maxYAxisValue, 
+          max: 100, 
         },
         title: {
           display: true,
