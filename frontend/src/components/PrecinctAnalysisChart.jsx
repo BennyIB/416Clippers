@@ -39,7 +39,7 @@ const PrecinctAnalysisChart = () => {
     };
 
     fetchData();
-  }, [selectedRace]);
+  }, [selectedRace, appState]);
 
   const generatePointsFromEquation = (equation, form) => {
     const coeffs = equation.match(/[-+]?[0-9]*\.?[0-9]+/g).map(Number);
