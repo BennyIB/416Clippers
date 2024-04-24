@@ -19,7 +19,6 @@ function HomeWrapper() {
         setIsStateSelected(false); 
       }
     }, [isStateSelected, selectedState, navigate]);
-  
     const handleSelectState = (state) => {
       setSelectedState(state);
     };

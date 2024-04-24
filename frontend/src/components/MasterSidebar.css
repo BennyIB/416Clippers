@@ -4,13 +4,11 @@
 .peer:checked~.collapse-content {
     height: 24rem;
 }
-
 .collapse-content {
     transition: max-height 0.3s ease-in-out;
     overflow: hidden;
     max-height: 25rem;
 }
-
 .peer-checked .collapse-content {
     max-height: 0;
 }

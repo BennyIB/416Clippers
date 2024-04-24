@@ -1,6 +1,6 @@
 import { useAppState } from '../AppStateContext';
 import React, { useState, useEffect } from 'react';
-const states = {
+const STATES = {
     AZ: "Arizona",
     IL: "Illinois",
     USA: "USA"
@@ -9,7 +9,7 @@ const MapControl = (props) => {
     const { appState, setAppState } = useAppState();
     // cycle through states
     const getNextState = (currentState) => {
-        const stateKeys = Object.keys(states);
+        const stateKeys = Object.keys(STATES);
         const currentIndex = stateKeys.indexOf(currentState);
         const nextIndex = (currentIndex + 1) % stateKeys.length;
         return stateKeys[nextIndex];
@@ -17,7 +17,7 @@ const MapControl = (props) => {
     const [currentStateAbbreviation, setCurrentStateAbbreviation] = useState("USA");
     // find state abbreviation and set it
     useEffect(() => {
-        const currentStateAbbreviation = Object.keys(states).find(key => states[key] === appState) || "USA";
+        const currentStateAbbreviation = Object.keys(STATES).find(key => STATES[key] === appState) || "USA";
         setCurrentStateAbbreviation(currentStateAbbreviation);
     }, [appState]);
     return (
@@ -26,7 +26,7 @@ const MapControl = (props) => {
             <div className="flex items-end">
                 {!props.compareView && (<button
                     className="bg-blue-500 text-white font-bold p-2 rounded-full w-10 h-10 flex items-center justify-center"
-                    onClick={() => setAppState(states[getNextState(currentStateAbbreviation)])}
+                    onClick={() => setAppState(STATES[getNextState(currentStateAbbreviation)])}
                 >
                     {currentStateAbbreviation}
                 </button>)}

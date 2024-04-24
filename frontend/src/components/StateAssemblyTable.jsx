@@ -3,7 +3,7 @@ import Illinois_Representatives from '../assets/Illinois_Representatives.json'
 import Arizona_Representatives from '../assets/Arizona_Representatives.json'
 import { useAppState } from '../AppStateContext';
 const StateAssemblyTable = () => {
-    const { appState } = useAppState();
+    const { appState, setSelectedDistrict } = useAppState();
     const [table, setSelectedTable] = useState(null);
     useEffect(() => {
         switch (appState) {
@@ -18,6 +18,9 @@ const StateAssemblyTable = () => {
                 break;
         }
     }, [appState]);
+    function handleClick(district) {
+        setSelectedDistrict(district);
+    }
     return (
         <div className="border-solid border-2 h-full overflow-auto">
             <table className="divide-y divide-gray-200 w-full">
@@ -34,7 +37,7 @@ const StateAssemblyTable = () => {
                 <tbody className="divide-y divide-gray-200">
                 {table && table.map((item, index) => (
                         <tr key={index}>
-                            <td className="text-black px-1 py-4 whitespace-nowrap border">{item.district}</td>
+                            <td className="text-black px-1 py-4 whitespace-nowrap border cursor-pointer hover:bg-gray-100" onClick={() => handleClick(item.district)}>{item.district}</td>
                             <td className="text-black px-1 py-4 whitespace-nowrap border">
                                 <img width={40} height={40} src={item.url}></img>
                             </td>

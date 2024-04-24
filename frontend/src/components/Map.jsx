@@ -49,7 +49,7 @@ const MyMap = forwardRef((props, ref) => {
       zoomOut,
       resetZoom
     }));
-  const { appState } = useAppState();
+  const { appState, selectedDistrict, setSelectedDistrict } = useAppState();
   const mapRef = useRef(null);
   const accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
   let state; 
@@ -149,6 +149,26 @@ const MyMap = forwardRef((props, ref) => {
       };
     }
   }, [props.selectedHeatMap]);
+
+  const districtLayerStyle = useMemo(() => {
+    return {
+      id: 'districts',
+      type: 'line',
+      paint: {
+        'line-width': [
+          'case',
+          ['==', ['get', 'DISTRICT'], selectedDistrict || 0], 5,
+          1
+        ],
+        'line-color': [
+          'case',
+          ['==', ['get', 'DISTRICT'], selectedDistrict || 0], '#FF0000', 
+          '#000000' 
+        ]
+      }
+    };
+  }, [selectedDistrict]);
+  
   useEffect(() => {
     console.log("Current heatmap: ", props.selectedHeatMap);
   }, [props.selectedHeatMap])
@@ -220,6 +240,11 @@ const MyMap = forwardRef((props, ref) => {
   const handleClick = (event) => {
     const { features } = event;
     const clickedFeature = features && features.find(f => f.layer.id === layerStyle.id);
+    if(clickedFeature) {
+      console.log(clickedFeature.properties.DISTRICT);
+      setSelectedDistrict(clickedFeature.properties.DISTRICT);
+    }
+    
     // if (clickedFeature && appState === state) {
     //   setShowSidebar(true);
     // }
@@ -248,6 +273,7 @@ const MyMap = forwardRef((props, ref) => {
               <Layer {...layerStyle} />
               <Layer {...outLineStyle} />
               <Layer {...symbolStyle} />
+              <Layer {...districtLayerStyle} />
             </Source>
           </Map>
         </div>
