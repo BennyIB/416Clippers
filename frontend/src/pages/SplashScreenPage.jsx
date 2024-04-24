@@ -28,6 +28,4 @@ const SplashScreen = ({ fadeEffect }) => {
       </div>
     );
   };
-
 export default SplashScreen;
-

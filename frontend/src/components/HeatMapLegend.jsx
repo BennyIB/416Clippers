@@ -1,5 +1,4 @@
 import React from 'react';
-
 const HeatMapLegend = ({ legendItems }) => {
     return (
       <div className="absolute z-50 bottom-1 left-1 flex flex-col rounded-md shadow-md">
@@ -11,6 +10,4 @@ const HeatMapLegend = ({ legendItems }) => {
       </div>
     );
 };
-
-
 export default HeatMapLegend;

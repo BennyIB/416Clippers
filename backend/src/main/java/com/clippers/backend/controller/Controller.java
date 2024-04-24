@@ -1,7 +1,11 @@
 package com.clippers.backend.controller;
 
 import com.clippers.backend.model.VoteShareData;
-import com.clippers.backend.service.MongoService;
+import com.clippers.backend.service.VoteShareService;
+import com.clippers.backend.service.EthnicityRepsService;
+import com.clippers.backend.model.EthnicityReps;
+import com.clippers.backend.model.EthnicityPopulation;
+import com.clippers.backend.service.EthnicityPopulationService;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.StreamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +18,27 @@ import java.util.Optional;
 
 @RestController
 public class Controller {
-    private final MongoService<VoteShareData> mongoService;
+    // private final VoteShareService voteShareService;
+    // private final EthnicityPopulationService ethnicityPopulationService;
+    // private final EthnicityRepsService ethnicityRepsService;
 
     @Autowired
-    public Controller(MongoService<VoteShareData> mongoService) {
-        this.mongoService = mongoService;
-    }
+    private VoteShareService voteShareService;
+
+    @Autowired
+    private EthnicityPopulationService ethnicityPopulationService;
+
+    @Autowired
+    private EthnicityRepsService ethnicityRepsService;
+
+
+    // @Autowired
+    // public Controller(VoteShareService voteShareService, EthnicityPopulationService ethnicityPopulationService, EthnicityRepsService ethnicityRepsService) { 
+    //     this.voteShareService = voteShareService;
+    //     this.ethnicityPopulationService = ethnicityPopulationService;
+    //     this.ethnicityRepsService = ethnicityRepsService;
+
+    // }
 
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/Arizona_Illinois_Legislative_Districts")
@@ -36,11 +55,8 @@ public class Controller {
     
     @GetMapping("/api/arizona/vote-shares/precinct-analysis")
     public ResponseEntity<VoteShareData> getVoteShareDataByType() {
-        return mongoService.getDataByType("precinct analysis")
-            .map(data -> {
-                System.out.println("Retrieved vote share data: " + data);
-                return ResponseEntity.ok(data);
-            })
+        return voteShareService.getDataByType("precinct analysis") // Call method on voteShareService
+            .map(ResponseEntity::ok)
             .orElseGet(() -> {
                 System.out.println("No vote share data found for type 'precinct analysis'");
                 System.out.println(mongoService.toString());
