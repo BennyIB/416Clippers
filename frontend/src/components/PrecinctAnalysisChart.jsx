@@ -69,18 +69,18 @@ const PrecinctAnalysisChart = () => {
       {
         label: 'Democrat Vote Share',
         data: dataPoints.democratPoints,
-        backgroundColor: 'rgba(53, 162, 235, 0.5)', // Color for Mark Kelly
+        backgroundColor: 'rgba(53, 162, 235, 0.5)', 
       },
       {
         label: 'Republican Vote Share',
         data: dataPoints.republicanPoints,
-        backgroundColor: 'rgba(255, 99, 132, 0.5)', // Color for Martha McSally
+        backgroundColor: 'rgba(255, 99, 132, 0.5)', 
       },
       {
         label: 'Democrat',
         data: democratRegressionCurve,
         type: 'line',
-        borderColor: 'rgba(53, 162, 235, 1)', // Line color for Mark Kelly
+        borderColor: 'rgba(53, 162, 235, 1)', 
         borderWidth: 2,
         fill: false,
         showLine: true,
@@ -98,10 +98,6 @@ const PrecinctAnalysisChart = () => {
       }
     ]
   };
-
-  const maxDemocratVoteShare = Math.max(...dataPoints.democratPoints.map(point => point.y), ...democratRegressionCurve.map(point => point.y));
-  const maxRepublicanVoteShare = Math.max(...dataPoints.republicanPoints.map(point => point.y), ...republicanRegressionCurve.map(point => point.y));
-  const maxYAxisValue = Math.max(maxDemocratVoteShare, maxRepublicanVoteShare);
 
   const options = {
     scales: {
