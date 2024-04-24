@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
-
+import { useAppState } from '../AppStateContext';
 // Register the necessary Chart.js components
 ChartJS.register(
   CategoryScale,
@@ -15,13 +15,26 @@ ChartJS.register(
 
 const EthnicityBarChart = () => {
   const [representativeData, setRepresentativeData] = useState([]);
+  const { appState } = useAppState();
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
+        let url = 'http://localhost:8080/api/';
+        
+        if (appState === 'Arizona') {
+          url += 'arizona/ethnicity-representatives';
+        } else if (appState === 'Illinois') {
+          url += 'illinois/ethnicity-representatives';
+        } else {
+          console.error(`Unhandled app state: ${appState}`);
+          return; 
+        }
 
-        const response = await axios.get('http://localhost:8080/api/arizona/ethnicity-population');
-        if (response.data && response.data.populations) {
-          setRepresentativeData(response.data.populations);
+        const response = await axios.get(url);
+        if (response.data && response.data.populations) { 
+          setRepresentativeData(response.data.populations); 
         } else {
           console.error("Unexpected response data:", response.data);
         }
@@ -31,7 +44,8 @@ const EthnicityBarChart = () => {
     };
 
     fetchData();
-  }, []);
+  }, [appState]);
+
   const data = {
     labels: ['Black/African American', 'Hispanic/Latino', 'White/Caucasian', 'Asian'],
     datasets: [

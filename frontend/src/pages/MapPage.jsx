@@ -1,5 +1,6 @@
 import MyMap from "../components/Map";
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import HeatMapSelection from "../components/HeatMapSelection";
 import HeatMapLegend from "../components/HeatMapLegend";
 import MapControl from "../components/MapControl";
@@ -20,6 +21,7 @@ const legendItems = [
 ];
 
 const MapPage = () => {
+    const navigate = useNavigate();
     const mapRef = useRef(null);
     const [compareView, setCompareView] = useState(false);
     const [selectedHeatMap, setHeatMap] = useState("None");
@@ -36,12 +38,17 @@ const MapPage = () => {
         mapRef.current.resetZoom();
     };
 
+    const handleReset = () => {
+        navigate("/"); // Adjust this route according to where your HomeWrapper is routed
+    };
+
     useEffect( () => {
         console.log("state is", chartSelection);
     }, [chartSelection])
 
     return (
         <div className="relative w-full h-screen">
+            <button onClick={handleReset} className="absolute top-4 left-4 z-50 p-2 bg-red-500 text-white rounded">Reset Selection</button>
             {(selectedHeatMap !== "None" && selectedHeatMap !== "PoliticalPartyPreference") && <HeatMapLegend legendItems={legendItems} />}
             <HeatMapSelection selectedHeatMap={selectedHeatMap} setHeatMap={setHeatMap} />
             <MapControl setCompareView={setCompareView} compareView={compareView} zoomIn={handleZoomIn} zoomOut={handleZoomOut} resetZoom={handleResetZoom} />

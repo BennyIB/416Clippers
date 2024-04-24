@@ -4,14 +4,14 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Document(collection = "Arizona")
-public class EthnicityReps extends MongoDocument {
+@Document(collection = "Illinois")
+public class EthnicityRepsIL extends MongoDocument {
 
     private List<String> ethnicities;
     private List<Float> populations; 
 
     // Constructor with parameters
-    public EthnicityReps(String id, String type, List<String> ethnicities, List<Float> populations) {
+    public EthnicityRepsIL(String id, String type, List<String> ethnicities, List<Float> populations) {
         super(id, type);
         this.ethnicities = ethnicities;
         this.populations = populations;
@@ -21,10 +21,9 @@ public class EthnicityReps extends MongoDocument {
         return ethnicities;
     }
 
+
     public List<Float> getPopulations() {
         return populations;
     }
-
-
 
 }

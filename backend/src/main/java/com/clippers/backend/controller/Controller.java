@@ -6,6 +6,13 @@ import com.clippers.backend.service.EthnicityRepsService;
 import com.clippers.backend.model.EthnicityReps;
 import com.clippers.backend.model.EthnicityPopulation;
 import com.clippers.backend.service.EthnicityPopulationService;
+import com.clippers.backend.model.EthnicityPopulationIL;
+import com.clippers.backend.service.EthnicityPopulationILService;
+import com.clippers.backend.model.EthnicityRepsIL;
+import com.clippers.backend.service.EthnicityRepsILService;
+import com.clippers.backend.model.PrecinctAnalysisTable;
+import com.clippers.backend.service.PrecinctAnalysisTableService;
+
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.StreamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +38,17 @@ public class Controller {
     @Autowired
     private EthnicityRepsService ethnicityRepsService;
 
+    @Autowired
+    private EthnicityPopulationILService ethnicityPopulationILService;
 
-    // @Autowired
-    // public Controller(VoteShareService voteShareService, EthnicityPopulationService ethnicityPopulationService, EthnicityRepsService ethnicityRepsService) { 
-    //     this.voteShareService = voteShareService;
-    //     this.ethnicityPopulationService = ethnicityPopulationService;
-    //     this.ethnicityRepsService = ethnicityRepsService;
+    @Autowired
+    private EthnicityRepsILService ethnicityRepsILService;
 
-    // }
+    @Autowired
+    private PrecinctAnalysisTableService precinctAnalysisTableService;
+
+
+    
 
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/Arizona_Illinois_Legislative_Districts")
@@ -46,13 +56,14 @@ public class Controller {
         ClassPathResource resource = new ClassPathResource("static/Arizona_Illinois_Legislative_Districts.json");
         return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
     }
-
+    //mapping for district boundaries
     @GetMapping("/Arizona_Illinois_Boundaries")
     public String getBoundariesJson() throws IOException {
         ClassPathResource resource = new ClassPathResource("static/Arizona_Illinois_Boundary.json");
         return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
     }
-    
+
+    //mapping for precinct analysis data
     @GetMapping("/api/arizona/vote-shares/precinct-analysis")
     public ResponseEntity<VoteShareData> getVoteShareDataByType() {
         return voteShareService.getDataByType("precinct analysis") // Call method on voteShareService
@@ -62,7 +73,7 @@ public class Controller {
                 return ResponseEntity.notFound().build();
             });
     }
-
+    //mapping for ethnicity population
     @GetMapping("/api/arizona/ethnicity-population")
     public ResponseEntity<EthnicityPopulation> getEthnicityPopulationByType() {
         System.out.println("Endpoint /api/arizona/ethnicity-population was hit");
@@ -74,6 +85,21 @@ public class Controller {
                 return ResponseEntity.notFound().build();
             });
     }
+    
+
+    @GetMapping("/api/illinois/ethnicity-population")
+    public ResponseEntity<EthnicityPopulationIL> getEthnicityPopulationILByType() {
+        System.out.println("Endpoint /api/illinois/ethnicity-population was hit");
+
+        return ethnicityPopulationILService.getDataByType("ethnicity_population")
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> {
+                System.out.println("No ethnicity population found for Illinois");
+                return ResponseEntity.notFound().build();
+            });
+    }
+
+    //mapping for representatives
     @GetMapping("/api/arizona/ethnicity-representatives")
     public ResponseEntity<EthnicityReps> getEthnicityRepresentativesByType() {
         return ethnicityRepsService.getDataByType("ethnicity_population_reps")
@@ -82,7 +108,32 @@ public class Controller {
                 System.out.println("No ethnicity representatives data found");
                 return ResponseEntity.notFound().build();
             });
-}
+    
+    }
+
+    @GetMapping("/api/illinois/ethnicity-representatives")
+    public ResponseEntity<EthnicityRepsIL> getEthnicityRepresentativesILByType() {
+        System.out.println("Endpoint /api/illinois/ethnicity-representatives was hit");
+
+        return ethnicityRepsILService.getDataByType("ethnicity_population_reps")
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> {
+                System.out.println("No ethnicity representatives found for Illinois");
+                return ResponseEntity.notFound().build();
+            });
+    }
+    
+    //precinct analysis table
+    @GetMapping("api/arizona/precinct-analysis-table")
+    public ResponseEntity<PrecinctAnalysisTable> getPrecinctAnalysisDataByType() {
+        return precinctAnalysisTableService.getDataByType("precinct_analysis_table")
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> {
+                System.out.println("Error getting precinct table");
+                return ResponseEntity.notFound().build();
+            });
+    }
+
 }
 
 

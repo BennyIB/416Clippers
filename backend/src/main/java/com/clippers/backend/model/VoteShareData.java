@@ -15,6 +15,10 @@ public class VoteShareData extends MongoDocument {
     private String equationDemocrat;
     @Field("equation_republican")
     private String equationRepublican;
+    @Field("form_democrat")
+    private String formDemocrat; 
+    @Field("form_republican")
+    private String formRepublican;
 
     public VoteShareData(String id, String type, List<Object[]> democratPoints, List<Object[]> republicanPoints, String equationDemocrat, String equationRepublican) {
         super(id, type);
@@ -24,7 +28,6 @@ public class VoteShareData extends MongoDocument {
         this.equationRepublican = equationRepublican;
     }
 
-    // Getters and setters
     public List<Object[]> getDemocratPoints() {
         return democratPoints;
     }
@@ -39,5 +42,12 @@ public class VoteShareData extends MongoDocument {
 
     public String getEquationRepublican() {
         return equationRepublican;
+    }
+    public String getFormDemocrat() {
+        return formDemocrat;
+    }
+
+    public String getFormRepublican() {
+        return formRepublican;
     }
 }

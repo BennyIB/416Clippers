@@ -13,6 +13,8 @@ const PrecinctAnalysisChart = () => {
     republicanPoints: [],
     democratEquation: '', 
     republicanEquation: '',
+    democratForm: '',
+    republicanForm: '',
   });
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +26,8 @@ const PrecinctAnalysisChart = () => {
             republicanPoints: response.data.republicanPoints,
             democratEquation: response.data.equationDemocrat ,
             republicanEquation: response.data.equationRepublican,
+            democratForm: response.data.formDemocrat,
+            republicanForm: response.data.formRepublican
           });
           console.log('Fetched equations:', response.data.equationDemocrat, response.data.equationRepublican);
         } else {
@@ -37,49 +41,31 @@ const PrecinctAnalysisChart = () => {
     fetchData();
   }, []); 
 
-  const generatePointsFromEquation = (equation) => {
-    // Parse the coefficients from the equation string
+  const generatePointsFromEquation = (equation, form) => {
     const coeffs = equation.match(/[-+]?[0-9]*\.?[0-9]+/g).map(Number);
-
+  
     console.log('Coefficients:', coeffs);
-    
-    // Generate points using the parsed coefficients and the equation of a quadratic function
-    return Array.from({ length: 100 }, (_, x) => ({
-      x: x,
-      y: coeffs[0] * x**2 + coeffs[2] * x + coeffs[3]
-    }));
+  
+    switch (form) {
+      case 'quadratic':
+        return Array.from({ length: 100 }, (_, x) => ({
+          x: x,
+          y: coeffs[0] * x**2 + coeffs[2] * x + coeffs[3]
+        }));
+      case 'cubic':
+        return Array.from({ length: 100 }, (_, x) => ({
+          x: x,
+          y: coeffs[0] * x**3 + coeffs[1] * x**2 + coeffs[2] * x + coeffs[3]
+        }));
+      default:
+        console.error("Unhandled equation form:", form);
+        return [];
+    }
   };
 
-  const democratRegressionCurve = dataPoints.democratEquation ? generatePointsFromEquation(dataPoints.democratEquation) : [];
-  const republicanRegressionCurve = dataPoints.republicanEquation ? generatePointsFromEquation(dataPoints.republicanEquation) : [];
+  const democratRegressionCurve = dataPoints.democratEquation ? generatePointsFromEquation(dataPoints.democratEquation, dataPoints.democratForm) : [];
+  const republicanRegressionCurve = dataPoints.republicanEquation ? generatePointsFromEquation(dataPoints.republicanEquation, dataPoints.republicanForm) : [];
   
-
-  //   const result = regression.polynomial(dataPoints.democratPoints.map(point => [point.x, point.y]), { order: 2 });
-  //   const result2 = regression.polynomial(dataPoints.republicanPoints.map(point => [point.x, point.y]), { order: 2 });
-
-  //   const regressionCurveKelly = Array.from({ length: 100 }, (_, index) => ({
-  //     x: index,
-  //     y: result.predict(index)[1]
-  //   }));
-
-    
-  //   const regressionCurveMcSally = Array.from({ length: 100 }, (_, index) => ({
-  //     x: index,
-  //     y: result2.predict(index)[1]
-  //   }));
-  //   const maxRegressionPointKelly = regressionCurveKelly.reduce((max, p) => p.y > max.y ? p : max, regressionCurveKelly[0]);
-  //   const maxPointKelly = maxRegressionPointKelly.y;
-  //   const maxPointKellyX = maxRegressionPointKelly.x;
-
-  //   // Get the min Y-value and its corresponding X-value from the McSally regression curve
-  //   const minRegressionPointMcSally = regressionCurveMcSally.reduce((min, p) => p.y < min.y ? p : min, regressionCurveMcSally[0]);
-  //   const minPointMcSally = minRegressionPointMcSally.y;
-  //   const minPointMcSallyX = minRegressionPointMcSally.x;
-
-  //   const absoluteDifference = maxPointKelly - minPointMcSally;
-
-  //   // Calculate the percentage difference relative to the McSally's minimum value
-  //   const percentageDifference = (absoluteDifference / minPointMcSally) * 100;
 
   const data = {
     datasets: [
@@ -141,37 +127,6 @@ const PrecinctAnalysisChart = () => {
         display: true,
         text: `Vote Share vs. Percent ${selectedRace}`
       },
-      // annotation: {
-      //   annotations: {
-      //     line1: {
-      //       type: 'line',
-      //       xMin: maxPointKellyX,
-      //       xMax: maxPointKellyX,
-      //       yMin: maxPointKelly,
-      //       yMax: minPointMcSally,
-      //       borderColor: 'black',
-      //       borderWidth: 3,
-      //       //borderDash: [6, 6],
-      //     },
-          
-      //     label1: {
-      //       type: 'label',
-      //       xValue: (maxPointKellyX + minPointMcSallyX) / 2 - 10,
-      //       yValue: (maxPointKelly + minPointMcSally) / 2  + 20,
-      //       content: `Diff: ${percentageDifference.toFixed(2)}%`, // Display the difference as a percentage
-      //       backgroundColor: 'rgba(0, 0, 0, 0.8)',
-      //       borderColor: 'black',
-      //       borderWidth: 2,
-      //       borderRadius: 4,
-      //       color: 'white',
-      //       font: {
-      //         size: 12
-      //       },
-      //       xPadding: 6,
-      //       yPadding: 6
-      //     }          
-      //   }
-      // }
     }
   };
   

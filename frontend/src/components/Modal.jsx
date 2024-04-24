@@ -3,6 +3,12 @@ import EcologicalInferencePlot from './EcologicalInferencePlot';
 import EthnicityBarChartPop from './EthnicityBarChartPop';
 import PrecinctAnalysisChart from './PrecinctAnalysisChart';
 import ProportionalDifferenceTable from './ProportionalDifferenceTable';
+import StateDataSummary from './StateDataSummary';
+import FeasibleOpportunityDistrictsTable from './FeasibleOpportunityDistrictsTable'; 
+import OpportunityDistrictsBarChart from './OpportunityDistrictsBarChart';
+import PrecinctAnalysisTable from './PrecinctAnalysisTable';
+
+
 import { useState, useEffect } from 'react';
 
 const ChartModal = (props) => {
@@ -32,6 +38,14 @@ const ChartModal = (props) => {
                 return <PrecinctAnalysisChart />;
             case 'minorityRepresentation9Districts':
                 return <img src="/nine.png" alt="minority representation image" />;
+            case 'stateDataSummary':  
+                return <StateDataSummary/>;
+            case 'feasibleOpportunityDistrictsTable':
+                return <FeasibleOpportunityDistrictsTable />;
+            case 'opportunityDistrictsBarChart': 
+                return <OpportunityDistrictsBarChart />;
+            case 'precinctAnalysisTable':
+                return <PrecinctAnalysisTable />;
             //temporary. scrap later. need revamp
             case 'ethnicityBarChartPopANDethnicityBarChart':
                 return (

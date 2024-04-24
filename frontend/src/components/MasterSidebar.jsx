@@ -4,6 +4,10 @@ import EthnicityBarChart from './EthnicityBarChart';
 import ChartModal from './Modal';
 import ChartSelection from './ChartSelection';
 import StateAssemblyTable from './StateAssemblyTable';
+import StateDataSummary from './StateDataSummary';
+import OpportunityDistrictsBarChart from './OpportunityDistrictsBarChart';
+
+
 
 const charts = [
   { id: 'ethnicityBarChart', name: 'Ethnicity Bar Chart' },
@@ -13,6 +17,13 @@ const charts = [
   // { id: 'minorityRepresentationAllDistricts', name: 'Minority Representation Across All Districts' },
   { id: 'minorityRepresentation9Districts', name: 'ReCom Ensemble Plot' },
   { id: 'ethnicityBarChartPopANDethnicityBarChart', name: 'Ethnicity Bar Chart vs Ethnicity Bar Chart Pop' },
+  { id: 'stateDataSummary', name: 'State Data Summary' },
+  { id: 'feasibleOpportunityDistrictsTable', name: 'Feasible Opportunity Districts Table' }, 
+  { id: 'opportunityDistrictsBarChart', name: 'Opportunity Districts Bar Chart' },
+  { id: 'precinctAnalysisTable', name: 'Precinct Analysis Table' },
+
+
+
 ];
 
 
@@ -43,15 +54,7 @@ const MasterSidebar = (props) => {
     console.log("The selected tab is", selectedTab);
   }, [selectedTab])
 
-  const charts = [
-    { id: 'ethnicityBarChart', name: 'Ethnicity Bar Chart' },
-    { id: 'ecologicalInferencePlot', name: 'Ecological Inference Plot' },
-    { id: 'ethnicityBarChartPop', name: 'Ethnicity Bar Chart Pop' },
-    { id: 'precinctAnalysisChart', name: 'Precinct Analysis Chart' },
-    // { id: 'minorityRepresentationAllDistricts', name: 'Minority Representation Across All Districts' },
-    { id: 'minorityRepresentation9Districts', name: 'ReCom Ensemble Plot' },
-    // { id: 'ethnicityBarChartPopANDethnicityBarChart', name: 'Ethnicity Bar Chart vs Ethnicity Bar Chart Pop' },
-  ];
+
 
   return (
     <div className="absolute bg-white border-solid border-2 collapse-arrow rounded-tr-none rounded-l-none left-0 top-0 w-2/5 z-40 collapse bg-base-200">
