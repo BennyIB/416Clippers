@@ -4,7 +4,6 @@ import regression from 'regression';
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import annotationPlugin from 'chartjs-plugin-annotation';
-
 ChartJS.register(annotationPlugin);
 const PrecinctAnalysisChart = () => {
   const [selectedRace, setSelectedRace] = useState('Latino');

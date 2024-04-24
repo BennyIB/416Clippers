@@ -1,6 +1,4 @@
-
 const ChartSelection = (props) => {
-
     return (
         <select className="px-5 bg-white text-black rounded-md cursor-pointer mb-2 border-solid border-2"
             value={props.chartSelection}

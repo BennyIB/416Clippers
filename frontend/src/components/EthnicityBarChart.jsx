@@ -12,7 +12,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
 const EthnicityBarChart = () => {
   const [representativeData, setRepresentativeData] = useState([]);
   const { appState } = useAppState();
@@ -68,7 +67,6 @@ const EthnicityBarChart = () => {
       }
     ]
   };
-
   const options = {
     scales: {
       y: {
@@ -81,8 +79,6 @@ const EthnicityBarChart = () => {
       }
     }
   };
-
   return <Bar data={data} options={options} />;
 };
-
 export default EthnicityBarChart; 

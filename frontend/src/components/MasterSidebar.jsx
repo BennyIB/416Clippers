@@ -29,12 +29,9 @@ const charts = [
 
 const MasterSidebar = (props) => {
   const [selectedTab, setSelectedTab] = useState('State');
-
-  // Handle changing the selected tab
   const handleChange = (event) => {
     setSelectedTab(event.target.value);
   };
-
   const renderChart = () => {
     switch (selectedTab) {
       case 'State':
@@ -48,10 +45,8 @@ const MasterSidebar = (props) => {
         return <EthnicityBarChart/>; 
     }
   };
-
-  // debug print statement
   useEffect(() => {
-    console.log("The selected tab is", selectedTab);
+    console.log("Checking selected tab:", selectedTab);
   }, [selectedTab])
 
 
@@ -91,5 +86,4 @@ const MasterSidebar = (props) => {
     </div>
   );
 };
-
 export default MasterSidebar;

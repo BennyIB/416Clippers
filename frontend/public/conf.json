@@ -1,0 +1,53 @@
+{
+    "ZOOMSTATE": {
+        "Arizona": [
+            -115.5,
+            34.25,
+            5.75
+        ],
+        "Illinois": [
+            -93.8,
+            39.75,
+            5.75
+        ],
+        "USA": [
+            -98.5795,
+            38,
+            4
+        ],
+        "ArizonaRight": [
+            -111.8,
+            34.75,
+            5.5
+        ],
+        "IllinoisRight": [
+            -89.8,
+            40.25,
+            5.5
+        ],
+        "ArizonaLeft": [
+            -112.5,
+            34.75,
+            5.5
+        ],
+        "IllinoisLeft": [
+            -90.25,
+            40.25,
+            5.75
+        ]
+    },
+    "CONVERT_RACE": {
+        "HispanicOrLatino": "OMB_LATINO",
+        "White": "OMB_NH_WHT",
+        "Black": "OMB_BLK_P",
+        "AsianOrPacificIslander": "OMB_ASNPI_",
+        "NativeAmerican": "OMB_NATIVE"
+    },
+    "STATES": {
+        "AZ": "Arizona",
+        "IL": "Illinois",
+        "USA": "USA"
+    },
+    "Republican": ["CompRepVot", "#FF000"],
+    "Democratic": ["CompDemVot", "#0000FF"]
+}

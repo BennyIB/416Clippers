@@ -9,8 +9,6 @@ import HomeWrapper from './pages/HomePage';
 import SplashScreen from './pages/SplashScreenPage';
 import { AppStateProvider } from './AppStateContext';
 import MapPage from './pages/MapPage';
-
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -33,9 +31,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-
 ]);
-
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
   const [fadeEffect, setFadeEffect] = useState(false);
@@ -50,16 +46,12 @@ export default function App() {
 
     return () => clearTimeout(timer);
   }, []);
-
   if (isLoading) {
     return <SplashScreen fadeEffect={fadeEffect} />;
   }
-
   return (
     <AppStateProvider>
       <RouterProvider router={router} />
     </AppStateProvider>
-
   );
 }
-

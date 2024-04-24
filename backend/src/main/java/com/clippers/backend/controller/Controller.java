@@ -134,6 +134,9 @@ public class Controller {
             });
     }
 
+    @GetMapping("/config_data")
+    public String getConfigData() throws IOException {
+        ClassPathResource resource = new ClassPathResource("static/config_data.json");
+        return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+    }
 }
-
-

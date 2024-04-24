@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Chart, Line } from 'react-chartjs-2';
 import 'chart.js/auto';
-
 const EcologicalInferencePlot = () => {
     const [selectedRace, setSelectedRace] = useState('Latino');
     const [selectedElection, setSelectedElection] = useState('2020');
@@ -23,7 +22,6 @@ const EcologicalInferencePlot = () => {
                 return [0.0,0.0,0.0,0.21,0.41,0.62,0.82,1.03,1.44,1.85,2.26,2.88,3.29,3.5,3.29,2.88,0.0];
         }
     };
-
     const dataPoints = getDataPoints(selectedRace);
 
     const labels = dataPoints.map((_, index) => `${(index / (dataPoints.length - 1) * 100).toFixed(2)}%`);
@@ -58,7 +56,6 @@ const EcologicalInferencePlot = () => {
             }
         }
     };
-
     const handleRaceChange = (event) => {
         setSelectedRace(event.target.value);
     };
@@ -90,5 +87,4 @@ const EcologicalInferencePlot = () => {
         </div>
     );
 };
-
 export default EcologicalInferencePlot;

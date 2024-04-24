@@ -14,7 +14,6 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
 const EthnicityBarChartPop = () => {
   const [populationData, setPopulationData] = useState([]);
   const { appState } = useAppState();
@@ -75,8 +74,6 @@ const EthnicityBarChartPop = () => {
       }
     ]
   };
-  
-
   const options = {
     scales: {
       y: {
@@ -89,8 +86,6 @@ const EthnicityBarChartPop = () => {
       }
     }
   };
-
   return <Bar data={data} options={options} />;
 };
-
 export default EthnicityBarChartPop; 

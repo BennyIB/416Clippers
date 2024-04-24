@@ -1,15 +1,12 @@
-// AppStateContext.js
 import React, { createContext, useState, useContext } from 'react';
-
 const AppStateContext = createContext(null);
-
 export const useAppState = () => useContext(AppStateContext);
-
 export const AppStateProvider = ({ children }) => {
   const [appState, setAppState] = useState("USA"); 
-  
+  const [config, setConfig] = useState(null);
+  const [selectedDistrict, setSelectedDistrict] = useState(0);
   return (
-    <AppStateContext.Provider value={{ appState, setAppState }}>
+    <AppStateContext.Provider value={{ appState, setAppState, selectedDistrict, setSelectedDistrict }}>
       {children}
     </AppStateContext.Provider>
   );

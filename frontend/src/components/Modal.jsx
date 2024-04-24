@@ -12,21 +12,12 @@ import PrecinctAnalysisTable from './PrecinctAnalysisTable';
 import { useState, useEffect } from 'react';
 
 const ChartModal = (props) => {
-    const [selectedChart, setSelectedChart] = useState(props.chartSelection);
     const [localChartSelection, setLocalChartSelection] = useState('ethnicityBarChartPop');
-
     function getIdByName(chartName) {
         const chart = props.charts.find(chart => chart.name === chartName);
         return chart ? chart.id : 'Chart name not found';
       }
-
-    // useEffect( () => {
-    //     console.log("In chart modal", props.chartSelection);
-    //     console.log("In chart modal", selectedChart);
-    // }, [props.chartSelection]);
-    
     const renderChart = () => {
-        console.log("The current chart is", props.chartSelection)
         switch (getIdByName(props.chartSelection)) {
             case 'ethnicityBarChart':
                 return <EthnicityBarChart />;
@@ -61,7 +52,6 @@ const ChartModal = (props) => {
                         {localChartSelection === 'ethnicityBarChartPop' ? 
                             <EthnicityBarChartPop /> : <EthnicityBarChart />}
                         <ProportionalDifferenceTable/>
-
                     </>
                 );
             default:
