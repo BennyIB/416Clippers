@@ -12,10 +12,20 @@
   resolved "https://registry.npmjs.org/@alloc/quick-lru/-/quick-lru-5.2.0.tgz"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@esbuild/darwin-arm64@0.19.12":
+"@canvasjs/charts@^3.7.5", "@canvasjs/charts@^3.8.2":
+  version "3.8.2"
+  resolved "https://registry.npmjs.org/@canvasjs/charts/-/charts-3.8.2.tgz"
+  integrity sha512-ON3TQ24dTD57K/JaD8t/ro0/9/ENrSnz8UK7KUgfzcogTR8JsyLX3J2gZyv2Qr/czTykugQx2J/O53zg9atZog==
+
+"@canvasjs/react-charts@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/@canvasjs/react-charts/-/react-charts-1.0.2.tgz"
+  integrity sha512-PZgJlDbGdMF4AN/KvrvGY9X50EByJMZ7MHfQB/U0aky9Onn9mt0CpsvwudBsBe+DofaV3SHR4SHn/Wfo/pubDw==
+
+"@esbuild/win32-x64@0.19.12":
   version "0.19.12"
-  resolved "https://registry.npmjs.org/@esbuild/darwin-arm64/-/darwin-arm64-0.19.12.tgz"
-  integrity sha512-B6IeSgZgtEzGC42jsI+YYu9Z3HKRxp8ZT3cqhvliEHovq8HSX2YX8lNocDn79gCKJXOSaEot9MVYky7AKjCs8g==
+  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.19.12.tgz"
+  integrity sha512-T1QyPSDCyMXaO3pzBkF96E8xMkiRYbUEZADd29SyPGabqxMViNoii+NcK7eWJAEoU6RZyEm5lVSIjTmcdoB9HA==
 
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
@@ -205,20 +215,20 @@
   resolved "https://registry.npmjs.org/@remix-run/router/-/router-1.15.1.tgz"
   integrity sha512-zcU0gM3z+3iqj8UX45AmWY810l3oUmXM7uH4dt5xtzvMhRtYVhKGOmgOd1877dOPPepfCjUv57w+syamWIYe7w==
 
-"@rollup/rollup-darwin-arm64@4.12.0":
+"@rollup/rollup-win32-x64-msvc@4.12.0":
   version "4.12.0"
-  resolved "https://registry.npmjs.org/@rollup/rollup-darwin-arm64/-/rollup-darwin-arm64-4.12.0.tgz"
-  integrity sha512-X64tZd8dRE/QTrBIEs63kaOBG0b5GVEd3ccoLtyf6IdXtHdh8h+I56C2yC3PtC9Ucnv0CpNFJLqKFVgCYe0lOQ==
+  resolved "https://registry.npmjs.org/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.12.0.tgz"
+  integrity sha512-ZYmr5mS2wd4Dew/JjT0Fqi2NPB/ZhZ2VvPp7SmvPZb4Y1CG/LRcS6tcRo2cYU7zLK5A7cdbhWnnWmUjoI4qapg==
 
 "@sgratzl/science@^2.0.0":
   version "2.0.0"
   resolved "https://registry.npmjs.org/@sgratzl/science/-/science-2.0.0.tgz"
   integrity sha512-LO3gArm8rVczcksg35xnZbOLEOE091VjyvvzR8mnPjP5K5+xqZEWhBi+lDcEk50dAlfPBoBHfwmu+MmiiSpXHw==
 
-"@swc/core-darwin-arm64@1.4.1":
+"@swc/core-win32-x64-msvc@1.4.1":
   version "1.4.1"
-  resolved "https://registry.npmjs.org/@swc/core-darwin-arm64/-/core-darwin-arm64-1.4.1.tgz"
-  integrity sha512-ePyfx0348UbR4DOAW24TedeJbafnzha8liXFGuQ4bdXtEVXhLfPngprrxKrAddCuv42F9aTxydlF6+adD3FBhA==
+  resolved "https://registry.npmjs.org/@swc/core-win32-x64-msvc/-/core-win32-x64-msvc-1.4.1.tgz"
+  integrity sha512-lu4h4wFBb/bOK6N2MuZwg7TrEpwYXgpQf5R7ObNSXL65BwZ9BG8XRzD+dLJmALu8l5N08rP/TrpoKRoGT4WSxw==
 
 "@swc/core@^1.3.107":
   version "1.4.1"
@@ -580,10 +590,10 @@ chart.js@^2.8.0:
     chartjs-color "^2.1.0"
     moment "^2.10.2"
 
-chart.js@^4.1.1, chart.js@>=4.0.0, chart.js@X:
-  version "4.4.1"
-  resolved "https://registry.npmjs.org/chart.js/-/chart.js-4.4.1.tgz"
-  integrity sha512-C74QN1bxwV1v2PEujhmKjOZ7iUM4w6BWs23Md/6aOZZSlwMzeCIDGuZay++rBgChYru7/+QFeoQW0fQoP534Dg==
+chart.js@^4.1.1, chart.js@^4.4.2, chart.js@>=4.0.0:
+  version "4.4.2"
+  resolved "https://registry.npmjs.org/chart.js/-/chart.js-4.4.2.tgz"
+  integrity sha512-6GD7iKwFpP5kbSD4MeRRRlTnQvxfQREy36uEtm1hzHzcOqwWx0YEHuspuoNlslu+nciLIB7fjjsHkUv/FzFcOg==
   dependencies:
     "@kurkle/color" "^0.3.0"
 
@@ -1200,11 +1210,6 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
-
-fsevents@~2.3.2, fsevents@~2.3.3:
-  version "2.3.3"
-  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
-  integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
 function-bind@^1.1.2:
   version "1.1.2"
@@ -2188,7 +2193,7 @@ react-router@6.22.1:
   dependencies:
     "@remix-run/router" "1.15.1"
 
-"react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, react@>=16.3.0, react@>=16.8:
+"react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.2.0, react@>=16.0.0, react@>=16.3.0, react@>=16.8:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==

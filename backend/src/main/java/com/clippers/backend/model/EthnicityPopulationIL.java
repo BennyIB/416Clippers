@@ -16,7 +16,6 @@ public class EthnicityPopulationIL extends MongoDocument {
         this.populations = populations;
     }
 
-    // Getters and setters
     public List<String> getEthnicities() {
         return ethnicities;
     }

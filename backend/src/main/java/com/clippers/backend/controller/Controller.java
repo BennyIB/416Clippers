@@ -25,9 +25,6 @@ import java.util.Optional;
 
 @RestController
 public class Controller {
-    // private final VoteShareService voteShareService;
-    // private final EthnicityPopulationService ethnicityPopulationService;
-    // private final EthnicityRepsService ethnicityRepsService;
 
     @Autowired
     private VoteShareService voteShareService;
@@ -65,13 +62,15 @@ public class Controller {
 
     //mapping for precinct analysis data
     @GetMapping("/api/arizona/vote-shares/precinct-analysis")
-    public ResponseEntity<VoteShareData> getVoteShareDataByType() {
-        return voteShareService.getDataByType("precinct analysis") // Call method on voteShareService
-            .map(ResponseEntity::ok)
-            .orElseGet(() -> {
-                System.out.println("No vote share data found for type 'precinct analysis'");
-                return ResponseEntity.notFound().build();
-            });
+    public ResponseEntity<?> getVoteShareDataByTypeAndRace(@RequestParam String race) {  
+    String typeWithRace = "precinct_analysis_" + race;  
+    Optional<VoteShareData> data = voteShareService.getDataByType(typeWithRace);
+    return data
+        .map(ResponseEntity::ok)
+        .orElseGet(() -> {
+            System.out.println("No vote share data found for type and race '" + typeWithRace + "'");
+            return ResponseEntity.notFound().build();
+        });
     }
     //mapping for ethnicity population
     @GetMapping("/api/arizona/ethnicity-population")
@@ -126,7 +125,7 @@ public class Controller {
     //precinct analysis table
     @GetMapping("api/arizona/precinct-analysis-table")
     public ResponseEntity<PrecinctAnalysisTable> getPrecinctAnalysisDataByType() {
-        return precinctAnalysisTableService.getDataByType("precinct_analysis_table")
+        return precinctAnalysisTableService.getDataByType("precinct_analysis_table2")
             .map(ResponseEntity::ok)
             .orElseGet(() -> {
                 System.out.println("Error getting precinct table");
@@ -137,6 +136,13 @@ public class Controller {
     @GetMapping("/config_data")
     public String getConfigData() throws IOException {
         ClassPathResource resource = new ClassPathResource("static/config_data.json");
+        return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+    }
+
+
+    @GetMapping("/box-whisker-data")
+    public String getBoxWhiskerData() throws IOException {
+        ClassPathResource resource = new ClassPathResource("static/250_plans.json");
         return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
     }
 }

@@ -34,7 +34,6 @@ const FeasibleOpportunityDistrictsTable = () => {
             idealDistrictPopulation: 125000,
             minorityPopulation: 5000
         },
-        // Add more racial groups and data as needed
     ];
 
     return (

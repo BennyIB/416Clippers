@@ -2,7 +2,7 @@
     content: none;
 }
 .peer:checked~.collapse-content {
-    height: 24rem;
+    height: 30rem;
 }
 .collapse-content {
     transition: max-height 0.3s ease-in-out;

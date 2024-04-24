@@ -4,6 +4,8 @@ import regression from 'regression';
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import annotationPlugin from 'chartjs-plugin-annotation';
+import { useAppState } from '../AppStateContext';
+
 ChartJS.register(annotationPlugin);
 const PrecinctAnalysisChart = () => {
   const [selectedRace, setSelectedRace] = useState('Latino');
@@ -15,30 +17,29 @@ const PrecinctAnalysisChart = () => {
     democratForm: '',
     republicanForm: '',
   });
+  const { appState } = useAppState();
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/arizona/vote-shares/precinct-analysis');
-        if (response.data && response.data.democratPoints && response.data.republicanPoints) {
-          setDataPoints({
-            democratPoints: response.data.democratPoints,
-            republicanPoints: response.data.republicanPoints,
-            democratEquation: response.data.equationDemocrat ,
-            republicanEquation: response.data.equationRepublican,
-            democratForm: response.data.formDemocrat,
-            republicanForm: response.data.formRepublican
-          });
-          console.log('Fetched equations:', response.data.equationDemocrat, response.data.equationRepublican);
-        } else {
-          console.error("Unexpected response data:", response.data);
-        }
+        const stateParam = appState.charAt(0).toLowerCase() + appState.slice(1);
+        const response = await axios.get(`http://localhost:8080/api/${stateParam}/vote-shares/precinct-analysis?race=${selectedRace}`);
+
+        setDataPoints({
+          democratPoints: response.data.democratPoints,
+          republicanPoints: response.data.republicanPoints,
+          democratEquation: response.data.equationDemocrat,
+          republicanEquation: response.data.equationRepublican,
+          democratForm: response.data.formDemocrat,
+          republicanForm: response.data.formRepublican
+        });
       } catch (error) {
         console.error("Error fetching data: ", error);
       }
     };
-  
+
     fetchData();
-  }, []); 
+  }, [selectedRace, appState]);
 
   const generatePointsFromEquation = (equation, form) => {
     const coeffs = equation.match(/[-+]?[0-9]*\.?[0-9]+/g).map(Number);
@@ -64,6 +65,7 @@ const PrecinctAnalysisChart = () => {
 
   const democratRegressionCurve = dataPoints.democratEquation ? generatePointsFromEquation(dataPoints.democratEquation, dataPoints.democratForm) : [];
   const republicanRegressionCurve = dataPoints.republicanEquation ? generatePointsFromEquation(dataPoints.republicanEquation, dataPoints.republicanForm) : [];
+
   
 
   const data = {
@@ -71,18 +73,18 @@ const PrecinctAnalysisChart = () => {
       {
         label: 'Democrat Vote Share',
         data: dataPoints.democratPoints,
-        backgroundColor: 'rgba(53, 162, 235, 0.5)', // Color for Mark Kelly
+        backgroundColor: 'rgba(53, 162, 235, 0.5)', //blue
       },
       {
         label: 'Republican Vote Share',
         data: dataPoints.republicanPoints,
-        backgroundColor: 'rgba(255, 99, 132, 0.5)', // Color for Martha McSally
+        backgroundColor: 'rgba(255, 99, 132, 0.5)',  //red
       },
       {
         label: 'Democrat',
         data: democratRegressionCurve,
         type: 'line',
-        borderColor: 'rgba(53, 162, 235, 1)', // Line color for Mark Kelly
+        borderColor: 'rgba(53, 162, 235, 1)', //blue
         borderWidth: 2,
         fill: false,
         showLine: true,
@@ -90,9 +92,9 @@ const PrecinctAnalysisChart = () => {
       },
       {
         label: 'Republican Regression Line',
-        data: republicanRegressionCurve,
+        data: republicanRegressionCurve, //red
         type: 'line',
-        borderColor: 'rgba(255, 99, 132, 1)', // Line color for Martha McSally
+        borderColor: 'rgba(255, 99, 132, 1)', 
         borderWidth: 2,
         fill: false,
         showLine: true,
@@ -112,6 +114,11 @@ const PrecinctAnalysisChart = () => {
         }
       },
       y: {
+        ticks: {
+          min: 0, 
+          stepSize: 20,
+          max: 100, 
+        },
         title: {
           display: true,
           text: 'Vote Share'
@@ -128,6 +135,7 @@ const PrecinctAnalysisChart = () => {
       },
     }
   };
+  
   
 
 

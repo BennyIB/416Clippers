@@ -10,14 +10,12 @@ public class EthnicityPopulation extends MongoDocument {
     private List<String> ethnicities;
     private List<Float> populations; 
 
-    // Constructor with parameters
     public EthnicityPopulation(String id, String type, List<String> ethnicities, List<Float> populations) {
         super(id, type);
         this.ethnicities = ethnicities;
         this.populations = populations;
     }
 
-    // Getters and setters
     public List<String> getEthnicities() {
         return ethnicities;
     }

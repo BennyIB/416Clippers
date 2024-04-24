@@ -5,7 +5,6 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 
 import { useAppState } from '../AppStateContext';
 
-// Register the necessary Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
