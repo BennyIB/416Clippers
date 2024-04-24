@@ -1,8 +1,8 @@
-/* .tab::after {
+.tab::after {
     content: none;
 }
 .peer:checked~.collapse-content {
-    height: 24rem;
+    height: 30rem;
 }
 .collapse-content {
     transition: max-height 0.3s ease-in-out;
@@ -12,4 +12,4 @@
 .peer-checked .collapse-content {
     max-height: 0;
 }
-   */
+  
