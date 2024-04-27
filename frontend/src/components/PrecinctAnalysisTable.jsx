@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAppState } from '../AppStateContext';
 
 const PrecinctAnalysisTable = () => {
   const [precinctData, setPrecinctData] = useState([]);
+  const { appState } = useAppState(); 
 
   useEffect(() => {
     const fetchPrecinctData = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/arizona/precinct-analysis-table');
+        const state = appState.charAt(0).toLowerCase() + appState.slice(1);
+        const response = await axios.get(`http://localhost:8080/api/${state}/precinct-analysis-table`);
         setPrecinctData(response.data.data);
       } catch (error) {
         console.error("Error fetching precinct analysis data: ", error);
@@ -15,7 +18,7 @@ const PrecinctAnalysisTable = () => {
     };
 
     fetchPrecinctData();
-  }, []);
+  }, [appState]);
 
   return (
     <div className="relative shadow-md sm:rounded-lg max-h-[500px] overflow-auto">

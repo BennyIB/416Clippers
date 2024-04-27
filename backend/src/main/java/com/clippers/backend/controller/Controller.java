@@ -1,7 +1,9 @@
 package com.clippers.backend.controller;
 
 import com.clippers.backend.model.VoteShareData;
+import com.clippers.backend.model.VoteShareDataIllinois;
 import com.clippers.backend.service.VoteShareService;
+import com.clippers.backend.service.VoteShareServiceIllinois;
 import com.clippers.backend.service.EthnicityRepsService;
 import com.clippers.backend.model.EthnicityReps;
 import com.clippers.backend.model.EthnicityPopulation;
@@ -11,7 +13,9 @@ import com.clippers.backend.service.EthnicityPopulationILService;
 import com.clippers.backend.model.EthnicityRepsIL;
 import com.clippers.backend.service.EthnicityRepsILService;
 import com.clippers.backend.model.PrecinctAnalysisTable;
+import com.clippers.backend.model.PrecinctAnalysisTableIllinois;
 import com.clippers.backend.service.PrecinctAnalysisTableService;
+import com.clippers.backend.service.PrecinctAnalysisTableServiceIllinois;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.StreamUtils;
@@ -44,6 +48,12 @@ public class Controller {
     @Autowired
     private PrecinctAnalysisTableService precinctAnalysisTableService;
 
+    @Autowired
+    private VoteShareServiceIllinois voteShareServiceIllinois;
+
+    @Autowired
+    private PrecinctAnalysisTableServiceIllinois precinctAnalysisTableServiceIllinois;
+
 
     
 
@@ -71,6 +81,18 @@ public class Controller {
             System.out.println("No vote share data found for type and race '" + typeWithRace + "'");
             return ResponseEntity.notFound().build();
         });
+    }
+
+    @GetMapping("/api/illinois/vote-shares/precinct-analysis")
+    public ResponseEntity<?> getVoteShareDataIllinoisByTypeAndRace(@RequestParam String race) {  
+        String typeWithRace = "precinct_analysis_" + race;  
+        Optional<VoteShareDataIllinois> data = voteShareServiceIllinois.getDataByType(typeWithRace);
+        return data
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> {
+                System.out.println("No vote share data found for Illinois with type and race '" + typeWithRace + "'");
+                return ResponseEntity.notFound().build();
+            });
     }
     //mapping for ethnicity population
     @GetMapping("/api/arizona/ethnicity-population")
@@ -132,6 +154,19 @@ public class Controller {
                 return ResponseEntity.notFound().build();
             });
     }
+
+    @GetMapping("/api/illinois/precinct-analysis-table")
+    public ResponseEntity<PrecinctAnalysisTableIllinois> getPrecinctAnalysisDataIllinoisByType() {
+        String type = "precinct_analysis_table"; // Adjust the type as necessary for your use case
+        Optional<PrecinctAnalysisTableIllinois> data = precinctAnalysisTableServiceIllinois.getDataByType(type);
+        return data
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> {
+                System.out.println("Error getting Illinois precinct table for type: " + type);
+                return ResponseEntity.notFound().build();
+            });
+    }
+
 
     @GetMapping("/config_data")
     public String getConfigData() throws IOException {

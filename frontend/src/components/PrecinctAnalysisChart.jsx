@@ -22,8 +22,8 @@ const PrecinctAnalysisChart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const stateParam = appState.charAt(0).toLowerCase() + appState.slice(1);
-        const response = await axios.get(`http://localhost:8080/api/${stateParam}/vote-shares/precinct-analysis?race=${selectedRace}`);
+        const state = appState.charAt(0).toLowerCase() + appState.slice(1);
+        const response = await axios.get(`http://localhost:8080/api/${state}/vote-shares/precinct-analysis?race=${selectedRace}`);
 
         setDataPoints({
           democratPoints: response.data.democratPoints,
@@ -55,7 +55,7 @@ const PrecinctAnalysisChart = () => {
       case 'cubic':
         return Array.from({ length: 100 }, (_, x) => ({
           x: x,
-          y: coeffs[0] * x**3 + coeffs[1] * x**2 + coeffs[2] * x + coeffs[3]
+          y: coeffs[0] * x**3 + coeffs[2] * x**2 + coeffs[4] * x + coeffs[5]
         }));
       default:
         console.error("Unhandled equation form:", form);
@@ -74,34 +74,41 @@ const PrecinctAnalysisChart = () => {
         label: 'Democrat Vote Share',
         data: dataPoints.democratPoints,
         backgroundColor: 'rgba(53, 162, 235, 0.5)', //blue
+        type: 'scatter', // Explicitly set type to scatter for clarity
+        order: 2 // Drawn after the lines (which will have order: 1)
       },
       {
         label: 'Republican Vote Share',
         data: dataPoints.republicanPoints,
         backgroundColor: 'rgba(255, 99, 132, 0.5)',  //red
+        type: 'scatter', // Explicitly set type to scatter for clarity
+        order: 2 // Drawn after the lines
       },
       {
-        label: 'Democrat',
+        label: 'Democrat Regression Line',
         data: democratRegressionCurve,
         type: 'line',
-        borderColor: 'rgba(53, 162, 235, 1)', //blue
+        borderColor: 'rgb(0, 0, 139)', //blue
         borderWidth: 2,
         fill: false,
         showLine: true,
         pointRadius: 0,
+        order: 1 // Draw this line first so it's below the points
       },
       {
         label: 'Republican Regression Line',
-        data: republicanRegressionCurve, //red
+        data: republicanRegressionCurve,
         type: 'line',
-        borderColor: 'rgba(255, 99, 132, 1)', 
+        borderColor: 'rgb(139, 0, 0)', 
         borderWidth: 2,
         fill: false,
         showLine: true,
         pointRadius: 0,
+        order: 1 // Draw this line first so it's below the points
       }
     ]
   };
+  
 
   const options = {
     scales: {
@@ -114,11 +121,12 @@ const PrecinctAnalysisChart = () => {
         }
       },
       y: {
+        beginAtZero: true,
         ticks: {
-          min: 0, 
-          stepSize: 20,
-          max: 100, 
+          stepSize: 10, 
         },
+        max: 100, 
+        min: 0,
         title: {
           display: true,
           text: 'Vote Share'
@@ -135,6 +143,7 @@ const PrecinctAnalysisChart = () => {
       },
     }
   };
+  
   
   
 
