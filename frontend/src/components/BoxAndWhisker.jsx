@@ -34,7 +34,7 @@ const BoxAndWhiskerChart = () => {
       text: "Arizona ReCom (Minority Group: Hispanic)"
     },
     axisY: {
-      title: "Hispanic Population Percentage"
+      title: "Hispanic Pop. %"
     },
     axisX: {
       title: "Districts"

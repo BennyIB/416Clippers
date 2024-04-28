@@ -33,7 +33,6 @@ const MapPage = () => {
     const handleResetZoom = () => {
         mapRef.current.resetZoom();
     };
-
     const handleReset = () => {
         navigate("/"); 
     };

@@ -1,0 +1,22 @@
+{
+    "illinois": {
+        "population_summary": {
+            "voter_dist": 46,
+            "total": 12812508,
+            "votes": 5918806,
+            "white": 8934277,
+            "latino": 2337410,
+            "black": 1992213,
+            "asian": 875488
+        },
+        "representative_summary": {
+            "democratic": 78,
+            "republican": 40,
+            "white": 80,
+            "latino": 11,
+            "black": 21,
+            "asian": 6,
+            "other": 0
+        }
+    }
+}

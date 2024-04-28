@@ -1,0 +1,21 @@
+{
+    "arizona": {
+        "population_summary": {
+            "voter_dist": 56,
+            "total": 7151502,
+            "white": 4405325,
+            "latino": 1337330,
+            "black": 886786,
+            "asian": 429090
+        },
+        "representative_summary": {
+            "democratic": 29,
+            "republican": 31,
+            "white": 36,
+            "latino": 17,
+            "black": 1,
+            "asian": 4,
+            "other": 2
+        }
+    }
+}
