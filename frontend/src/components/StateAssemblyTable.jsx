@@ -27,8 +27,8 @@ const StateAssemblyTable = () => {
                 <thead className="bg-gray-50 sticky top-0 z-20 shadow">
                     <tr>
                         <th className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-200">District</th>
-                        <th className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-200">Name</th>
                         <th className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-200">Image</th>
+                        <th className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-200">Name</th>
                         <th className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-200">Party</th>
                         <th className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-200">Race</th>
                         <th className="px-1 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-b border-gray-200">Vote Margin</th>

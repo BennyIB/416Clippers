@@ -239,16 +239,17 @@ const MyMap = forwardRef((props, ref) => {
   }
   const handleClick = (event) => {
     const { features } = event;
-    const clickedFeature = features && features.find(f => f.layer.id === layerStyle.id);
-    if(clickedFeature) {
+    const clickedFeature = features && features.find(f => f.layer.id === 'map_layers');
+    if (clickedFeature) {
       console.log(clickedFeature.properties.DISTRICT);
-      setSelectedDistrict(clickedFeature.properties.DISTRICT);
+      if (selectedDistrict === clickedFeature.properties.DISTRICT) {
+        setSelectedDistrict(null); 
+      } else {
+        setSelectedDistrict(clickedFeature.properties.DISTRICT);
+      }
     }
-    
-    // if (clickedFeature && appState === state) {
-    //   setShowSidebar(true);
-    // }
   };
+  
   // const handleCloseSideBar = () => {
   //   setShowSidebar(false)
   // }
