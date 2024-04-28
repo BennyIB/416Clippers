@@ -1,65 +1,98 @@
 import React, { useState, useEffect } from 'react';
+import { useAppState } from '../AppStateContext';
+import Arizona_Summary from '../assets/Arizona_State_Summary.json';
+import Illinois_Summary from '../assets/Illinois_State_Summary.json';
 
 const StateDataSummary = () => {
-    const [stateData, setStateData] = useState({
-        name: 'Arizona',
-        voterDistribution: '56%',
-        totalPopulation: '7,151,502',
-        racialGroups: [
-            { name: 'Latino', population: '1,337,330' },
-            { name: 'White', population: '4,405,325' },
-            { name: 'Black', population: '886,786' },
-            { name: 'Asian', population: '429,090' },
-        ],
-        redistrictingControl: 'Democratic Party',
-    });
+    const { appState } = useAppState();
+    const [stateData, setStateData] = useState(null);
 
-    const partySummary = {
-        Democrat: 29,
-        Republican: 31,
-    };
+    useEffect(() => {
+        const stateSummaries = {
+            Arizona: Arizona_Summary['Arizona'],
+            Illinois: Illinois_Summary['Illinois']
+        };
 
-    const racialSummary = {
-        White: 36,
-        Latino: 17,
-        Black: 1,
-        Asian: 4,
-    };
+        if (appState && stateSummaries[appState]) {
+            const data = stateSummaries[appState];
+            const formattedData = {
+                name: appState,
+                voterDistribution: `${data.population_summary.voter_dist}%`,
+                totalPopulation: data.population_summary.total.toLocaleString(),
+                racialGroups: [
+                    { name: 'White', population: data.population_summary.white.toLocaleString() },
+                    { name: 'Latino', population: data.population_summary.latino.toLocaleString() },
+                    { name: 'Black', population: data.population_summary.black.toLocaleString() },
+                    { name: 'Asian', population: data.population_summary.asian.toLocaleString() }
+                ],
+                representatives: {
+                    democrat: data.representative_summary.democratic,
+                    republican: data.representative_summary.republican,
+                    raceCounts: {
+                        White: data.representative_summary.white,
+                        Latino: data.representative_summary.latino,
+                        Black: data.representative_summary.black,
+                        Asian: data.representative_summary.asian,
+                        Other: data.representative_summary.other
+                    }
+                }
+            };
+            setStateData(formattedData);
+        } else {
+            console.error(`No data available for ${appState}`);
+        }
+    }, [appState]);
+
+    if (!stateData) return <div>Loading...</div>;
 
     return (
-        <div className="bg-white p-6 rounded-lg shadow-lg text-black max-h-96 overflow-auto">
-            <h2 className="text-2xl font-bold mb-6 text-gray-800">{stateData.name} Data Summary</h2>
-            <ul className="list-none space-y-3">
-                <li className="font-semibold">Voter Distribution: <span className="font-normal text-gray-600">{stateData.voterDistribution}</span></li>
-                <li className="font-semibold">Total Population: <span className="font-normal text-gray-600">{stateData.totalPopulation}</span></li>
-                <li className="font-semibold">Racial/Ethnic Groups:
-                    <ul className="list-none pl-5 mt-2 space-y-2">
-                        {stateData.racialGroups.map(group => (
-                            <li key={group.name} className="font-normal text-gray-600">{group.name}: {group.population}</li>
-                        ))}
-                    </ul>
-                </li>
-            </ul>
-            <h3 className="text-xl font-bold mt-6 text-gray-800">Representatives Summary</h3>
-            <ul className="list-none space-y-3">
-                <li className="font-semibold">By Party:
-                    <ul className="list-none pl-5 mt-2 space-y-2">
-                        {Object.entries(partySummary).map(([party, count]) => (
-                            <li key={party} className="font-normal text-gray-600">{party}: {count}</li>
-                        ))}
-                    </ul>
-                </li>
-                <li className="font-semibold">By Racial/Ethnic Group:
-                    <ul className="list-none pl-5 mt-2 space-y-2">
-                        {Object.entries(racialSummary).map(([race, count]) => (
-                            <li key={race} className="font-normal text-gray-600">{race}: {count}</li>
-                        ))}
-                    </ul>
-                </li>
-            </ul>
+        <div className="p-6 border border-gray-300 overflow-hidden">
+            <div className="flex">
+                <div className="flex-1 mr-4">
+                    <h2 className="text-2xl font-bold mb-6 text-gray-800">{stateData.name} - Data Summary</h2>
+                    <table className="min-w-full text-left">
+                        <tbody>
+                            <tr>
+                                <td className="font-semibold py-1 border-b">Voter Distribution:</td>
+                                <td className="text-gray-600 py-1 border-b">{stateData.voterDistribution}</td>
+                            </tr>
+                            <tr>
+                                <td className="font-semibold py-1 border-b">Total Population:</td>
+                                <td className="text-gray-600 py-1 border-b">{stateData.totalPopulation}</td>
+                            </tr>
+                            {stateData.racialGroups.map(group => (
+                                <tr key={group.name}>
+                                    <td className="font-semibold py-1 border-b">{group.name} Population:</td>
+                                    <td className="text-gray-600 py-1 border-b">{group.population}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="flex-1 ml-4">
+                    <h3 className="text-xl font-bold mb-7 text-gray-800">State Assembly</h3>
+                    <table className="min-w-full text-left">
+                        <tbody>
+                            <tr>
+                                <td className="font-semibold py-1 border-b">Democrats:</td>
+                                <td className="text-gray-600 py-1 border-b">{stateData.representatives.democrat}</td>
+                            </tr>
+                            <tr>
+                                <td className="font-semibold py-1 border-b">Republicans:</td>
+                                <td className="text-gray-600 py-1 border-b">{stateData.representatives.republican}</td>
+                            </tr>
+                            {Object.entries(stateData.representatives.raceCounts).map(([race, count]) => (
+                                <tr key={race}>
+                                    <td className="font-semibold py-1 border-b">{race} Representatives:</td>
+                                    <td className="text-gray-600 py-1 border-b">{count}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 };
 
 export default StateDataSummary;
-
