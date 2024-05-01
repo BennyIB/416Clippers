@@ -3,7 +3,6 @@ import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css"
 import axios from 'axios';
 import { useAppState } from '../AppStateContext';
-
 // Default zoom and coordinates
 const ZOOMSTATE = {
   Arizona: [-115.5, 34.25, 5.75],
