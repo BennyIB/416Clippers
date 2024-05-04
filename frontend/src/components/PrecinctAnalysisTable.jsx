@@ -25,7 +25,7 @@ const PrecinctAnalysisTable = () => {
       <h1 className="text-2xl font-semibold text-black mb-4">Precinct Analysis</h1>
       <div className="min-w-screen">
         <table className="min-w-full text-sm text-left text-black">
-          <thead className="text-xs uppercase bg-gray-50 text-black sticky top-0 z-10">
+          <thead className="text-xs bg-gray-50 text-black sticky top-0 z-10">
             <tr>
               <th scope="col" className="py-3 px-6">Precinct Name</th>
               <th scope="col" className="py-3 px-6">Total Population</th>

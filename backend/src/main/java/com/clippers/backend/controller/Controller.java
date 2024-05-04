@@ -17,6 +17,12 @@ import com.clippers.backend.model.PrecinctAnalysisTableIllinois;
 import com.clippers.backend.service.PrecinctAnalysisTableService;
 import com.clippers.backend.service.PrecinctAnalysisTableServiceIllinois;
 
+import com.clippers.backend.model.OpportunityDistrictData;
+import com.clippers.backend.service.OpportunityDistrictService;
+import com.clippers.backend.service.OpportunityDistrictServiceIllinois;
+import com.clippers.backend.model.OpportunityDistrictDataIllinois;
+import com.clippers.backend.repository.OpportunityDistrictRepositoryIllinois;
+
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.StreamUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +60,14 @@ public class Controller {
     @Autowired
     private PrecinctAnalysisTableServiceIllinois precinctAnalysisTableServiceIllinois;
 
+    @Autowired
+    private OpportunityDistrictService opportunityDistrictService;
+
+    @Autowired
+    private OpportunityDistrictServiceIllinois opportunityDistrictServiceIllinois;
 
     
+
 
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/Arizona_Illinois_Legislative_Districts")
@@ -180,4 +192,31 @@ public class Controller {
         ClassPathResource resource = new ClassPathResource("static/250_plans.json");
         return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
     }
+
+    @GetMapping("/api/arizona/opportunity-districts")
+    public ResponseEntity<?> getOpportunityDistrictDataByRace(@RequestParam String race) {
+        String typeWithRace = "opportunity_district_" + race;
+        System.out.println("This race: " + race);
+        Optional<OpportunityDistrictData> data = opportunityDistrictService.getDataByType(typeWithRace);
+        return data
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> {
+                System.out.println("No opportunity district data found for race: " + race);
+                return ResponseEntity.notFound().build();
+            });
+    }
+
+    @GetMapping("/api/illinois/opportunity-districts")
+    public ResponseEntity<?> getOpportunityDistrictDataIllinoisByRace(@RequestParam String race) {
+        String typeWithRace = "opportunity_district_" + race;
+        System.out.println("Checking Illinois data for race: " + race);
+        Optional<OpportunityDistrictDataIllinois> data = opportunityDistrictServiceIllinois.getDataByType(typeWithRace);
+        return data
+            .map(ResponseEntity::ok)
+            .orElseGet(() -> {
+                System.out.println("No opportunity district data found for Illinois with race: " + race);
+                return ResponseEntity.notFound().build();
+            });
+    }
+
 }

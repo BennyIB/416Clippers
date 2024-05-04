@@ -1,32 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import axios from 'axios';
+import { useAppState } from '../AppStateContext';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const OpportunityDistrictsBarChart = () => {
-  const [selectedRacialGroup, setSelectedRacialGroup] = useState('Black/African American');
+  const [chartData, setChartData] = useState({ labels: [], datasets: [] });
+  const [selectedRace, setSelectedRace] = useState('Latino'); // Default to Latino
+  const { appState } = useAppState();
 
-  const dataForGroups = {
-    'Black/African American': [5, 3, 4, 6, 2],
-    'Hispanic/Latino': [2, 3, 7, 5, 1],
-    'White/Caucasian': [8, 7, 9, 6, 5],
-    'Asian': [1, 2, 2, 3, 1],
-  };
-
-  const districtLabels = ['District 1', 'District 2', 'District 3', 'District 4', 'District 5'];
-
-  const data = {
-    labels: districtLabels,
-    datasets: [
-      {
-        label: `${selectedRacialGroup} Opportunity Districts`,
-        data: dataForGroups[selectedRacialGroup],
-        backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        borderColor: 'rgba(53, 162, 235, 1)',
-        borderWidth: 1,
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const state = appState.charAt(0).toLowerCase() + appState.slice(1);
+        const response = await axios.get(`http://localhost:8080/api/${state}/opportunity-districts`, {
+          params: { race: selectedRace } // Use the selected race in API request
+        });
+        setChartData({
+          labels: response.data.x_points,
+          datasets: [{
+            label: `${selectedRace} Opportunity Districts`,
+            data: response.data.y_points,
+            backgroundColor: 'rgba(139, 0, 0, 0.5)',
+            borderColor: 'rgba(139, 0, 0, 1)',
+            borderWidth: 1,
+          }],
+        });
+      } catch (error) {
+        console.error('Error fetching opportunity district data:', error);
       }
-    ],
+    };
+
+    fetchData();
+  }, [appState, selectedRace]); // Add selectedRace to dependency array
+
+  const handleRaceChange = (event) => {
+    setSelectedRace(event.target.value);
   };
 
   const options = {
@@ -41,29 +52,24 @@ const OpportunityDistrictsBarChart = () => {
       },
       title: {
         display: true,
-        text: `Opportunity Districts for ${selectedRacialGroup}`,
+        text: `${selectedRace} Opportunity Districts`,
       },
     },
   };
 
-  const handleRacialGroupChange = (e) => {
-    setSelectedRacialGroup(e.target.value);
-  };
-
   return (
     <div>
-      <label htmlFor="racialGroup">Select Racial/Ethnic Group:</label>
-      <select id="racialGroup" onChange={handleRacialGroupChange} value={selectedRacialGroup}>
-        <option value="Black/African American">Black/African American</option>
-        <option value="Hispanic/Latino">Hispanic/Latino</option>
-        <option value="White/Caucasian">White/Caucasian</option>
+      <h2>Distribution of Opportunity Districts in {appState}</h2>
+      <select id="race-select"
+        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md bg-white text-black"
+        value={selectedRace}
+        onChange={handleRaceChange}
+      >
+        <option value="Latino">Latino</option>
+        <option value="African">African American</option>
         <option value="Asian">Asian</option>
       </select>
-
-      <div>
-        <h2>Distribution of Opportunity Districts</h2>
-        <Bar data={data} options={options} />
-      </div>
+      <Bar data={chartData} options={options} />
     </div>
   );
 };
