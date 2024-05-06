@@ -186,12 +186,19 @@ public class Controller {
         return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
     }
 
-
-    @GetMapping("/box-whisker-data")
-    public String getBoxWhiskerData() throws IOException {
-        ClassPathResource resource = new ClassPathResource("static/250_plans.json");
+    @GetMapping("/illinois/box-whisker-data")
+    public String getBoxWhiskerDataIl(@RequestParam String race) throws IOException {
+        ClassPathResource resource = new ClassPathResource("static/"+race+"_ranked_data_il.json");
         return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
     }
+
+    @GetMapping("/arizona/box-whisker-data")
+    public String getBoxWhiskerDataAZ(@RequestParam String race) throws IOException {
+        ClassPathResource resource = new ClassPathResource("static/"+race+"_ranked_data_az.json");
+        return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+    }
+
+   
 
     @GetMapping("/api/arizona/opportunity-districts")
     public ResponseEntity<?> getOpportunityDistrictDataByRace(@RequestParam String race) {
