@@ -32,7 +32,7 @@ const Filter = (props) => {
                 <option value="none">None</option>
                 <option value="white">White</option>
                 <option value="asian">Asian</option>
-                <option value="latino hispanic">Hispanic</option>
+                <option value="hispanic">Hispanic</option>
                 <option value="black">Black</option>
             </select>
         </div>
