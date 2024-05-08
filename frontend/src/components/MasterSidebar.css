@@ -2,12 +2,12 @@
     content: none;
 }
 .peer:checked~.collapse-content {
-    height: 50rem;
+    height: 40rem;
 }
 .collapse-content {
     transition: max-height 0.3s ease-in-out;
     overflow: hidden;
-    max-height: 25rem;
+    max-height: 40rem;
 }
 .peer-checked .collapse-content {
     max-height: 0;

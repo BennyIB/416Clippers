@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Illinois_Representatives from '../assets/Illinois_Representatives.json'
 import Arizona_Representatives from '../assets/Arizona_Representatives.json'
 import { useAppState } from '../AppStateContext';
-const StateAssemblyTable = () => {
+const StateAssemblyTable = (props) => {
     const { appState, setSelectedDistrict } = useAppState();
     const [table, setSelectedTable] = useState(null);
     useEffect(() => {
@@ -35,22 +35,43 @@ const StateAssemblyTable = () => {
                     </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                {table && table.map((item, index) => (
-                        <tr key={index}>
-                            <td className="text-black px-1 py-4 whitespace-nowrap border cursor-pointer hover:bg-gray-100" onClick={() => handleClick(item.district)}>{item.district}</td>
-                            <td className="text-black px-1 py-4 whitespace-nowrap border">
-                                <img width={40} height={40} src={item.url}></img>
-                            </td>
-                            <td className="text-black px-1 py-4 border overflow-x-auto">
-                                <div className="whitespace-nowrap max-w-xs" style={{ maxWidth: '100px' }}>
-                                    {item.name}
-                                </div>
-                            </td>
-                            <td className="text-black px-1 py-4 whitespace-nowrap border">{item.party}</td>
-                            <td className="text-black px-1 py-4 whitespace-nowrap border">{item.race}</td>
-                            <td className="text-black px-1 py-4 whitespace-nowrap border">{item.percentage}</td>
-                        </tr>
-                    ))}
+                    {table && table.map((item, index) => {
+                        const { selectedParty, selectedOperation, selectedRace } = props;
+
+                        const shouldFilterParty = selectedParty !== "none" && item.party === selectedParty;
+
+                        const shouldFilterRace = selectedRace !== "none" && item.race === selectedRace;
+
+                        let shouldInclude = false;
+                        if (selectedOperation === "AND") {
+                            shouldInclude = (selectedParty === "none" || shouldFilterParty) &&
+                                (selectedRace === "none" || shouldFilterRace);
+                        } else if (selectedOperation === "OR") {
+                            shouldInclude = (selectedParty === "none" && selectedRace === "none") ||
+                                shouldFilterParty || shouldFilterRace;
+                        }
+
+                        if (!shouldInclude) {
+                            return null;
+                        }
+
+                        return (
+                            <tr key={index}>
+                                <td className="text-black px-1 py-4 whitespace-nowrap border cursor-pointer hover:bg-gray-100" onClick={() => handleClick(item.district)}>{item.district}</td>
+                                <td className="text-black px-1 py-4 whitespace-nowrap border">
+                                    <img width={50} height={50} src={item.url}></img>
+                                </td>
+                                <td className="text-black px-1 py-4 border overflow-x-auto">
+                                    <div className="whitespace-nowrap max-w-xs" style={{ maxWidth: '100px' }}>
+                                        {item.name}
+                                    </div>
+                                </td>
+                                <td className="text-black px-1 py-4 whitespace-nowrap border">{item.party}</td>
+                                <td className="text-black px-1 py-4 whitespace-nowrap border">{item.race}</td>
+                                <td className="text-black px-1 py-4 whitespace-nowrap border">{item.percentage}</td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>
