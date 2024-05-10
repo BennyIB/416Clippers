@@ -3,7 +3,7 @@ import Illinois_Representatives from '../assets/Illinois_Representatives.json'
 import Arizona_Representatives from '../assets/Arizona_Representatives.json'
 import { useAppState } from '../AppStateContext';
 const StateAssemblyTable = (props) => {
-    const { appState, setSelectedDistrict } = useAppState();
+    const { appState, selectedDistrict, setSelectedDistrict } = useAppState();
     const [table, setSelectedTable] = useState(null);
     useEffect(() => {
         switch (appState) {
@@ -19,7 +19,12 @@ const StateAssemblyTable = (props) => {
         }
     }, [appState]);
     function handleClick(district) {
-        setSelectedDistrict(district);
+        if (selectedDistrict !== null) {
+            setSelectedDistrict(null); 
+        } 
+        else {
+            setSelectedDistrict(district);
+        }
     }
     return (
         <div className="border-solid border-2 h-full overflow-auto">
