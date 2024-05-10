@@ -47,7 +47,7 @@ const MapPage = () => {
     }, [chartSelection])
     return (
         <div className="relative w-full h-screen">
-            <button onClick={handleReset} className="absolute top-4 left-4 z-50 p-2 bg-red-500 text-white rounded">Reset Selection</button>
+            {/* <button onClick={handleReset} className="absolute top-4 left-4 z-50 p-2 bg-red-500 text-white rounded">Reset Selection</button> */}
             {(selectedHeatMap !== "None" && selectedHeatMap !== "PoliticalPartyPreference") && <HeatMapLegend legendItems={legendItems} />}
             <HeatMapSelection selectedHeatMap={selectedHeatMap} setHeatMap={setHeatMap} />
             <MapControl setCompareView={setCompareView} compareView={compareView} zoomIn={handleZoomIn} zoomOut={handleZoomOut} resetZoom={handleResetZoom} />
