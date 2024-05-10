@@ -6,6 +6,8 @@ import ChartSelection from './ChartSelection';
 import StateAssemblyTable from './StateAssemblyTable';
 import StateDataSummary from './StateDataSummary';
 import OpportunityDistrictsBarChart from './OpportunityDistrictsBarChart';
+import SeatShareCurve from './SeatShareCurve'; // Import the new component
+
 
 
 
@@ -21,6 +23,7 @@ const charts = [
   { id: 'feasibleOpportunityDistrictsTable', name: 'Feasible Opportunity Districts Table' }, 
   { id: 'opportunityDistrictsBarChart', name: 'Opportunity Districts Bar Chart' },
   { id: 'precinctAnalysisTable', name: 'Precinct Analysis Table' },
+  { id: 'voteShareSeatShareCurve', name: 'Vote Share vs. Seat Share Curve' }, 
 
 
 

@@ -2,6 +2,7 @@ package com.clippers.backend.controller;
 
 import com.clippers.backend.model.VoteShareData;
 import com.clippers.backend.model.VoteShareDataIllinois;
+import com.clippers.backend.model.VoteShareSeatShare;
 import com.clippers.backend.service.VoteShareService;
 import com.clippers.backend.service.VoteShareServiceIllinois;
 import com.clippers.backend.service.EthnicityRepsService;
@@ -16,12 +17,18 @@ import com.clippers.backend.model.PrecinctAnalysisTable;
 import com.clippers.backend.model.PrecinctAnalysisTableIllinois;
 import com.clippers.backend.service.PrecinctAnalysisTableService;
 import com.clippers.backend.service.PrecinctAnalysisTableServiceIllinois;
-
+import com.clippers.backend.service.VoteShareSeatShareService;
 import com.clippers.backend.model.OpportunityDistrictData;
 import com.clippers.backend.service.OpportunityDistrictService;
 import com.clippers.backend.service.OpportunityDistrictServiceIllinois;
 import com.clippers.backend.model.OpportunityDistrictDataIllinois;
 import com.clippers.backend.repository.OpportunityDistrictRepositoryIllinois;
+
+import com.clippers.backend.model.VoteShareSeatShareIllinois;
+import com.clippers.backend.service.VoteShareSeatShareIllinoisService;
+
+import com.clippers.backend.model.VoteShareSeatShare;
+import com.clippers.backend.service.VoteShareService;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.util.StreamUtils;
@@ -65,6 +72,12 @@ public class Controller {
 
     @Autowired
     private OpportunityDistrictServiceIllinois opportunityDistrictServiceIllinois;
+
+    @Autowired
+    private VoteShareSeatShareService voteShareSeatShareService;
+
+    @Autowired
+    private VoteShareSeatShareIllinoisService voteShareSeatShareIllinoisService;
 
     
 
@@ -218,5 +231,29 @@ public class Controller {
                 return ResponseEntity.notFound().build();
             });
     }
+
+    //seat share curve
+
+    @GetMapping("/api/arizona/vote-seat-share")
+    public ResponseEntity<VoteShareSeatShare> getVoteShareSeatShareByType() {
+    String type = "vote_seat_share";
+    Optional<VoteShareSeatShare> data = voteShareSeatShareService.getDataByType(type);
+    return data.map(ResponseEntity::ok)
+                .orElseGet(() -> {
+                    return ResponseEntity.notFound().build();
+                });
+    }
+    
+    @GetMapping("/api/illinois/vote-seat-share")
+    public ResponseEntity<VoteShareSeatShareIllinois> getVoteShareSeatShareIllinoisByType() {
+        String type = "vote_seat_share"; // Adjust the type as necessary for your use case
+        Optional<VoteShareSeatShareIllinois> data = voteShareSeatShareIllinoisService.getDataByType(type);
+        return data.map(ResponseEntity::ok)
+                   .orElseGet(() -> {
+                       System.out.println("No VoteShareSeatShare data found for Illinois.");
+                       return ResponseEntity.notFound().build();
+                   });
+    }
+
 
 }
