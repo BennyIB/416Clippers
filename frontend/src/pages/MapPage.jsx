@@ -5,6 +5,7 @@ import HeatMapSelection from "../components/HeatMapSelection";
 import HeatMapLegend from "../components/HeatMapLegend";
 import MapControl from "../components/MapControl";
 import MasterSidebar from "../components/MasterSidebar";
+import EnsembleSummaryTable from '../components/EnsembleSummaryTable';
 const legendItems = [
     // { color: '#ffffe0', number: 0, value: '0%', textColor: '#000' },
     // { color: '#ffffad', number: 10, value: '10%', textColor: '#000' },
@@ -60,6 +61,7 @@ const MapPage = () => {
                     </div>)}
             </div>
             <MasterSidebar setChartSelection={setChartSelection} chartSelection={chartSelection}/>
+            <EnsembleSummaryTable />
         </div>
     );
 }
