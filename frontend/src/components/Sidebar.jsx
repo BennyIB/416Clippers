@@ -7,6 +7,8 @@ const Sidebar = ({ setChartSelection, handleCloseSideBar }) => {
     { id: 'precinctAnalysisChart', name: 'Precinct Analysis Chart' },
     { id: 'minorityRepresentation9Districts', name: 'ReCom Ensemble Plot' },
     { id: 'ethnicityBarChartPopANDethnicityBarChart', name: 'Ethnicity Bar Chart vs Ethnicity Bar Chart Pop' },
+    { id: 'voteShareSeatShareCurve', name: 'Vote Share vs. Seat Share Curve' }, 
+
   ];
   return (
     <div className="absolute left-0 top-0 h-full bg-gray-800 text-white shadow-xl z-50 w-64">
