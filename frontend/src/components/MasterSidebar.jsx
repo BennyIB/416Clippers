@@ -10,6 +10,7 @@ import SeatShareCurve from './SeatShareCurve'; // Import the new component
 
 
 
+import Filter from './Filter';
 
 const charts = [
   { id: 'ethnicityBarChart', name: 'Ethnicity Bar Chart' },
@@ -32,18 +33,31 @@ const charts = [
 
 const MasterSidebar = (props) => {
   const [selectedTab, setSelectedTab] = useState('State');
+  const [selectedParty, setSelectedParty] = useState('none');
+  const [selectedOperation, setSelectedOperation] = useState('AND');
+  const [selectedRace, setSelectedRace] = useState('none');
+
   const handleChange = (event) => {
     setSelectedTab(event.target.value);
   };
+
+  //debug use
+  useEffect(() => {
+    console.log("The current is",selectedParty, selectedOperation, selectedRace)
+  },[selectedParty, selectedOperation, selectedRace])
+
   const renderChart = () => {
     switch (selectedTab) {
       case 'State':
         return (<>
-                <ChartSelection setChartSelection={props.setChartSelection} chartSelection={props.chartSelection} charts={charts}/>
-                <ChartModal charts={charts} chartSelection={props.chartSelection}/>
-              </>);
+            <ChartSelection setChartSelection={props.setChartSelection} chartSelection={props.chartSelection} charts={charts}/>
+            <ChartModal charts={charts} chartSelection={props.chartSelection}/>
+          </>);
       case 'District':
-        return <StateAssemblyTable />;
+        return (<>
+            <Filter setSelectedParty={setSelectedParty} setSelectedOperation={setSelectedOperation} setSelectedRace={setSelectedRace}/>
+            <StateAssemblyTable selectedParty={selectedParty} selectedOperation={selectedOperation} selectedRace={selectedRace}/>
+          </>);
       default:
         return <EthnicityBarChart/>; 
     }
