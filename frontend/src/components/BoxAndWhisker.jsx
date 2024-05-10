@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
 import axios from 'axios';
 import { useAppState } from '../AppStateContext';
+
 const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -30,16 +31,18 @@ const BoxAndWhiskerChart = () => {
     };
 
     fetchData();
-  }, [selectedRace]);
+  }, [selectedRace, appState]); 
+
+  const stateNameCapitalized = appState.charAt(0).toUpperCase() + appState.slice(1);
 
   const options = {
     theme: "light2",
     animationEnabled: true,
     title: {
-      text: "Arizona ReCom (Minority Group: Hispanic)"
+      text: `${stateNameCapitalized} ReCom`
     },
     axisY: {
-      title: "Hispanic Pop. %"
+      title: `${selectedRace} Pop. %`
     },
     axisX: {
       title: "Districts"
@@ -57,33 +60,30 @@ const BoxAndWhiskerChart = () => {
       color: "red",
       showInLegend: true,
       legendText: "Enacted",
-      markerSize: 10,
-      toolTipContent: "Actual Hispanic Population Percentage: {y}%",
+      markerSize: 5,
+      toolTipContent: `Actual ${selectedRace} Population Percentage: {y}%`,
       dataPoints: chartData.map(item => ({
         x: item.label,
         y: item.actual,
       })) }]
-      
   };
 
   const handleRaceChange = (event) => {
     setSelectedRace(event.target.value);
-};
-
+  };
 
   return (
     <>
     <div>
-    <label>Choose a race:</label>
-                <select value={selectedRace} onChange={handleRaceChange} className="text-lg bg-white border-solid border-2 text-black rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
-                    <option value="Hispanic">Hispanic</option>
-                    <option value="White">White</option>
-                    <option value="Asian">Asian</option>
-                    <option value="Black">Black</option>
-                    <option value="Native"> Native </option>
-                </select>
+      <label>Choose a race:</label>
+      <select value={selectedRace} onChange={handleRaceChange} className="text-lg bg-white border-solid border-2 text-black rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
+        <option value="Hispanic">Hispanic</option>
+        <option value="White">White</option>
+        <option value="Asian">Asian</option>
+        <option value="Black">Black</option>
+        <option value="Native"> Native </option>
+      </select>
       <CanvasJSChart options={options} />
-                
     </div>
     </>
   );
