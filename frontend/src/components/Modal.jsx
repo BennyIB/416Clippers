@@ -8,6 +8,7 @@ import FeasibleOpportunityDistrictsTable from './FeasibleOpportunityDistrictsTab
 import OpportunityDistrictsBarChart from './OpportunityDistrictsBarChart';
 import PrecinctAnalysisTable from './PrecinctAnalysisTable';
 import BoxAndWhisker from './BoxAndWhisker';
+import SeatShareCurve from './SeatShareCurve';
 
 
 import { useState, useEffect } from 'react';
@@ -39,6 +40,8 @@ const ChartModal = (props) => {
                 return <OpportunityDistrictsBarChart />;
             case 'precinctAnalysisTable':
                 return <PrecinctAnalysisTable />;
+            case 'voteShareSeatShareCurve': 
+                return <SeatShareCurve />;
             //temporary. scrap later. need revamp
             case 'ethnicityBarChartPopANDethnicityBarChart':
                 return (

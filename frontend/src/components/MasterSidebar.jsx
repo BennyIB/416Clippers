@@ -4,6 +4,12 @@ import EthnicityBarChart from './EthnicityBarChart';
 import ChartModal from './Modal';
 import ChartSelection from './ChartSelection';
 import StateAssemblyTable from './StateAssemblyTable';
+import StateDataSummary from './StateDataSummary';
+import OpportunityDistrictsBarChart from './OpportunityDistrictsBarChart';
+import SeatShareCurve from './SeatShareCurve'; // Import the new component
+
+
+
 import Filter from './Filter';
 
 const charts = [
@@ -18,6 +24,7 @@ const charts = [
   { id: 'feasibleOpportunityDistrictsTable', name: 'Feasible Opportunity Districts Table' }, 
   { id: 'opportunityDistrictsBarChart', name: 'Opportunity Districts Bar Chart' },
   { id: 'precinctAnalysisTable', name: 'Precinct Analysis Table' },
+  { id: 'voteShareSeatShareCurve', name: 'Vote Share vs. Seat Share Curve' }, 
 
 
 
