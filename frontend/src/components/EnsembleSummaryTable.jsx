@@ -8,46 +8,46 @@ const EnsembleSummaryTable = () => {
     };
 
     const tableStyle = {
-        width: '30%', 
-        bottom: '10px', 
+        width: '30%',
+        bottom: '10px',
         left: '50%',
-        transform: 'translateX(-50%)', 
-        background: 'rgba(255, 255, 255, 0.95)', 
-        borderRadius: '8px', 
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+        transform: 'translateX(-50%)',
+        background: 'rgba(255, 255, 255, 0.95)',
+        borderRadius: '8px',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         position: 'absolute'
     };
 
     const minimizedStyle = {
         ...tableStyle,
         cursor: 'pointer',
-        padding: '10px 20px', 
-        textAlign: 'center' 
+        padding: '10px 20px',
+        textAlign: 'center'
     };
 
     return (
         <div style={minimized ? minimizedStyle : tableStyle} onClick={toggleMinimize}>
             {minimized ? (
-                <>
-                    <span>Ensembles Summary</span>
-                    <i className="fas fa-caret-down" style={{ marginLeft: '10px' }}></i>
-                </>
+                <div className="flex justify-start items-center">
+                    <span className="font-bold mr-auto">Ensembles Summary</span>
+                    <i className="fas fa-caret-down"></i>
+                </div>
             ) : (
                 <>
-                    <div className="flex justify-between items-center p-3">
-                        <h2 className="text-lg font-semibold">Ensembles Summary</h2>
-                        <i className="fas fa-caret-up"></i>
+                    <div class="flex justify-center items-center p-3">
+                        <h2 class="text-lg font-bold">Ensembles Summary</h2>
+                        <i class="fas fa-caret-up ml-auto"></i>
                     </div>
                     <table className="w-full">
                         <thead>
                             <tr className="bg-gray-100">
-                                <th>Ensemble</th>
-                                <th>Equality Threshold</th>
+                                <th className="font-semibold">Ensemble Plans</th>
+                                <th className="font-semibold">Equality Threshold</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>5000</td>
+                                <td>5,000</td>
                                 <td>0.05</td>
                             </tr>
                             <tr>

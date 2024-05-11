@@ -142,7 +142,7 @@ const MyMap = forwardRef((props, ref) => {
             80, "#2b8cbe",
             100, "#045a8d"
           ],
-          "fill-opacity": 1
+          "fill-opacity": 0.75
         }
       };
     }
@@ -262,7 +262,7 @@ const MyMap = forwardRef((props, ref) => {
             mapboxAccessToken={accessToken}
             {...viewport}
             onMove={evt => setViewport(evt.viewState)}
-            mapStyle="mapbox://styles/mapbox/light-v11"
+            mapStyle="mapbox://styles/mapbox/streets-v12"
             onClick={handleClick}
             interactiveLayerIds={['map_layers']}
             onLoad={onStyleLoad}
