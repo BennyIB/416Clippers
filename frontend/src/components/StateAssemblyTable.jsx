@@ -20,8 +20,8 @@ const StateAssemblyTable = (props) => {
     }, [appState]);
     function handleClick(district) {
         if (selectedDistrict !== null) {
-            setSelectedDistrict(null); 
-        } 
+            setSelectedDistrict(null);
+        }
         else {
             setSelectedDistrict(district);
         }
@@ -63,8 +63,8 @@ const StateAssemblyTable = (props) => {
                         return (
                             <tr key={index}>
                                 <td className="text-black px-1 py-4 whitespace-nowrap border cursor-pointer hover:bg-gray-100" onClick={() => handleClick(item.district)}>{item.district}</td>
-                                <td className="text-black px-1 py-4 whitespace-nowrap border">
-                                    <img width={50} height={50} src={item.url}></img>
+                                <td class="flex justify-center items-center text-black px-1 py-4 whitespace-nowrap border">
+                                    <img width="60" height="60" src={item.url} />
                                 </td>
                                 <td className="text-black px-1 py-4 border overflow-x-auto">
                                     <div className="whitespace-nowrap max-w-xs" style={{ maxWidth: '100px' }}>

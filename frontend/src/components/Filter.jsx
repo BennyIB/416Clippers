@@ -16,12 +16,12 @@ const Filter = (props) => {
 
     return (
         <div className="pt-2">
-            <label className="pr-1">Filter:</label>
+            <label className="pr-1 text-black">Filter:</label>
             <select
                 name="filterparty"
                 id="filterparty"
                 value={selectedParty}
-                className="select select-bordered select-sm bg-white"
+                className="select select-bordered select-sm bg-white text-black"
                 onChange={(e) => {
                     setSelectedParty(e.target.value);
                     props.setSelectedParty(e.target.value);
@@ -36,7 +36,7 @@ const Filter = (props) => {
                 name="filterop"
                 id="filterop"
                 value={selectedOperation}
-                className="select select-bordered select-sm bg-white"
+                className="select select-bordered select-sm bg-white text-black"
                 onChange={(e) => {
                     setSelectedOperation(e.target.value);
                     props.setSelectedOperation(e.target.value);
@@ -49,7 +49,7 @@ const Filter = (props) => {
                 name="filterrace"
                 id="filterrace"
                 value={selectedRace}
-                className="select select-bordered select-sm bg-white"
+                className="select select-bordered select-sm bg-white text-black"
                 onChange={(e) => {
                     setSelectedRace(e.target.value);
                     props.setSelectedRace(e.target.value);

@@ -34,9 +34,9 @@ const EnsembleSummaryTable = () => {
                 </div>
             ) : (
                 <>
-                    <div class="flex justify-center items-center p-3">
-                        <h2 class="text-lg font-bold">Ensembles Summary</h2>
-                        <i class="fas fa-caret-up ml-auto"></i>
+                    <div className="flex justify-center items-center p-3">
+                        <h2 className="text-lg font-bold">Ensembles Summary</h2>
+                        <i className="fas fa-caret-up ml-auto"></i>
                     </div>
                     <table className="w-full">
                         <thead>
