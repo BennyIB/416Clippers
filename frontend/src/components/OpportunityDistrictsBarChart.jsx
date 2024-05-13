@@ -8,7 +8,8 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const OpportunityDistrictsBarChart = () => {
   const [chartData, setChartData] = useState({ labels: [], datasets: [] });
-  const [selectedRace, setSelectedRace] = useState('Latino'); // Default to Latino
+  const [selectedRace, setSelectedRace] = useState('Latino');
+  const [opportunityCounts, setOpportunityCounts] = useState({});
   const { appState } = useAppState();
 
   useEffect(() => {
@@ -16,7 +17,7 @@ const OpportunityDistrictsBarChart = () => {
       try {
         const state = appState.charAt(0).toLowerCase() + appState.slice(1);
         const response = await axios.get(`http://localhost:8080/api/${state}/opportunity-districts`, {
-          params: { race: selectedRace } // Use the selected race in API request
+          params: { race: selectedRace }
         });
         setChartData({
           labels: response.data.x_points,
@@ -28,13 +29,17 @@ const OpportunityDistrictsBarChart = () => {
             borderWidth: 1,
           }],
         });
+        setOpportunityCounts({
+          ...opportunityCounts,
+          [selectedRace]: response.data.total_opportunity_districts
+        });
       } catch (error) {
         console.error('Error fetching opportunity district data:', error);
       }
     };
 
     fetchData();
-  }, [appState, selectedRace]); // Add selectedRace to dependency array
+  }, [appState, selectedRace]);
 
   const handleRaceChange = (event) => {
     setSelectedRace(event.target.value);
@@ -61,7 +66,7 @@ const OpportunityDistrictsBarChart = () => {
     <div>
       <h2>Distribution of Opportunity Districts in {appState}</h2>
       <select id="race-select"
-        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md bg-white text-black"
+        className="text-lg bg-white text-black border-solid border-2 mb-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         value={selectedRace}
         onChange={handleRaceChange}
       >
@@ -69,7 +74,16 @@ const OpportunityDistrictsBarChart = () => {
         <option value="African">African American</option>
         <option value="Asian">Asian</option>
       </select>
+
       <Bar data={chartData} options={options} />
+      <p style={{ color: 'black' }}>
+        {appState === 'Arizona' && selectedRace === 'Latino' && `Number of opportunity districts in current district plan for Latinos: 3`}
+        {appState === 'Arizona' && selectedRace === 'Asian' && `Number of opportunity districts in current district plan for Asians: 0`}
+        {appState === 'Arizona' && selectedRace === 'African' && `Number of opportunity districts in current district plan for African American: 0`}
+        {appState === 'Illinois' && selectedRace === 'Latino' && `Number of opportunity districts in current district plan for Latinos: 6`}
+        {appState === 'Illinois' && selectedRace === 'Asian' && `Number of opportunity districts in current district plan for Asians: 0`}
+        {appState === 'Illinois' && selectedRace === 'African' && `Number of opportunity districts in current district plan for African American: 8`}
+      </p>
     </div>
   );
 };

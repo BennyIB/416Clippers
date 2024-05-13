@@ -71,7 +71,7 @@ const PrecinctAnalysisChart = () => {
   const data = {
     datasets: [
       {
-        label: 'Democrat Vote Share',
+        label: 'Democratic Vote Share',
         data: dataPoints.democratPoints,
         backgroundColor: 'rgba(53, 162, 235, 0.5)', //blue
         type: 'scatter', // Explicitly set type to scatter for clarity
@@ -85,7 +85,7 @@ const PrecinctAnalysisChart = () => {
         order: 2 // Drawn after the lines
       },
       {
-        label: 'Democrat Regression Line',
+        label: 'Democratic Regression Line',
         data: democratRegressionCurve,
         type: 'line',
         borderColor: 'rgb(0, 0, 139)', //blue
@@ -159,7 +159,7 @@ const PrecinctAnalysisChart = () => {
         <option value="Latino">Latino</option>
         <option value="White">White</option>
         <option value="Asian">Asian</option>
-        <option value="African">African</option>
+        <option value="African">African American</option>
       </select>
       <Scatter data={data} options={options} />
     </div>
