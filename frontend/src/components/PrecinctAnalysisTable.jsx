@@ -22,6 +22,10 @@ const PrecinctAnalysisTable = () => {
     fetchPrecinctData();
   }, [appState]);
 
+  const formatNumber = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   const handleNext = () => {
     if (currentPage < Math.ceil(precinctData.length / itemsPerPage)) {
       setCurrentPage(currentPage + 1);
