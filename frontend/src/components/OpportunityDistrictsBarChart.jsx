@@ -68,7 +68,7 @@ const OpportunityDistrictsBarChart = () => {
 
   return (
     <div>
-      <h2>Distribution of Opportunity Districts in {appState}</h2>
+      <h2>Distribution of Opportunity Districts in {appState} using 50% threshold</h2>
       <select id="race-select"
         className="text-lg bg-white text-black border-solid border-2 mb-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
         value={selectedRace}
