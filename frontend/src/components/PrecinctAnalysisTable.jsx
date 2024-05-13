@@ -22,6 +22,10 @@ const PrecinctAnalysisTable = () => {
     fetchPrecinctData();
   }, [appState]);
 
+  const formatNumber = (num) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   const handleNext = () => {
     if (currentPage < Math.ceil(precinctData.length / itemsPerPage)) {
       setCurrentPage(currentPage + 1);
@@ -59,13 +63,13 @@ const PrecinctAnalysisTable = () => {
             {currentItems.map((precinct, index) => (
               <tr className="bg-white border-b text-black hover:bg-gray-50" key={index}>
                 <td className="py-2 px-4">{precinct.precinctName}</td>
-                <td className="py-2 px-4">{precinct.totalPopulation}</td>
-                <td className="py-2 px-4">{precinct.hispanicPopulation}</td>
-                <td className="py-2 px-4">{precinct.asianPopulation}</td>
-                <td className="py-2 px-4">{precinct.whitePopulation}</td>
-                <td className="py-2 px-4">{precinct.blackPopulation}</td>
-                <td className="py-2 px-4">{precinct.republicanVotes}</td>
-                <td className="py-2 px-4">{precinct.democraticVotes}</td>
+                <td className="py-2 px-4">{formatNumber(precinct.totalPopulation)}</td>
+                <td className="py-2 px-4">{formatNumber(precinct.hispanicPopulation)}</td>
+                <td className="py-2 px-4">{formatNumber(precinct.asianPopulation)}</td>
+                <td className="py-2 px-4">{formatNumber(precinct.whitePopulation)}</td>
+                <td className="py-2 px-4">{formatNumber(precinct.blackPopulation)}</td>
+                <td className="py-2 px-4">{formatNumber(precinct.republicanVotes)}</td>
+                <td className="py-2 px-4">{formatNumber(precinct.democraticVotes)}</td>
               </tr>
             ))}
           </tbody>
