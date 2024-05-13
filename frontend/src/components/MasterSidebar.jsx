@@ -12,8 +12,8 @@ import EnsembleSummaryTable from './EnsembleSummaryTable';
 import RedistrictingSummary from './RedistrictingSummary';
 
 const charts = [
-  { id: 'ethnicityBarChart', name: 'Ethnicity Bar Chart' },
   { id: 'ecologicalInferencePlot', name: 'Ecological Inference Plot' },
+  { id: 'ethnicityBarChart', name: 'Ethnicity Bar Chart' },
   { id: 'ethnicityBarChartPop', name: 'Ethnicity Bar Chart Pop' },
   // { id: 'feasibleOpportunityDistrictsTable', name: 'Feasible Opportunity Districts Table' },
   { id: 'opportunityDistrictsBarChart', name: 'Opportunity Districts Bar Chart' },

@@ -1,7 +1,20 @@
+import { useAppState } from "../AppStateContext";
+import React, {useState, useEffect} from "react";
+const MAPPING = {
+    "Arizona" : "Hispanic",
+    "Illinois" : "African American",
+    "USA" : "None"
+}
 const HeatMapSelection = (props) => {
+    const [selectedRace, setSelectedRace] = useState('');
+    const { appState } = useAppState();
+
+    useEffect(() => {
+        setSelectedRace(MAPPING[appState]);
+    }, [appState])
     return (
         <div className="absolute right-5 top-5 z-10 bg-white border-solid border-2 p-4 rounded-md">
-            <div className="text-black my-4">
+            <div className="text-black my-4 font-bold">
                 Select Heatmap
             </div>
             <select
@@ -17,8 +30,11 @@ const HeatMapSelection = (props) => {
                 <option value="AsianOrPacificIslander" >Asian/Pacific Islander</option>
                 <option value="NativeAmerican">Native American</option>
             </select>
-            <div className="text-black my-4">
+            <div className="text-black my-4 font-bold">
                 Select Plan
+            </div>
+            <div>
+                Race: {selectedRace}
             </div>
             <select
                 value={props.geojsonData}
