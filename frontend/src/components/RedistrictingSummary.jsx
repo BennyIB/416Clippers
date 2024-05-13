@@ -36,7 +36,7 @@ const {appState} = useAppState();
       </div>
 
       {isOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
+        <div className="z-50 fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center">
           <div className="bg-white p-5 rounded-lg max-w-lg w-full m-4 border border-gray-300">
             <span onClick={closeModal} className="float-right cursor-pointer text-2xl font-bold">&times;</span>
             <div>

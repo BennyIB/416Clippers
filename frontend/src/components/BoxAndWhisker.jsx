@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
 import axios from 'axios';
 import { useAppState } from '../AppStateContext';
+import './BoxAndWhisker.css'
 const MAPPING = {
   "Latino" : "Hispanic",
   "White" : "White",
