@@ -12,7 +12,10 @@ const MAPPING = {
   "Black": "African American",
   "Native": "Native American"
 };
-
+const PLAN = {
+  "5000": "5,000",
+  "250": "250"
+}
 const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -50,7 +53,7 @@ const BoxAndWhiskerChart = () => {
     theme: "light2",
     animationEnabled: true,
     title: {
-      text: `${stateNameCapitalized} ReCom - ${ensembleCount} Ensembles`
+      text: `${stateNameCapitalized} ReCom - ${PLAN[ensembleCount]} Ensembles`
     },
     axisY: {
       title: `${MAPPING[selectedRace]} Pop. %`
@@ -101,7 +104,7 @@ const BoxAndWhiskerChart = () => {
         <label>Number of Plans:</label>
         <select value={ensembleCount} onChange={handleEnsembleCountChange} className="text-lg bg-white border-solid border-2 text-black rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
           <option value="250">250 Plans</option>
-          <option value="5000">5000 Plans</option>
+          <option value="5000">5,000 Plans</option>
         </select>
         <CanvasJSChart options={options} />
       </div>
