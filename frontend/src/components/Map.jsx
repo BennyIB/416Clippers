@@ -3,15 +3,21 @@ import Map, { Source, Layer } from 'react-map-gl';
 import "mapbox-gl/dist/mapbox-gl.css"
 import axios from 'axios';
 import { useAppState } from '../AppStateContext';
-// Default zoom and coordinates
-const ZOOMSTATE = {
-  Arizona: [-115.5, 34.25, 5.75],
-  Illinois: [-93.8, 39.75, 5.75],
-  USA: [-98.5795, 38, 4],
-  ArizonaRight: [-111.8, 34.75, 5.5],
-  IllinoisRight: [-89.8, 40.25, 5.5],
-  ArizonaLeft: [-112.5, 34.75, 5.5],
-  IllinoisLeft: [-90.25, 40.25, 5.75]
+import Arizona_3781 from '../assets/Arizona_district_boundaries_3781.json';
+import Arizona_792 from '../assets/Arizona_district_boundaries_792.json';
+import Illinois_3790 from '../assets/Illinois_district_boundaries_3790.json';
+import Illinois_2139 from '../assets/Illinois_district_boundaries_2139.json';
+const MAPPING = {
+  "Arizona": 
+  {
+    "max": Arizona_3781,
+    "avg": Arizona_792
+  },
+  "Illinois":
+  { 
+    "max": Illinois_3790,
+    "avg": Illinois_2139
+  }
 };
 
 // style for labeling districts in states
@@ -48,39 +54,25 @@ const MyMap = forwardRef((props, ref) => {
       zoomOut,
       resetZoom
     }));
-  const { appState, selectedDistrict, setSelectedDistrict } = useAppState();
+  const { appState, selectedDistrict, setSelectedDistrict} = useAppState();
   const mapRef = useRef(null);
   const accessToken = import.meta.env.VITE_MAPACCESS_TOKEN;
-  let state; 
-  if (props.compared) {
-    switch (appState) {
-      case "Arizona":
-        state = "Illinois";
-        break;
-      case "Illinois":
-        state = "Arizona";
-        break;
-      default:
-        state = appState;
-        break;
-    }
-  } else {
-    state = appState;
-  }
-  let modifiedState = props.compared ? (state === appState ? `${state}Left` : `${state}Right`) : state;
-  const defaultState = state && ZOOMSTATE[modifiedState] ? modifiedState : "USA";
   const [viewport, setViewport] = useState({
-    longitude: ZOOMSTATE[defaultState][0],
-    latitude: ZOOMSTATE[defaultState][1],
-    zoom: ZOOMSTATE[defaultState][2],
+    longitude: props.ZOOMSTATE[props.defaultState][0],
+    latitude: props.ZOOMSTATE[props.defaultState][1],
+    zoom: props.ZOOMSTATE[props.defaultState][2],
   });
-  const [boundaryData, setBoundaryData] = useState('');
-  const [legislativeDistrictData, setLegislativeDistrictData] = useState('');
-  const [geojsonData, setGeojsonData] = useState(defaultState !== "USA" ? legislativeDistrictData : boundaryData);
+  const [mapData, setMapData] = useState(
+    appState !== "USA"
+      ? props.plan !== "none"
+        ? props.geojsonData
+        : MAPPING[appState][props.plan]
+      : props.geojsonData
+  )
   const getBoundaryData = async () => {
     try {
       const response = await axios.get('http://localhost:8080/Arizona_Illinois_Boundaries');
-      setBoundaryData(response.data);
+      props.setBoundaryData(response.data);
       
     } catch (error) {
       console.error("There was an error fetching the geojson data:", error);
@@ -89,11 +81,22 @@ const MyMap = forwardRef((props, ref) => {
   const getLegislativeDistrictData = async () => {
     try {
       const response = await axios.get('http://localhost:8080/Arizona_Illinois_Legislative_Districts');
-      setLegislativeDistrictData(response.data);
+      props.setLegislativeDistrictData(response.data);
     } catch (error) {
       console.error("There was an error fetching the geojson data:", error);
     }
   };
+
+  useEffect(() => {
+    if(props.plan === "none")
+    {
+      setMapData(props.geojsonData);
+    }
+    else
+    {
+      setMapData(MAPPING[appState][props.plan]);
+    }
+  }, [props.plan, props.geojsonData]);
   useEffect(() => {
     getBoundaryData();
     getLegislativeDistrictData();
@@ -101,11 +104,11 @@ const MyMap = forwardRef((props, ref) => {
   // use effect for showing different map layers
   useEffect(() => {
     if (viewport.zoom < 5 && props.selectedHeatMap === "None") {
-      setGeojsonData(boundaryData);
+      props.setGeojsonData(props.boundaryData);
     } else {
-      setGeojsonData(legislativeDistrictData);
+      props.setGeojsonData(props.legislativeDistrictData);
     }
-  }, [viewport.zoom, props.selectedHeatMap, boundaryData, legislativeDistrictData]);
+  }, [viewport.zoom, props.selectedHeatMap, props.boundaryData, props.legislativeDistrictData]);
   // control for heatmap
   const layerStyle = useMemo(() => {
     if (props.selectedHeatMap === "PoliticalPartyPreference") {
@@ -173,7 +176,6 @@ const MyMap = forwardRef((props, ref) => {
 
   // modify state names to be more legible and readable
   const onStyleLoad = () => {
-    console.log("Loaded");
     const map = mapRef.current.getMap();
     map.setLayoutProperty('state-label', 'text-field', [
       'format',
@@ -190,23 +192,23 @@ const MyMap = forwardRef((props, ref) => {
     map.setPaintProperty('state-label', 'text-color', '#000000');
   };
   useEffect(() => {
-    console.log("Compare View is", props.compareView);
+    //console.log("Compare View is", props.compareView);
     if(props.compareView && props.left)
     {
       setViewport({
-        longitude: ZOOMSTATE[`${state}Left`][0],
-        latitude: ZOOMSTATE[`${state}Left`][1],
-        zoom: ZOOMSTATE[`${state}Left`][2]
+        longitude: props.ZOOMSTATE[`${state}Left`][0],
+        latitude: props.ZOOMSTATE[`${state}Left`][1],
+        zoom: props.ZOOMSTATE[`${state}Left`][2]
       });
     }
   }, [props.compareView])
 
   // useEffect(() => {
-  //   if (state && ZOOMSTATE[state]) {
+  //   if (state && props.ZOOMSTATE[state]) {
   //     setViewport({
-  //       longitude: ZOOMSTATE[state][0],
-  //       latitude: ZOOMSTATE[state][1],
-  //       zoom: ZOOMSTATE[state][2]
+  //       longitude: props.ZOOMSTATE[state][0],
+  //       latitude: props.ZOOMSTATE[state][1],
+  //       zoom: props.ZOOMSTATE[state][2]
   //     });
   //   }
   // }, [state]);
@@ -224,22 +226,22 @@ const MyMap = forwardRef((props, ref) => {
   };
   const resetZoom = () => {
     if (mapRef.current) {
-        if(props.compareView && appState !== "USA")
-        {
-          let newState = `${state}Left`;
-          mapRef.current.flyTo({ center: [ZOOMSTATE[newState][0], ZOOMSTATE[newState][1]], zoom: ZOOMSTATE[newState][2] })
-        }
-        else
-        {
-          mapRef.current.flyTo({ center: [ZOOMSTATE[state][0], ZOOMSTATE[state][1]], zoom: ZOOMSTATE[state][2]})
-        }
+        // if(props.compareView && appState !== "USA")
+        // {
+        //   let newState = `${state}Left`;
+        //   mapRef.current.flyTo({ center: [props.ZOOMSTATE[newState][0], props.ZOOMSTATE[newState][1]], zoom: props.ZOOMSTATE[newState][2] })
+        // }
+        // else
+        // {
+          mapRef.current.flyTo({ center: [props.ZOOMSTATE[props.state][0], props.ZOOMSTATE[props.state][1]], zoom: props.ZOOMSTATE[props.state][2]})
+        //}
     }
   }
   const handleClick = (event) => {
     const { features } = event;
     const clickedFeature = features && features.find(f => f.layer.id === 'map_layers');
     if (clickedFeature) {
-      console.log(clickedFeature.properties.DISTRICT);
+      //console.log(clickedFeature.properties.DISTRICT);
       if (selectedDistrict === clickedFeature.properties.DISTRICT) {
         setSelectedDistrict(null); 
       } else {
@@ -247,10 +249,6 @@ const MyMap = forwardRef((props, ref) => {
       }
     }
   };
-  
-  // const handleCloseSideBar = () => {
-  //   setShowSidebar(false)
-  // }
 
   return (
     <div className="relative w-full h-screen">
@@ -268,7 +266,7 @@ const MyMap = forwardRef((props, ref) => {
             onLoad={onStyleLoad}
             attributionControl={false}
           >
-            <Source id="my-data" type="geojson" data={geojsonData}>
+            <Source id="my-data" type="geojson" data={mapData}>
               <Layer {...layerStyle} />
               <Layer {...outLineStyle} />
               <Layer {...symbolStyle} />

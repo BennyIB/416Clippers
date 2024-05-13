@@ -17,6 +17,18 @@ const HeatMapSelection = (props) => {
                 <option value="AsianOrPacificIslander" >Asian/Pacific Islander</option>
                 <option value="NativeAmerican">Native American</option>
             </select>
+            <div className="text-black my-4">
+                Select Plan
+            </div>
+            <select
+                value={props.geojsonData}
+                onChange={(e) => props.setPlan(e.target.value)}
+                className="mb-5 bg-white text-black rounded-md cursor-pointer border-solid border-2 w-full"
+            >
+                <option value="none"> None </option>
+                <option value="max"> Max number of opportunity districts </option>
+                <option value="avg"> Avg number of opportunity districts </option>
+            </select>
         </div>
     );
 }

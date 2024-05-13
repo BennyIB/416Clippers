@@ -27,7 +27,7 @@ const EthnicityBarChart = () => {
         } else if (appState === 'Illinois') {
           url += 'illinois/ethnicity-representatives';
         } else {
-          console.error(`Unhandled app state: ${appState}`);
+          console.log(`Unhandled app state: ${appState}`);
           return; 
         }
 
