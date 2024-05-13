@@ -88,7 +88,7 @@ const MyMap = forwardRef((props, ref) => {
   };
 
   useEffect(() => {
-    if(props.plan === "none")
+    if(props.plan === "none" || appState === "USA")
     {
       setMapData(props.geojsonData);
     }
@@ -96,7 +96,7 @@ const MyMap = forwardRef((props, ref) => {
     {
       setMapData(MAPPING[appState][props.plan]);
     }
-  }, [props.plan, props.geojsonData]);
+  }, [props.plan, props.geojsonData, appState]);
   useEffect(() => {
     getBoundaryData();
     getLegislativeDistrictData();
