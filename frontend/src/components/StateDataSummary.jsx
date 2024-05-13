@@ -50,7 +50,7 @@ const StateDataSummary = () => {
         <div className="p-3 border border-gray-300 overflow-hidden">
             <div className="flex">
                 <div className="flex-1 mr-4">
-                    <h2 className="text-2xl font-bold mb-6 text-gray-800">{stateData.name} - Data Summary</h2>
+                    <h3 className="text-xl font-bold mb-6 text-gray-800">{stateData.name} - Data Summary</h3>
                     <table className="min-w-full text-left">
                         <tbody>
                             <tr>

@@ -13,7 +13,7 @@ const HeatMapSelection = (props) => {
         setSelectedRace(MAPPING[appState]);
     }, [appState])
     return (
-        <div className="absolute right-5 top-5 z-10 bg-white border-solid border-2 p-4 rounded-md">
+        <div className="absolute right-3 top-3 z-10 bg-white border-solid border-2 p-4 rounded-md">
             <div className="text-black my-4 font-bold">
                 Select Heatmap
             </div>

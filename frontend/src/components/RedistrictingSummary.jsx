@@ -30,7 +30,7 @@ const {appState} = useAppState();
 
   return (
     <div>
-        <h4 className="font-bold mb-2"> Redistricting Summary </h4>
+        <h4 className="font-bold mt-2 mb-2"> Redistricting Summary </h4>
       <div onClick={openModal} className="cursor-pointer">
         {truncatedText}
       </div>
