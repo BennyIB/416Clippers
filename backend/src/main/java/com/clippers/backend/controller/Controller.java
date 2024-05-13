@@ -199,15 +199,27 @@ public class Controller {
         return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
     }
 
-    @GetMapping("/illinois/box-whisker-data")
+    @GetMapping("/illinois/box-whisker-data/5000")
     public String getBoxWhiskerDataIl(@RequestParam String race) throws IOException {
         ClassPathResource resource = new ClassPathResource("static/"+race+"_ranked_data_il.json");
         return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
     }
 
-    @GetMapping("/arizona/box-whisker-data")
+    @GetMapping("/arizona/box-whisker-data/5000")
     public String getBoxWhiskerDataAZ(@RequestParam String race) throws IOException {
         ClassPathResource resource = new ClassPathResource("static/"+race+"_ranked_data_az.json");
+        return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+    }
+
+    @GetMapping("/illinois/box-whisker-data/250")
+    public String getBoxWhiskerDataIl250(@RequestParam String race) throws IOException {
+        ClassPathResource resource = new ClassPathResource("static/"+race+"_250_ranked_data_il.json");
+        return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
+    }
+
+    @GetMapping("/arizona/box-whisker-data/250")
+    public String getBoxWhiskerDataAZ250(@RequestParam String race) throws IOException {
+        ClassPathResource resource = new ClassPathResource("static/"+race+"_250_ranked_data_az.json");
         return StreamUtils.copyToString(resource.getInputStream(), StandardCharsets.UTF_8);
     }
 
