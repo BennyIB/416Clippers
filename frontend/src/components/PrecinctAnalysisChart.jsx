@@ -5,7 +5,12 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import { useAppState } from '../AppStateContext';
-
+const MAPPING = {
+  "Latino" : "Hispanic",
+  "White" : "White",
+  "African" : "African",
+  "Asian" : "Asian"
+}
 ChartJS.register(annotationPlugin);
 const PrecinctAnalysisChart = () => {
   const [selectedRace, setSelectedRace] = useState('Latino');
@@ -117,7 +122,7 @@ const PrecinctAnalysisChart = () => {
         position: 'bottom',
         title: {
           display: true,
-          text: `Percent ${selectedRace}`
+          text: `Percent ${MAPPING[selectedRace]}`
         }
       },
       y: {
@@ -139,7 +144,7 @@ const PrecinctAnalysisChart = () => {
       },
       title: {
         display: true,
-        text: `Vote Share vs. Percent ${selectedRace}`
+        text: `Vote Share vs. Percent ${MAPPING[selectedRace]}`
       },
     }
   };
@@ -156,7 +161,7 @@ const PrecinctAnalysisChart = () => {
     <div>
       <select value={selectedRace} onChange={handleRaceChange} className="text-lg bg-white text-black border-solid border-2 mb-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-600"
     >
-        <option value="Latino">Latino</option>
+        <option value="Latino">Hispanic</option>
         <option value="White">White</option>
         <option value="Asian">Asian</option>
         <option value="African">African American</option>

@@ -22,19 +22,19 @@ const StateDataSummary = () => {
                 totalPopulation: data.population_summary.total.toLocaleString(),
                 racialGroups: [
                     { name: 'White', population: data.population_summary.white.toLocaleString() },
-                    { name: 'Latino', population: data.population_summary.latino.toLocaleString() },
-                    { name: 'Black', population: data.population_summary.black.toLocaleString() },
+                    { name: 'Hispanic', population: data.population_summary.latino.toLocaleString() },
+                    { name: 'African American', population: data.population_summary.black.toLocaleString() },
                     { name: 'Asian', population: data.population_summary.asian.toLocaleString() }
                 ],
                 representatives: {
                     democrat: data.representative_summary.democratic,
                     republican: data.representative_summary.republican,
                     raceCounts: {
-                        White: data.representative_summary.white,
-                        Latino: data.representative_summary.latino,
-                        Black: data.representative_summary.black,
-                        Asian: data.representative_summary.asian,
-                        Other: data.representative_summary.other
+                        'White': data.representative_summary.white,
+                        'Hispanic': data.representative_summary.latino,
+                        'African American': data.representative_summary.black,
+                        'Asian': data.representative_summary.asian,
+                        'Other': data.representative_summary.other
                     }
                 }
             };

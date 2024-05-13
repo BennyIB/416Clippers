@@ -56,10 +56,11 @@ const Filter = (props) => {
                 }}
             >
                 <option value="none">None</option>
-                <option value="white">White</option>
-                <option value="asian">Asian</option>
-                <option value="hispanic">Hispanic</option>
-                <option value="black">Black</option>
+                <option value="African American">African American</option>
+                <option value="Asian">Asian</option>
+                <option value="Hispanic">Hispanic</option>
+                <option value="Native American">Native American</option>
+                <option value="White">White</option>
             </select>
             <div
                 className="btn btn-ghost"

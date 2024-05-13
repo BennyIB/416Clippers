@@ -49,8 +49,8 @@ const PrecinctAnalysisTable = () => {
               <th scope="col" className="py-2 px-4">Total Population</th>
               <th scope="col" className="py-2 px-4">Hispanic Population</th>
               <th scope="col" className="py-2 px-4">Asian Population</th>
+              <th scope="col" className="py-2 px-4">African American Population</th>
               <th scope="col" className="py-2 px-4">White Population</th>
-              <th scope="col" className="py-2 px-4">Black Population</th>
               <th scope="col" className="py-2 px-4">Republican Votes</th>
               <th scope="col" className="py-2 px-4">Democratic Votes</th>
             </tr>
@@ -62,8 +62,8 @@ const PrecinctAnalysisTable = () => {
                 <td className="py-2 px-4">{precinct.totalPopulation}</td>
                 <td className="py-2 px-4">{precinct.hispanicPopulation}</td>
                 <td className="py-2 px-4">{precinct.asianPopulation}</td>
-                <td className="py-2 px-4">{precinct.whitePopulation}</td>
                 <td className="py-2 px-4">{precinct.blackPopulation}</td>
+                <td className="py-2 px-4">{precinct.whitePopulation}</td>
                 <td className="py-2 px-4">{precinct.republicanVotes}</td>
                 <td className="py-2 px-4">{precinct.democraticVotes}</td>
               </tr>

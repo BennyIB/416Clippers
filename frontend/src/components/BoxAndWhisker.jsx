@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react';
 import CanvasJSReact from '@canvasjs/react-charts';
 import axios from 'axios';
 import { useAppState } from '../AppStateContext';
-
+const MAPPING = {
+  "Latino" : "Hispanic",
+  "White" : "White",
+  "African" : "African",
+  "Asian" : "Asian",
+  "Hispanic" : "Hispanic",
+  "Black" : "African American",
+  "Native" : "Native American"
+}
 const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -42,7 +50,7 @@ const BoxAndWhiskerChart = () => {
       text: `${stateNameCapitalized} ReCom`
     },
     axisY: {
-      title: `${selectedRace} Pop. %`
+      title: `${MAPPING[selectedRace]} Pop. %`
     },
     axisX: {
       title: "Districts"
@@ -61,7 +69,7 @@ const BoxAndWhiskerChart = () => {
       showInLegend: true,
       legendText: "Enacted",
       markerSize: 5,
-      toolTipContent: `Actual ${selectedRace} Population Percentage: {y}%`,
+      toolTipContent: `Actual ${MAPPING[selectedRace]} Population Percentage: {y}%`,
       dataPoints: chartData.map(item => ({
         x: item.label,
         y: item.actual,
@@ -77,11 +85,11 @@ const BoxAndWhiskerChart = () => {
     <div>
       <label>Choose a race:</label>
       <select value={selectedRace} onChange={handleRaceChange} className="text-lg bg-white border-solid border-2 text-black rounded-md mb-2 focus:outline-none focus:ring-2 focus:ring-blue-600">
-        <option value="Hispanic">Hispanic</option>
-        <option value="White">White</option>
+        <option value="Black">African American</option>
         <option value="Asian">Asian</option>
-        <option value="Black">Black</option>
-        <option value="Native"> Native </option>
+        <option value="Hispanic">Hispanic</option>
+        <option value="Native"> Native American</option>
+        <option value="White">White</option>
       </select>
       <CanvasJSChart options={options} />
     </div>

@@ -15,7 +15,7 @@ const charts = [
   { id: 'ethnicityBarChart', name: 'Ethnicity Bar Chart' },
   { id: 'ecologicalInferencePlot', name: 'Ecological Inference Plot' },
   { id: 'ethnicityBarChartPop', name: 'Ethnicity Bar Chart Pop' },
-  { id: 'feasibleOpportunityDistrictsTable', name: 'Feasible Opportunity Districts Table' },
+  // { id: 'feasibleOpportunityDistrictsTable', name: 'Feasible Opportunity Districts Table' },
   { id: 'opportunityDistrictsBarChart', name: 'Opportunity Districts Bar Chart' },
   { id: 'precinctAnalysisChart', name: 'Precinct Analysis Chart' },
   { id: 'precinctAnalysisTable', name: 'Precinct Analysis Table' },
@@ -87,7 +87,7 @@ const MasterSidebar = (props) => {
   return (
       <ResizableBox
         ref={parentRef}
-        width={500}
+        width={700}
         height={height} 
         className="absolute bg-white border-solid border-2 collapse-arrow rounded-tr-none rounded-l-none left-0 top-0 z-40 collapse bg-base-200"
         minConstraints={[100, 300]}
@@ -95,7 +95,7 @@ const MasterSidebar = (props) => {
         resizeHandles={['e']}
         style={{ backgroundColor: 'white' }}
       >
-      <div className="absolute bg-white border-solid border-2 collapse-arrow rounded-tr-none rounded-l-none left-0 top-0 z-40 collapse" style={{ width: '99%' }}>
+      <div className="absolute bg-white border-solid border-2 collapse-arrow rounded-tr-none rounded-l-none left-0 top-0 z-40 collapse" style={{ width: '99.5%' }}>
         <input type="checkbox" className="peer" />
         <div className="collapse-title text-primary-content my-1.5 bg-white peer-checked:text-secondary-content">
           <div className="flex justify-center relative z-50">
