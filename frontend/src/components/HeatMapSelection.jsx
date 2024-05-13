@@ -23,11 +23,11 @@ const HeatMapSelection = (props) => {
             <select
                 value={props.geojsonData}
                 onChange={(e) => props.setPlan(e.target.value)}
-                className="mb-5 bg-white text-black rounded-md cursor-pointer border-solid border-2 w-full"
+                className="mb-5 bg-white text-black rounded-md cursor-pointer border-solid border-2"
             >
                 <option value="none"> None </option>
-                <option value="max"> Max number of opportunity districts </option>
-                <option value="avg"> Avg number of opportunity districts </option>
+                <option value="max"> Max Opportunity Districts </option>
+                <option value="avg"> Avg Opportunity Districts </option>
             </select>
         </div>
     );
