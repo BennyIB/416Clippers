@@ -67,32 +67,28 @@ const EcologicalInferencePlot = () => {
                     case 'Democratic':
                         switch (race) {
                             case 'Hispanic':
-                                return [0.0, 0.21, 0.62, 1.03, 1.44, 10.85, 2.26, 2.68, 3.09, 3.29, 3.5, 3.5, 3.29, 3.09, 2.88, 2.47, 0.0];
+                                return eco.Illinois.Democratic.hispanic;
                             case 'Black':
-                                return [2.04, 1.75, 1.46, 1.17, 0.88, 0.58, 0.29, 0.0, 0.0, 0.0, 0.29, 0.58, 0.88, 1.46, 2.04, 2.92, 3.5];
+                                return eco.Illinois.Democratic.black;
                             case 'White':
-                                return eco.Arizona.Democratic.white
+                                return eco.Illinois.Democratic.white;
                             case 'Asian':
-                                return [0.47, 0.76, 1.14, 1.60, 2.12, 2.64, 3.09, 3.39, 3.5, 3.39, 3.09, 2.64, 2.12, 1.60, 1.14, 0.76, 0.47];
+                                return eco.Illinois.Democratic.asian;
                             case 'Native':
-                                return [0];
-                            default:
-                                return [0.0, 0.0, 0.0, 0.21, 0.41, 0.62, 0.82, 1.03, 1.44, 1.85, 2.26, 2.88, 3.29, 3.5, 3.29, 2.88, 0.0];
+                                return eco.Illinois.Democratic.native;
                         }
                     case 'Republican':
                         switch (race) {
                             case 'Hispanic':
-                                return [0.0, 0.21, 0.62, 1.03, 1.44, 10.85, 2.26, 2.68, 3.09, 3.29, 3.5, 3.5, 3.29, 3.09, 2.88, 2.47, 0.0];
+                                return eco.Illinois.Republican.hispanic;
                             case 'Black':
-                                return [2.04, 1.75, 1.46, 1.17, 0.88, 0.58, 0.29, 0.0, 0.0, 0.0, 0.29, 0.58, 0.88, 1.46, 2.04, 2.92, 3.5];
+                                return eco.Illinois.Republican.black;
                             case 'White':
-                                return eco.Arizona.white
+                                return eco.Illinois.Republican.white;
                             case 'Asian':
-                                return [0.47, 0.76, 1.14, 1.60, 2.12, 2.64, 3.09, 3.39, 3.5, 3.39, 3.09, 2.64, 2.12, 1.60, 1.14, 0.76, 0.47];
+                                return eco.Illinois.Republican.asian;
                             case 'Native':
-                                return [0];
-                            default:
-                                return [0.0, 0.0, 0.0, 0.21, 0.41, 0.62, 0.82, 1.03, 1.44, 1.85, 2.26, 2.88, 3.29, 3.5, 3.29, 2.88, 0.0];
+                                return eco.Illinois.Republican.native;
                         }
                 }
             }
@@ -128,7 +124,7 @@ const EcologicalInferencePlot = () => {
             .call(d3.axisBottom(x));
 
         // Compute kernel density estimate for race
-        const raceDensity = kernelDensityEstimator(kernelEpanechnikov(0.001), x.ticks(100))(race);
+        const raceDensity = kernelDensityEstimator(kernelEpanechnikov(0.001), x.ticks(200))(race);
         // Compute kernel density estimate for non_race
         const nonRaceDensity = kernelDensityEstimator(kernelEpanechnikov(0.008), x.ticks(100))(non_race);
 
@@ -174,6 +170,18 @@ const EcologicalInferencePlot = () => {
                 .y(d => y(d[1]))
             );
 
+        const yAxisLabelText = "Probability Density"; // Change this to any desired label
+
+        // Append Y axis label
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -height / 2)
+            .attr("y", -margin.left) // Adjust position if needed
+            .attr("dy", "1em")
+            .style("text-anchor", "middle")
+            .text(yAxisLabelText);
+
+
         svg.append("rect")
             .attr("x", 280)
             .attr("y", 10)
@@ -186,7 +194,7 @@ const EcologicalInferencePlot = () => {
         svg.append("circle").attr("cx", 300).attr("cy", 60).attr("r", 6).style("fill", "#404080")
         svg.append("text").attr("x", 320).attr("y", 30).text(selectedRace).style("font-size", "15px").attr("alignment-baseline", "middle")
         svg.append("text").attr("x", 320).attr("y", 60).text("non-" + selectedRace).style("font-size", "15px").attr("alignment-baseline", "middle")
-    }, [selectedRace, selectedParty, appState]);
+    }, [selectedRace, selectedParty]);
 
 
     const handleRaceChange = (event) => {
