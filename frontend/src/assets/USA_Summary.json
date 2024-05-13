@@ -1,0 +1,22 @@
+{
+    "USA": {
+        "population_summary": {
+            "voter_dist": "N/A",
+            "total": "N/A",
+            "votes": "N/A",
+            "white": "N/A",
+            "latino": "N/A",
+            "black": "N/A",
+            "asian": "N/A"
+        },
+        "representative_summary": {
+            "democratic": "N/A",
+            "republican": "N/A",
+            "white": "N/A",
+            "latino": "N/A",
+            "black": "N/A",
+            "asian": "N/A",
+            "other": "N/A"
+        }
+    }
+}

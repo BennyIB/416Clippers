@@ -8,14 +8,15 @@ const EnsembleSummaryTable = () => {
     };
 
     const tableStyle = {
-        width: '30%',
+        width: '100%',
         bottom: '10px',
         left: '50%',
         transform: 'translateX(-50%)',
         background: 'rgba(255, 255, 255, 0.95)',
         borderRadius: '8px',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        position: 'absolute'
+        position: 'absolute',
+        border: '1px solid #808080'
     };
 
     const minimizedStyle = {

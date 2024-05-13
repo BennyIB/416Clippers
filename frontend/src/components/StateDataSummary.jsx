@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useAppState } from '../AppStateContext';
 import Arizona_Summary from '../assets/Arizona_State_Summary.json';
 import Illinois_Summary from '../assets/Illinois_State_Summary.json';
-
+import USA_Summary from '../assets/USA_Summary.json'
 const StateDataSummary = () => {
     const { appState } = useAppState();
     const [stateData, setStateData] = useState(null);
@@ -10,7 +10,8 @@ const StateDataSummary = () => {
     useEffect(() => {
         const stateSummaries = {
             Arizona: Arizona_Summary['Arizona'],
-            Illinois: Illinois_Summary['Illinois']
+            Illinois: Illinois_Summary['Illinois'],
+            USA: USA_Summary['USA']
         };
 
         if (appState && stateSummaries[appState]) {
@@ -46,7 +47,7 @@ const StateDataSummary = () => {
     if (!stateData) return <div>Loading...</div>;
 
     return (
-        <div className="p-6 border border-gray-300 overflow-hidden">
+        <div className="p-3 border border-gray-300 overflow-hidden">
             <div className="flex">
                 <div className="flex-1 mr-4">
                     <h2 className="text-2xl font-bold mb-6 text-gray-800">{stateData.name} - Data Summary</h2>

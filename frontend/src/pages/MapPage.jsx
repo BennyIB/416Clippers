@@ -129,7 +129,6 @@ const MapPage = () => {
                 setChartSelection={setChartSelection} 
                 chartSelection={chartSelection}
             />
-            <EnsembleSummaryTable />
         </div>
     );
 }

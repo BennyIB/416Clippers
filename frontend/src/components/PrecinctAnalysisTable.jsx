@@ -72,14 +72,14 @@ const PrecinctAnalysisTable = () => {
         </table>
         <div className="flex justify-between mt-4">
           <button
-            className="px-2 py-1 bg-blue-500 text-white rounded-md text-xs disabled:opacity-50"
+            className="ml-5 px-2 py-1 bg-blue-500 text-white rounded-md text-xs disabled:opacity-50"
             onClick={handlePrevious}
             disabled={currentPage === 1}
           >
             Previous
           </button>
           <button
-            className="px-2 py-1 bg-blue-500 text-white rounded-md text-xs disabled:opacity-50"
+            className="mr-5 px-2 py-1 bg-blue-500 text-white rounded-md text-xs disabled:opacity-50"
             onClick={handleNext}
             disabled={currentPage >= Math.ceil(precinctData.length / itemsPerPage)}
           >

@@ -7,18 +7,22 @@ import StateAssemblyTable from './StateAssemblyTable';
 import Filter from './Filter';
 import { ResizableBox } from 'react-resizable';
 import 'react-resizable/css/styles.css';
+import StateDataSummary from './StateDataSummary';
+import EnsembleSummaryTable from './EnsembleSummaryTable';
+import RedistrictingSummary from './RedistrictingSummary';
+
 const charts = [
   { id: 'ethnicityBarChart', name: 'Ethnicity Bar Chart' },
   { id: 'ecologicalInferencePlot', name: 'Ecological Inference Plot' },
   { id: 'ethnicityBarChartPop', name: 'Ethnicity Bar Chart Pop' },
-  { id: 'precinctAnalysisChart', name: 'Precinct Analysis Chart' },
-  // { id: 'minorityRepresentationAllDistricts', name: 'Minority Representation Across All Districts' },
-  { id: 'minorityRepresentation9Districts', name: 'ReCom Ensemble Plot' },
-  { id: 'ethnicityBarChartPopANDethnicityBarChart', name: 'Ethnicity Bar Chart vs Ethnicity Bar Chart Pop' },
-  { id: 'stateDataSummary', name: 'State Data Summary' },
   { id: 'feasibleOpportunityDistrictsTable', name: 'Feasible Opportunity Districts Table' },
   { id: 'opportunityDistrictsBarChart', name: 'Opportunity Districts Bar Chart' },
+  { id: 'precinctAnalysisChart', name: 'Precinct Analysis Chart' },
   { id: 'precinctAnalysisTable', name: 'Precinct Analysis Table' },
+  // { id: 'minorityRepresentationAllDistricts', name: 'Minority Representation Across All Districts' },
+  { id: 'minorityRepresentation9Districts', name: 'ReCom Ensemble Plot' },
+  // { id: 'ethnicityBarChartPopANDethnicityBarChart', name: 'Ethnicity Bar Chart vs Ethnicity Bar Chart Pop' },
+  // { id: 'stateDataSummary', name: 'State Data Summary' },
   { id: 'voteShareSeatShareCurve', name: 'Vote Share vs. Seat Share Curve' },
 ];
 
@@ -122,6 +126,11 @@ const MasterSidebar = (props) => {
         <div className="collapse-content bg-white text-primary-content peer-checked:text-secondary-content py-2">
           {renderChart()}
         </div>
+      </div>
+      <div className="mt-24">
+        <StateDataSummary/>
+        <RedistrictingSummary/>
+        <EnsembleSummaryTable/>
       </div>
     </ResizableBox>
   );
